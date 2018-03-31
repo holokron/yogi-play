@@ -1,0 +1,97 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/Navigation renders correctly 1`] = `
+<nav
+  className="navbar navbar-expand-md navbar-dark bg-dark"
+>
+  <a
+    className="navbar-brand"
+    href="/"
+    onClick={[Function]}
+  >
+    <img
+      alt="Yogi PLAY"
+      className="d-inline-block align-top"
+      src="/icons/icon-64x64.png"
+      width={30}
+    />
+     Yogi PLAY
+  </a>
+  <button
+    className="navbar-toggler"
+    onClick={[Function]}
+    type="button"
+  >
+    <span
+      className="navbar-toggler-icon"
+    />
+  </button>
+  <div
+    className="collapse navbar-collapse"
+    style={Object {}}
+  >
+    <ul
+      className="mr-auto navbar-nav"
+    >
+      <li
+        className="nav-item"
+      >
+        <a
+          className="nav-link"
+          href="/ulubione"
+          onClick={[Function]}
+        >
+          Ulubione 
+          <small
+            className="text-muted"
+          >
+            Soon
+          </small>
+        </a>
+      </li>
+      <li
+        className="nav-item"
+      >
+        <a
+          className="nav-link"
+          href="/dodaj"
+          onClick={[Function]}
+        >
+          Dodaj dźwięk 
+          <small
+            className="text-muted"
+          >
+            Soon
+          </small>
+        </a>
+      </li>
+    </ul>
+    <ul
+      className="navbar-nav"
+    >
+      <li
+        className="nav-item"
+      >
+        <a
+          className="nav-link"
+          href="/logowanie"
+          onClick={[Function]}
+        >
+          Logowanie
+        </a>
+      </li>
+      <li
+        className="nav-item"
+      >
+        <a
+          className="nav-link"
+          href="/rejestracja"
+          onClick={[Function]}
+        >
+          Rejestracja
+        </a>
+      </li>
+    </ul>
+  </div>
+</nav>
+`;

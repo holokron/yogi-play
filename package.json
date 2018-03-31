@@ -1,0 +1,49 @@
+{
+  "name": "yogi-play",
+  "homepage": "https://yogi-play.pl",
+  "version": "0.16.0",
+  "private": true,
+  "dependencies": {
+    "@fortawesome/fontawesome": "^1.1.4",
+    "@fortawesome/fontawesome-free-brands": "^5.0.8",
+    "@fortawesome/fontawesome-free-solid": "^5.0.8",
+    "@fortawesome/fontawesome-svg-core": "^1.2.0-7",
+    "@fortawesome/react-fontawesome": "^0.1.0-6",
+    "bootstrap": "^4.0.0",
+    "firebase": "^4.12.0",
+    "react": "^16.2.0",
+    "react-dom": "^16.2.0",
+    "react-router": "^4.2.0",
+    "react-router-dom": "^4.2.2",
+    "react-scripts-ts": "2.13.0",
+    "reactstrap": "^5.0.0"
+  },
+  "scripts": {
+    "prestart": "cp ./public/index_dev.html ./public/index.html",
+    "prebuild": "cp ./public/index_prod.html ./public/index.html",
+    "start": "react-scripts-ts start",
+    "build": "react-scripts-ts build",
+    "test": "react-scripts-ts test --env=jsdom",
+    "test-coverage": "react-scripts-ts test --env=jsdom --coverage",
+    "eject": "react-scripts-ts eject",
+    "tslint": "tslint -c ./tslint.json -p .",
+    "fix": "tslint --fix -c ./tslint.json -p ."
+  },
+  "devDependencies": {
+    "@types/enzyme": "^3.1.9",
+    "@types/enzyme-adapter-react-16": "^1.0.2",
+    "@types/jest": "^22.2.2",
+    "@types/node": "^9.6.0",
+    "@types/react": "^16.0.40",
+    "@types/react-dom": "^16.0.4",
+    "@types/react-router": "^4.0.23",
+    "@types/react-router-dom": "^4.2.5",
+    "@types/react-test-renderer": "^16.0.1",
+    "@types/reactstrap": "^5.0.20",
+    "enzyme": "^3.3.0",
+    "enzyme-adapter-react-16": "^1.1.1",
+    "jest-enzyme": "^4.2.0",
+    "react-test-renderer": "^16.2.0",
+    "typescript": "^2.7.2"
+  }
+}

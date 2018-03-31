@@ -1,0 +1,9 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/Container renders correctly 1`] = `
+<div
+  className="pt-4 container"
+>
+  Test
+</div>
+`;

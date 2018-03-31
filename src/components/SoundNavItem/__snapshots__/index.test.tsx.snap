@@ -1,0 +1,29 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/SoundNavItem renders correctly 1`] = `
+<li
+  className="nav-item"
+>
+  <a
+    className="nav-link--rounded nav-link"
+    href=""
+    onClick={[Function]}
+  >
+    Test
+  </a>
+</li>
+`;
+
+exports[`@components/SoundNavItem renders correctly, props (isActive = true) 1`] = `
+<li
+  className="nav-item"
+>
+  <a
+    className="nav-link--rounded nav-link active"
+    href=""
+    onClick={[Function]}
+  >
+    Test
+  </a>
+</li>
+`;

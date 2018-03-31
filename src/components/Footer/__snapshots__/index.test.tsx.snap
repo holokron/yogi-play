@@ -1,0 +1,15 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/Footer renders correctly 1`] = `
+<p
+  className="text-muted text-center mt-4"
+>
+  © 
+  <a
+    className="text-muted"
+    href="mailto:michalv8@gmail.com"
+  >
+    Yogi
+  </a>
+</p>
+`;

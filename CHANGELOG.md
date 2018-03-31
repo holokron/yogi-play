@@ -1,0 +1,55 @@
+# Changelog
+
+## 0.16.0 - 2018-03-27
+### Added
+- Facebook login/registration
+- Google login/registration
+
+## 0.15.0 - 2018-03-25
+### Added
+- Added _recent_ tag case in _Sounds_
+
+### Changed
+- Improved orderings of tags and sounds
+
+### Removed
+- _info_ color from _PlayButton_ when sounds is new
+
+## 0.14.0 - 2018-03-24
+### Added
+- Reactstrap library
+- Forms tests
+- Official Font Awesome React components
+
+### Changed
+- Button component in _PlayButton_
+- Button component in _AuthenticationForm_, _RegistrationForm_
+- Col component in _SoundsRow_
+- NavPill component to Nav in _Sounds_
+- _Nav_ to SoundsNav and used react Nav component
+- _NavItem_ to _SoundNavItem and used reactstrap Nav component
+- Used Reactstrap components in _Navigation_
+- Used Reactstrap components where needed
+
+### Removed
+- _Col_ component
+- _NavPills_ component
+- _Card_ component
+- _Header_ component
+- _FormGroup_ component
+- _Input_ component
+
+### Fixed 
+- Click on _PlayButton_  in loading state, loads audio again
+
+## 0.13.0 - 2018-03-24
+### Added
+- _isNew_ flag in _Sound_ type and reacting for it in _PlayButton_
+
+## 0.12.0 - 2018-03-23
+### Added
+- Firebase sounds integration
+- Changelog
+
+### Changed
+- Moved Footer from routes to App
