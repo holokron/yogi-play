@@ -10,7 +10,7 @@ import NavigationContainer from './containers/NavigationContainer'
 import Footer from './components/Footer'
 
 export const APP_NAME = 'Yogi PLAY'
-export const APP_VERSION = '0.16.0'
+export const APP_VERSION = '0.17.0'
 
 class App extends React.PureComponent {
   render() {

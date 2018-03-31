@@ -1,5 +1,10 @@
 # Changelog
 
+## 0.17.0 - 2018-03-31
+- Released under open source license to github
+- Added docs
+- Added travis CI config
+
 ## 0.16.0 - 2018-03-27
 ### Added
 - Facebook login/registration
