@@ -1,5 +1,10 @@
 # Changelog
 
+## Unreleased
+### Changed
+- Updated React to 16.3
+- Updated Typescript to 2.8
+
 ## 0.17.0 - 2018-03-31
 - Released under open source license to github
 - Added docs
