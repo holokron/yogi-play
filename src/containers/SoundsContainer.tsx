@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as firebase from 'firebase'
 import database from '../lib/database'
 import SoundsRepository from '../lib/sounds-repository'
 import TagsRepository from '../lib/tags-repository'
