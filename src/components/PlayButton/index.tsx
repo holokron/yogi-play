@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Button } from 'reactstrap'
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
+
 import './index.css'
 import Sound from '../../types/Sound'
 
@@ -24,31 +24,24 @@ export default class PlayButton extends React.PureComponent<Props, {}> {
             onClick,
         } = this.props
 
-        return {
-            className: 'play-btn btn-rounded text-left text-truncate',
-            size: 'lg',
-            block: true,
-            color: 'primary',
-            outline: !isPlaying && !isLoading,
-            onClick,
-        }
-    }
-
-    renderIcon() {
-        const {
-            isPlaying,
-            isLoading,
-        } = this.props
-
-        if (isPlaying) {
-            return <FontAwesomeIcon icon="pause" fixedWidth />
-        }
+        let animationClass: string = ''
 
         if (isLoading) {
-            return <FontAwesomeIcon icon="spinner" fixedWidth pulse />
+            animationClass += 'animated infinite flash'
         }
 
-        return <FontAwesomeIcon icon="play" fixedWidth />
+        if (isPlaying) {
+            animationClass += 'animated infinite pulse active'
+        }
+
+        return {
+            className: `play-btn btn-rounded text-truncate text-uppercase font-weight-bold ${animationClass}`,
+            block: true,
+            color: 'primary',
+            outline: true,
+            onClick,
+            size: 'lg',
+        }
     }
 
     render() {
@@ -59,9 +52,8 @@ export default class PlayButton extends React.PureComponent<Props, {}> {
         return (
             <Button
                 {...this.getButtonProps()}
-                className="play-btn btn-rounded text-left text-truncate"
             >
-                {this.renderIcon()} {sound.name}
+                {sound.name}
             </Button>
         )
     }

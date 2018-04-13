@@ -1,6 +1,6 @@
 import * as React from 'react'
-import Container from '../../components/Container'
-import Row from '../../components/Row'
+// import Container from '../../components/Container'
+// import Row from '../../components/Row'
 import SoundsNav from '../../components/SoundsNav'
 import SoundsContainer from '../../containers/SoundsContainer'
 import SoundsPlayerContainer from '../../containers/SoundsPlayerContainer'
@@ -18,23 +18,21 @@ export default function Sounds(): React.ReactElement<{}> {
       {(soundsRepository: SoundsRepository, tagsRepository: TagsRepository) => (
         <SoundsPlayerContainer sounds={soundsRepository.getSounds()}>
           {(soundPlayer: SoundPlayer) => (
-            <TabsContainer initialTab={tagsRepository.getTagsByOrder()[0]}>
+            <TabsContainer initialTab={tagsRepository.getTagsByOrder()[1]}>
               {(currentTag: Tag | null, changeTab: {(tab: any): void}) => (
-                <Container fluid>
-                  <Row>
-                    <SoundsNav>
-                      {tagsRepository.getTagsByOrder().map((tag: Tag) => ( 
-                        (tag.sounds || ['all', 'misc', 'recent'].includes(tag.slug)) && 
-                        <SoundNavItem
-                          key={tag.id}
-                          onClick={() => changeTab(tag)}
-                          isActive={!!currentTag && currentTag.id === tag.id}
-                        >
-                          {tag.name}
-                        </SoundNavItem>
-                      ))}
-                    </SoundsNav>
-                  </Row>
+                <React.Fragment>
+                  <SoundsNav>
+                    {tagsRepository.getTagsByOrder().map((tag: Tag) => ( 
+                      (tag.sounds || ['all', 'misc', 'recent'].includes(tag.slug)) && 
+                      <SoundNavItem
+                        key={tag.id}
+                        onClick={() => changeTab(tag)}
+                        isActive={!!currentTag && currentTag.id === tag.id}
+                      >
+                        {tag.name}
+                      </SoundNavItem>
+                    ))}
+                  </SoundsNav>
                   <SoundsRow
                     sounds={soundsRepository.getSoundsForTag(currentTag)}
                     playAudio={soundPlayer.playAudio}
@@ -42,7 +40,7 @@ export default function Sounds(): React.ReactElement<{}> {
                     isPlaying={soundPlayer.isPlaying}
                     addSoundStateListener={soundPlayer.addSoundStateListener}
                   />
-                </Container>
+                </React.Fragment>
               )}
             </TabsContainer>
           )}

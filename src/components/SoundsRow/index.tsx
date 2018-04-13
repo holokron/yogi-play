@@ -25,10 +25,12 @@ export default function SoundsRow({
         <Row withTopPadding>
             {sounds.map((sound: Sound) => (
                 <Col
+                    xl="1"
                     lg="2"
-                    md="3"
+                    md="2"
                     sm="4"
-                    className="mb-3 pl-2 pr-2"
+                    xs="6"
+                    className="mb-2 pl-1 pr-1"
                     key={sound.name}
                 >
                     <PlayButtonContainer
