@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Button } from 'reactstrap'
-
 import './index.css'
 import Sound from '../../types/Sound'
 

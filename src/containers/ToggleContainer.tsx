@@ -3,9 +3,9 @@ import * as React from 'react'
 export interface Props {
     children(
         toggled: boolean,
-        toggle: Function,
-        toggleOn: Function,
-        toggleOff: Function,
+        toggle: {(): void},
+        toggleOn: {(): void},
+        toggleOff: {(): void},
     ): React.ReactElement<any>
 }
 

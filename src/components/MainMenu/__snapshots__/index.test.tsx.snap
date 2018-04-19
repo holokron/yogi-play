@@ -1,0 +1,40 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/MainMenu renders correctly 1`] = `
+<ul
+  className="mr-auto navbar-nav"
+>
+  <li
+    className="nav-item"
+  >
+    <a
+      className="nav-link text-uppercase"
+      href="/ulubione"
+      onClick={[Function]}
+    >
+      Ulubione 
+      <small
+        className="text-muted"
+      >
+        Soon
+      </small>
+    </a>
+  </li>
+  <li
+    className="nav-item"
+  >
+    <a
+      className="nav-link text-uppercase"
+      href="/dodaj"
+      onClick={[Function]}
+    >
+      Dodaj dźwięk 
+      <small
+        className="text-muted"
+      >
+        Soon
+      </small>
+    </a>
+  </li>
+</ul>
+`;
