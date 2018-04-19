@@ -29,7 +29,21 @@ export default class SoundsContainer extends React.PureComponent<Props, State> {
         }
     }
 
-    componentDidMount() {
+    async loadTags() {
+        database.getTagsRef()
+            .on(
+                'value',
+                (snapshot: firebase.database.DataSnapshot) => {
+                    this.tagsRepository.setTags(snapshot.val())
+                    this.setState((state: State) => ({
+                        ...state,
+                        fetchedTagsAt: new Date(),
+                    }))
+                }
+            )
+    }
+
+    async loadSounds() {
         database.getSoundsRef()
             .on(
                 'value',
@@ -42,18 +56,11 @@ export default class SoundsContainer extends React.PureComponent<Props, State> {
                     }))
                 }
             )
+    }
 
-        database.getTagsRef()
-            .on(
-                'value',
-                (snapshot: firebase.database.DataSnapshot) => {
-                    this.tagsRepository.setTags(snapshot.val())
-                    this.setState((state: State) => ({
-                        ...state,
-                        fetchedTagsAt: new Date(),
-                    }))
-                }
-            )
+    componentDidMount() {
+        this.loadTags()
+        this.loadSounds()
     }
 
     render() {
