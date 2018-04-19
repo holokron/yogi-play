@@ -1,0 +1,17 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/NavBrandLink renders correctly 1`] = `
+<a
+  className="navbar-brand"
+  href="/"
+  onClick={[Function]}
+>
+  <img
+    alt="Yogi PLAY"
+    className="d-inline-block align-top"
+    src="/icons/icon-64x64.png"
+    width={30}
+  />
+   Yogi PLAY
+</a>
+`;

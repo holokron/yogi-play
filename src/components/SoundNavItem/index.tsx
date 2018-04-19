@@ -42,15 +42,16 @@ export default class SoundNavItem extends React.PureComponent<Props> {
 
         return (
             <NavItem>
-                <NavLink
-                    href=""
+                <NavLink 
+                    href="#"
                     active={isActive}
                     onClick={handleClick}
-                    className="nav-link--rounded"
+                    className="nav-link nav-link--rounded text-uppercase"
                 >
                     {children}
                 </NavLink>
             </NavItem>
+            
         )
     }
 }

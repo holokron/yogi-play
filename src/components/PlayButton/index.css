@@ -1,3 +1,7 @@
 .btn-rounded {
     border-radius: 30px !important;
 }
+
+.play-btn {
+    font-size: 13px !important;    
+}

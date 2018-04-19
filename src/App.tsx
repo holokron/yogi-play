@@ -6,7 +6,6 @@ import Request from './routes/Request'
 import Authentication from './routes/Authentication'
 import Registration from './routes/Registration'
 import SecuredRoute from './routes/SecuredRoute'
-import NavigationContainer from './containers/NavigationContainer'
 import Footer from './components/Footer'
 
 export const APP_NAME = 'Yogi PLAY'
@@ -17,9 +16,6 @@ class App extends React.PureComponent {
     return (
         <Router>
           <React.Fragment>
-            <header>
-              <NavigationContainer />
-            </header>
             <main>
               <Switch>
                 <Route exact path="/" component={Sounds} />

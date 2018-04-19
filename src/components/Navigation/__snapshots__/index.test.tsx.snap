@@ -2,7 +2,7 @@
 
 exports[`@components/Navigation renders correctly 1`] = `
 <nav
-  className="navbar navbar-expand-md navbar-dark bg-dark"
+  className="navigation navbar navbar-expand-md navbar-dark bg-dark"
 >
   <a
     className="navbar-brand"
@@ -37,7 +37,7 @@ exports[`@components/Navigation renders correctly 1`] = `
         className="nav-item"
       >
         <a
-          className="nav-link"
+          className="nav-link text-uppercase"
           href="/ulubione"
           onClick={[Function]}
         >
@@ -53,7 +53,7 @@ exports[`@components/Navigation renders correctly 1`] = `
         className="nav-item"
       >
         <a
-          className="nav-link"
+          className="nav-link text-uppercase"
           href="/dodaj"
           onClick={[Function]}
         >
@@ -73,7 +73,7 @@ exports[`@components/Navigation renders correctly 1`] = `
         className="nav-item"
       >
         <a
-          className="nav-link"
+          className="nav-link text-uppercase"
           href="/logowanie"
           onClick={[Function]}
         >
@@ -84,7 +84,7 @@ exports[`@components/Navigation renders correctly 1`] = `
         className="nav-item"
       >
         <a
-          className="nav-link"
+          className="nav-link text-uppercase"
           href="/rejestracja"
           onClick={[Function]}
         >
