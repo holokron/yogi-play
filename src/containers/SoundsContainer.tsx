@@ -47,8 +47,7 @@ export default class SoundsContainer extends React.PureComponent<Props, State> {
         database.getSoundsRef()
             .on(
                 'value',
-                (snapshot: firebase.database.DataSnapshot) => {
-                    
+                (snapshot: firebase.database.DataSnapshot) => {                    
                     this.soundsRepository.setSounds(snapshot.val())
                     this.setState((state: State) => ({
                         ...state,
