@@ -1,0 +1,30 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`@components/AuthMenu renders correctly 1`] = `
+<ul
+  className="navbar-nav"
+>
+  <li
+    className="nav-item"
+  >
+    <a
+      className="nav-link text-uppercase"
+      href="/logowanie"
+      onClick={[Function]}
+    >
+      Logowanie
+    </a>
+  </li>
+  <li
+    className="nav-item"
+  >
+    <a
+      className="nav-link text-uppercase"
+      href="/rejestracja"
+      onClick={[Function]}
+    >
+      Rejestracja
+    </a>
+  </li>
+</ul>
+`;

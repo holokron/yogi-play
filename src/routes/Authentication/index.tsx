@@ -13,6 +13,7 @@ import {
 import AuthenticationForm from '../../forms/AuthenticationForm'
 import ExternalAuthProviders from '../../components/ExternalAuthProviders'
 import AuthContainer from '../../containers/AuthContainer'
+import NavigationContainer from '../../containers/NavigationContainer'
 import { Auth } from '../../lib/auth'
 import { Location } from 'history'
 
@@ -34,47 +35,50 @@ export default class Authentication extends React.PureComponent<Props> {
                     }
 
                     return (
-                        <Container>
-                            <Row className="justify-content-md-center">
-                                <Col lg="5" md="8" className="mb-4">
-                                    <Card>
-                                        <CardBody>
-                                            <CardTitle>
-                                                Logowanie
-                                            </CardTitle>
-                                            <CardSubtitle className="mb-3 text-muted">
-                                                Zaloguj się aby mieć dostęp do swoich ulubionych dźwięków
-                                            </CardSubtitle>
-                                            <AuthenticationForm onSubmit={auth.login} />
-                                            <br />
-                                            <span>
-                                                Nie posiadasz jeszcze konta? 
-                                                &nbsp;
-                                                <Link to="/rejestracja">Zarejestruj się</Link>
-                                            </span>
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                                <Col lg="5" md="8">
-                                    <Card>
-                                        <CardBody>
-                                            <CardTitle>
-                                                Logowanie
-                                            </CardTitle>
-                                            <CardSubtitle className="mb-3 text-muted">
-                                                Zaloguj się za pomocą serwisów zewnętrznych
-                                            </CardSubtitle>
-                                            <ExternalAuthProviders
-                                                onLoginWithGoogle={auth.loginWithGoogle}
-                                                onLoginWithFacebook={auth.loginWithFacebook}
-                                                googleLoginLabel="Zaloguj z Google"
-                                                facebookLoginLabel="Zaloguj z Facebook"
-                                            />
-                                        </CardBody>
-                                    </Card>
-                                </Col>
-                            </Row>
-                        </Container>
+                        <React.Fragment>
+                            <NavigationContainer />
+                            <Container>
+                                <Row className="justify-content-md-center">
+                                    <Col lg="5" md="8" className="mb-4">
+                                        <Card>
+                                            <CardBody>
+                                                <CardTitle>
+                                                    Logowanie
+                                                </CardTitle>
+                                                <CardSubtitle className="mb-3 text-muted">
+                                                    Zaloguj się aby mieć dostęp do swoich ulubionych dźwięków
+                                                </CardSubtitle>
+                                                <AuthenticationForm onSubmit={auth.login} />
+                                                <br />
+                                                <span>
+                                                    Nie posiadasz jeszcze konta? 
+                                                    &nbsp;
+                                                    <Link to="/rejestracja">Zarejestruj się</Link>
+                                                </span>
+                                            </CardBody>
+                                        </Card>
+                                    </Col>
+                                    <Col lg="5" md="8">
+                                        <Card>
+                                            <CardBody>
+                                                <CardTitle>
+                                                    Logowanie
+                                                </CardTitle>
+                                                <CardSubtitle className="mb-3 text-muted">
+                                                    Zaloguj się za pomocą serwisów zewnętrznych
+                                                </CardSubtitle>
+                                                <ExternalAuthProviders
+                                                    onLoginWithGoogle={auth.loginWithGoogle}
+                                                    onLoginWithFacebook={auth.loginWithFacebook}
+                                                    googleLoginLabel="Zaloguj z Google"
+                                                    facebookLoginLabel="Zaloguj z Facebook"
+                                                />
+                                            </CardBody>
+                                        </Card>
+                                    </Col>
+                                </Row>
+                            </Container>
+                        </React.Fragment>
                     )
                 }}
             </AuthContainer>

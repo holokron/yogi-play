@@ -11,8 +11,8 @@ Simple React JS app that plays funny sounds :) Built using:
 
 ## To do
 
-- [ ] Update to React JS 16.3
-- [ ] Update to Typescript 2.8
+- [x] Update to React JS 16.3
+- [x] Update to Typescript 2.8
 - [ ] Favourites functionality
 - [ ] User requests functionality
 - [ ] Sounds search

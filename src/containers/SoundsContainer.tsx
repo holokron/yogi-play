@@ -1,4 +1,5 @@
 import * as React from 'react'
+import * as firebase from 'firebase'
 import database from '../lib/database'
 import SoundsRepository from '../lib/sounds-repository'
 import TagsRepository from '../lib/tags-repository'
@@ -28,20 +29,7 @@ export default class SoundsContainer extends React.PureComponent<Props, State> {
         }
     }
 
-    componentDidMount() {
-        database.getSoundsRef()
-            .on(
-                'value',
-                (snapshot: firebase.database.DataSnapshot) => {
-                    
-                    this.soundsRepository.setSounds(snapshot.val())
-                    this.setState((state: State) => ({
-                        ...state,
-                        fetchedSoundsAt: new Date(),
-                    }))
-                }
-            )
-
+    async loadTags() {
         database.getTagsRef()
             .on(
                 'value',
@@ -53,6 +41,25 @@ export default class SoundsContainer extends React.PureComponent<Props, State> {
                     }))
                 }
             )
+    }
+
+    async loadSounds() {
+        database.getSoundsRef()
+            .on(
+                'value',
+                (snapshot: firebase.database.DataSnapshot) => {                    
+                    this.soundsRepository.setSounds(snapshot.val())
+                    this.setState((state: State) => ({
+                        ...state,
+                        fetchedSoundsAt: new Date(),
+                    }))
+                }
+            )
+    }
+
+    componentDidMount() {
+        this.loadTags()
+        this.loadSounds()
     }
 
     render() {

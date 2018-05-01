@@ -5,8 +5,8 @@ exports[`@components/SoundNavItem renders correctly 1`] = `
   className="nav-item"
 >
   <a
-    className="nav-link--rounded nav-link"
-    href=""
+    className="nav-link nav-link--rounded text-uppercase nav-link"
+    href="#"
     onClick={[Function]}
   >
     Test
@@ -19,8 +19,8 @@ exports[`@components/SoundNavItem renders correctly, props (isActive = true) 1`]
   className="nav-item"
 >
   <a
-    className="nav-link--rounded nav-link active"
-    href=""
+    className="nav-link nav-link--rounded text-uppercase nav-link active"
+    href="#"
     onClick={[Function]}
   >
     Test
