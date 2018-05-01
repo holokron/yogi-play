@@ -103,7 +103,7 @@ export default class SoundsPlayerContainer extends React.PureComponent<Props> {
         })
     }
 
-    private initSounds(sounds: Sound[]): void {
+    private async initSounds(sounds: Sound[]): Promise<void> {
         sounds.forEach((sound: Sound) => {
             if (!this.getSoundClip(sound)) {
                 this.initSoundClip(sound)
