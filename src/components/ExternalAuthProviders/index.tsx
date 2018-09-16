@@ -31,7 +31,7 @@ export default class ExternalAuthProviders extends React.PureComponent<Props, St
         this.handleFacebookLogin = this.handleFacebookLogin.bind(this)
     }
 
-    async handleGoogleLogin(event: React.SyntheticEvent<MouseEvent>): Promise<void> {
+    async handleGoogleLogin(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
         event.preventDefault()
         
         if (this.state.isGoogleLoading) {
@@ -53,7 +53,7 @@ export default class ExternalAuthProviders extends React.PureComponent<Props, St
         }
     }
 
-    async handleFacebookLogin(event: React.SyntheticEvent<MouseEvent>): Promise<void> {
+    async handleFacebookLogin(event: React.MouseEvent<HTMLButtonElement>): Promise<void> {
         event.preventDefault()
         
         if (this.state.isFacebookLoading) {
