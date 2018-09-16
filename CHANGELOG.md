@@ -1,22 +1,26 @@
 # Changelog
 
-## Unreleased
+## [Unreleased]
+### Changed
+- Updated outdated packages, typescript to v3
+
+## [0.18.0] - 2018-05-01
 ### Changed
 - Updated React to 16.3
 - Updated Typescript to 2.8
 - Design fixes
 
-## 0.17.0 - 2018-03-31
+## [0.17.0] - 2018-03-31
 - Released under open source license to github
 - Added docs
 - Added travis CI config
 
-## 0.16.0 - 2018-03-27
+## [0.16.0] - 2018-03-27
 ### Added
 - Facebook login/registration
 - Google login/registration
 
-## 0.15.0 - 2018-03-25
+## [0.15.0] - 2018-03-25
 ### Added
 - Added _recent_ tag case in _Sounds_
 
@@ -26,7 +30,7 @@
 ### Removed
 - _info_ color from _PlayButton_ when sounds is new
 
-## 0.14.0 - 2018-03-24
+## [0.14.0] - 2018-03-24
 ### Added
 - Reactstrap library
 - Forms tests
@@ -53,11 +57,11 @@
 ### Fixed 
 - Click on _PlayButton_  in loading state, loads audio again
 
-## 0.13.0 - 2018-03-24
+## [0.13.0] - 2018-03-24
 ### Added
 - _isNew_ flag in _Sound_ type and reacting for it in _PlayButton_
 
-## 0.12.0 - 2018-03-23
+## [0.12.0] - 2018-03-23
 ### Added
 - Firebase sounds integration
 - Changelog
