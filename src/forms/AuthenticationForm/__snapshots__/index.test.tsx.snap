@@ -6,7 +6,7 @@ exports[`@forms/AuthenticationForm renders correctly 1`] = `
   onSubmit={[Function]}
 >
   <div
-    className="form-group"
+    className="position-relative form-group"
   >
     <label>
       Email
@@ -21,7 +21,7 @@ exports[`@forms/AuthenticationForm renders correctly 1`] = `
     />
   </div>
   <div
-    className="form-group"
+    className="position-relative form-group"
   >
     <label>
       Hasło

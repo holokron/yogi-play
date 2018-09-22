@@ -9,7 +9,7 @@ import SecuredRoute from './routes/SecuredRoute'
 import Footer from './components/Footer'
 
 export const APP_NAME = 'Yogi PLAY'
-export const APP_VERSION = '0.18.0'
+export const APP_VERSION = '0.19.0'
 
 class App extends React.PureComponent {
   render() {
