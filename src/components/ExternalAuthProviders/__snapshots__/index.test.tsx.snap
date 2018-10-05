@@ -12,6 +12,7 @@ exports[`@components/ExternalAuthProviders renders correctly 1`] = `
       role="group"
     >
       <button
+        aria-label={null}
         className="btn btn-primary active"
         onClick={[Function]}
         type={undefined}
@@ -34,6 +35,7 @@ exports[`@components/ExternalAuthProviders renders correctly 1`] = `
         </svg>
       </button>
       <button
+        aria-label={null}
         className="btn-block btn btn-primary"
         onClick={[Function]}
         type="button"
@@ -51,6 +53,7 @@ exports[`@components/ExternalAuthProviders renders correctly 1`] = `
       role="group"
     >
       <button
+        aria-label={null}
         className="btn btn-primary active"
         onClick={[Function]}
         type={undefined}
@@ -73,6 +76,7 @@ exports[`@components/ExternalAuthProviders renders correctly 1`] = `
         </svg>
       </button>
       <button
+        aria-label={null}
         className="btn-block btn btn-primary"
         onClick={[Function]}
         type="button"
