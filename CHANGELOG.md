@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.20.1] - 2018-10-05
+### Fixed
+- Fixed version number
+
 ## [0.20.0] - 2018-10-05
 ### Changed
 - Updated dependencies
