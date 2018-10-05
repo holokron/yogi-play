@@ -2,6 +2,7 @@
 
 exports[`@components/PlayButton should match snapshot 1`] = `
 <button
+  aria-label={null}
   className="play-btn btn-rounded text-truncate text-uppercase font-weight-bold  btn btn-outline-primary btn-lg btn-block"
   onClick={[Function]}
   type={undefined}
@@ -12,6 +13,7 @@ exports[`@components/PlayButton should match snapshot 1`] = `
 
 exports[`@components/PlayButton should match snpashot when audio is playing 1`] = `
 <button
+  aria-label={null}
   className="play-btn btn-rounded text-truncate text-uppercase font-weight-bold animated infinite pulse active btn btn-outline-primary btn-lg btn-block"
   onClick={[Function]}
   type={undefined}
