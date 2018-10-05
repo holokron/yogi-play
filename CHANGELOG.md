@@ -1,6 +1,10 @@
 # Changelog
 
-## [Unreleased]
+## [0.20.0] - 2018-10-05
+### Changed
+- Updated dependencies
+
+## [0.19.0] - 2018-09-22
 ### Changed
 - Updated outdated packages, typescript to v3
 
