@@ -36,6 +36,7 @@ exports[`@forms/AuthenticationForm renders correctly 1`] = `
     />
   </div>
   <button
+    aria-label={null}
     className="btn btn-primary"
     onClick={[Function]}
     type="submit"
