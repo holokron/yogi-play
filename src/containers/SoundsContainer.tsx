@@ -1,76 +1,56 @@
 import * as React from 'react'
-import * as firebase from 'firebase'
-import database from '../lib/database'
+import { connect } from 'react-redux'
 import SoundsRepository from '../lib/sounds-repository'
-import TagsRepository from '../lib/tags-repository'
+import SoundsCollection from '../types/SoundsCollection'
+import Tag from '../types/Tag'
+import { getSoundsCollection, getTagsByOrder } from '../store/selectors'
+import { loadSounds, loadTags, AppDispatch } from '../store/actions'
+import AppState from '../store/state'
 
 export interface Props {
     children: {(
         soundsRepository: SoundsRepository,
-        tagsRepository: TagsRepository,
+        tags: Tag[],
     ): React.ReactElement<any>}
+    loadSounds: () => void
+    loadTags: () => void
+    sounds: SoundsCollection
+    tags: Tag[]
 }
 
-export interface State {
-    fetchedSoundsAt: Date | null
-    fetchedTagsAt: Date | null
-}
-
-export default class SoundsContainer extends React.PureComponent<Props, State> {
+class SoundsContainer extends React.PureComponent<Props> {
     private readonly soundsRepository: SoundsRepository = new SoundsRepository()
-    private readonly tagsRepository: TagsRepository = new TagsRepository()
-
-    constructor(props: Props) {
-        super(props)
-
-        this.state = {
-            fetchedSoundsAt: null,
-            fetchedTagsAt: null,
-        }
-    }
-
-    async loadTags() {
-        database.getTagsRef()
-            .on(
-                'value',
-                (snapshot: firebase.database.DataSnapshot) => {
-                    this.tagsRepository.setTags(snapshot.val())
-                    this.setState((state: State) => ({
-                        ...state,
-                        fetchedTagsAt: new Date(),
-                    }))
-                }
-            )
-    }
-
-    async loadSounds() {
-        database.getSoundsRef()
-            .on(
-                'value',
-                (snapshot: firebase.database.DataSnapshot) => {                    
-                    this.soundsRepository.setSounds(snapshot.val())
-                    this.setState((state: State) => ({
-                        ...state,
-                        fetchedSoundsAt: new Date(),
-                    }))
-                }
-            )
-    }
 
     componentDidMount() {
-        this.loadTags()
-        this.loadSounds()
+        this.props.loadTags()
+        this.props.loadSounds()
     }
 
     render() {
         const {
             props: {
                 children,
+                tags,
             },
             soundsRepository,
-            tagsRepository,
         } = this
 
-        return children(soundsRepository, tagsRepository)
+        return children(soundsRepository, tags)
     }
 }
+
+const mapStateToProps = (state: AppState) => ({
+    sounds: getSoundsCollection(state),
+    tags: getTagsByOrder(state),
+})
+
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    loadSounds: async () => {
+        dispatch(loadSounds())
+    },
+    loadTags: async () => {
+        dispatch(loadTags())
+    },
+})
+
+export default connect(mapStateToProps, mapDispatchToProps)(SoundsContainer)
