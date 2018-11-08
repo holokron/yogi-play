@@ -1,5 +1,9 @@
 # Changelog
 
+## [Unreleased]
+### Added
+- Added coveralls 
+
 ## [0.20.1] - 2018-10-05
 ### Fixed
 - Fixed version number
