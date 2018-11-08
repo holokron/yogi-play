@@ -1,87 +1,38 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import Sound from '../types/Sound'
-import SoundCallback from '../types/SoundCallback'
 import PlayButton from '../components/PlayButton'
-import AddSoundStateListenerCallback from '../types/AddSoundStateListenerCallback'
+import { AppDispatch, playSound, stopSound } from '../store/actions'
 
 export interface Props {
     sound: Sound
-    playAudio: SoundCallback<void>,
-    stopAudio: SoundCallback<void>,
-    isPlaying?: boolean,
-    addSoundStateListener: AddSoundStateListenerCallback
+    playSound: {(soundId: string): void}
+    stopSound: {(soundId: string): void}
 }
 
-export interface State {
-    isPlaying: boolean
-    isLoading: boolean
-}
-
-export default class PlayButtonContainer extends React.PureComponent<Props, State> {
-    static defaultProps: Partial<Props> = {
-        isPlaying: false,
-    }
-
-    private mounted: boolean = false
-
+class PlayButtonContainer extends React.PureComponent<Props> {
     constructor(props: Props) {
         super(props)
 
-        this.state = {
-            isPlaying: props.isPlaying || false,
-            isLoading: false,
-        }
-
         this.onClick = this.onClick.bind(this)
-        this.isPlaying = this.isPlaying.bind(this)
-    }
-
-    componentWillUnmount() {
-        this.mounted = false
-    }
-
-    componentDidMount() {
-        this.mounted = true
-        this.props.addSoundStateListener(
-            this.props.sound,
-            (sound: Sound, isPlaying: boolean): void => {
-                if (!this.mounted) {
-                    return
-                }
-                
-                this.setState({
-                    isPlaying,
-                    isLoading: false,
-                })
-            })
-    }
-
-    isPlaying(): boolean {
-        return this.state.isPlaying
     }
 
     onClick() {
         const {
-            playAudio,
-            stopAudio,
             sound,
         } = this.props
 
-        if (this.state.isLoading) {
+        if (sound.isLoading) {
             return
         }
 
-        this.setState({
-            isLoading: true,
-        })
-
-        if (this.isPlaying()) {
-            stopAudio(sound)
+        if (sound.isPlaying) {
+            this.props.stopSound(sound.id)
 
             return
         }
 
-        playAudio(sound)       
+        this.props.playSound(sound.id)
     }
 
     render() {
@@ -90,12 +41,19 @@ export default class PlayButtonContainer extends React.PureComponent<Props, Stat
             props: {
                 sound,
             },
-            state: {
-                isPlaying,
-                isLoading,
-            },
         } = this
 
-        return <PlayButton sound={sound} onClick={onClick} isLoading={isLoading} isPlaying={isPlaying} />
+        return <PlayButton sound={sound} onClick={onClick} isLoading={sound.isLoading} isPlaying={sound.isPlaying} />
     }
 }
+
+const mapDispatchToProps = (dispatch: AppDispatch) => ({
+    playSound: (soundId: string): void => {
+        dispatch(playSound(soundId))
+    },
+    stopSound: (soundId: string): void => {
+        dispatch(stopSound(soundId))
+    },
+})
+
+export default connect(null, mapDispatchToProps)(PlayButtonContainer)

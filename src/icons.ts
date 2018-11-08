@@ -1,10 +1,19 @@
-import fontawesome from '@fortawesome/fontawesome'
-import * as faPause from '@fortawesome/fontawesome-free-solid/faPause'
-import * as faPlay from '@fortawesome/fontawesome-free-solid/faPlay'
-import * as faSpinner from '@fortawesome/fontawesome-free-solid/faSpinner'
-
-fontawesome.library.add(
+import { library } from '@fortawesome/fontawesome-svg-core'
+import {
     faPause,
     faPlay,
     faSpinner,
+} from '@fortawesome/free-solid-svg-icons'
+
+import {
+    faGoogle,
+    faFacebook,
+} from '@fortawesome/free-brands-svg-icons'
+
+library.add(
+    faPause,
+    faPlay,
+    faSpinner,
+    faGoogle,
+    faFacebook,
 )
