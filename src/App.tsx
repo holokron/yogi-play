@@ -11,7 +11,7 @@ import Footer from './components/Footer'
 import configureStore from './store'
 
 export const APP_NAME = 'Yogi PLAY'
-export const APP_VERSION = '0.20.1'
+export const APP_VERSION = '0.21.0'
 
 const store = configureStore()
 
