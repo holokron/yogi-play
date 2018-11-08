@@ -1,8 +1,6 @@
 import * as React from 'react'
 import { UncontrolledAlert, Button, ButtonGroup, Col, Row } from 'reactstrap'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import * as faGoogle from '@fortawesome/fontawesome-free-brands/faGoogle'
-import * as faFacebook from '@fortawesome/fontawesome-free-brands/faFacebook'
 
 export interface Props {
     googleLoginLabel: string
@@ -103,7 +101,7 @@ export default class ExternalAuthProviders extends React.PureComponent<Props, St
                 <Col md="12" className="mt-3">
                     <ButtonGroup className="btn-block">
                         <Button active color="primary">
-                            <FontAwesomeIcon icon={faGoogle} size="lg" fixedWidth />
+                            <FontAwesomeIcon icon="google" size="lg" fixedWidth />
                         </Button>
                         <Button onClick={handleGoogleLogin} color="primary" className="btn-block">
                             {isGoogleLoading && <FontAwesomeIcon icon="spinner" pulse fixedWidth />}
@@ -114,7 +112,7 @@ export default class ExternalAuthProviders extends React.PureComponent<Props, St
                 <Col md="12" className="mt-3">
                     <ButtonGroup className="btn-block">
                         <Button active color="primary">
-                            <FontAwesomeIcon icon={faFacebook} size="lg" fixedWidth />
+                            <FontAwesomeIcon icon="facebook" size="lg" fixedWidth />
                         </Button>
                         <Button onClick={handleFacebookLogin} color="primary" className="btn-block">
                             {isFacebookLoading && <FontAwesomeIcon icon="spinner" pulse fixedWidth />}

@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.21.0] - 2018-11-08
+### Added
+- Redux
+
+### Changed
+- Updated packages
+
 ## [0.20.1] - 2018-10-05
 ### Fixed
 - Fixed version number
