@@ -3,5 +3,6 @@
 }
 
 .play-btn {
-    font-size: 13px !important;    
+    font-size: 13px !important;
+    box-shadow: 0 2px 4px;
 }

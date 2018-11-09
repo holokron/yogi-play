@@ -15,6 +15,7 @@ export enum ACTIONS {
     LOAD_SOUND = '@app/LOAD_SOUND',
     LOAD_SOUNDS = '@app/LOAD_SOUNDS',
     LOAD_TAGS = '@app/LOAD_TAGS',
+    CHOOSE_TAG = '@app/CHOOSE_TAG',
 }
 
 const audios: Map<string, HTMLAudioElement> = new Map<string, HTMLAudioElement>()
@@ -37,7 +38,13 @@ export interface LoadTagsAction extends Action<ACTIONS> {
     },
 }
 
-export type AppAction = SoundAction & LoadSoundsAction & LoadTagsAction
+export interface ChooseTagAction extends Action<ACTIONS> {
+    payload: {
+        tagId: string
+    },
+}
+
+export type AppAction = SoundAction & LoadSoundsAction & LoadTagsAction & ChooseTagAction
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>
 
@@ -82,6 +89,15 @@ export function createLoadTagsAction(tags: TagsCollection): LoadTagsAction {
         type: ACTIONS.LOAD_TAGS,
         payload: {
             tags,
+        },
+    }
+}
+
+export function createChooseTagAction(tagId: string): ChooseTagAction {
+    return {
+        type: ACTIONS.CHOOSE_TAG,
+        payload: {
+            tagId,
         },
     }
 }
@@ -156,5 +172,11 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
                     dispatch(createLoadTagsAction(snapshot.val()))
                 }
             )
+    }
+}
+
+export function choseTag(tagId: string): ThunkAction<void, AppState, any, ChooseTagAction> {
+    return (dispatch) => {
+        dispatch(createChooseTagAction(tagId))
     }
 }

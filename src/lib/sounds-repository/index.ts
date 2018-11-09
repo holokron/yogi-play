@@ -10,9 +10,6 @@ export default class SoundsRepository {
           return []
         }
         
-        // const key: string = `soundsByTag-${tag.id}`
-
-        // if (!this.cache.has(key)) {
         this.sounds.sort((soundA: Sound, soundB: Sound): number => {
             const isNewA: boolean = soundA.isNew || false
             const isNewB: boolean = soundB.isNew || false
@@ -34,28 +31,6 @@ export default class SoundsRepository {
             return soundA.name < soundB.name ? -1 : 1
 
         })
-        //     this.cache.set(
-        //         key,
-        //         this.sounds
-        //             .filter((sound: Sound) => {
-        //                 if ('all' === tag.slug) {
-        //                     return true
-        //                 }
-
-        //                 if ('recent' === tag.slug) {
-        //                     return sound.isNew || false
-        //                 }
-
-        //                 if ('misc' === tag.slug) {
-        //                     return !sound.tags || !Object.values(sound.tags).length
-        //                 }
-                    
-        //                 return sound.tags && sound.tags[tag.id]
-        //             })
-        //     )
-        // }
-
-        // return this.cache.get(key)
 
         return this.sounds
             .filter((sound: Sound) => {

@@ -102,3 +102,15 @@ export const getTagsByOrder = createSelector<AppState, TagsCollection, Tag[]>(
         return tags
     }
 )
+
+export const getChosenTag = createSelector<AppState, string | null, TagsCollection, Tag | null>(
+    (state: AppState): string | null => state.chosenTagId,
+    getTagsCollection,
+    (chosenTagId: string | null, tags: TagsCollection): Tag | null => {
+        if (!chosenTagId || !tags[chosenTagId]) {
+            return null
+        }
+
+        return tags[chosenTagId]
+    }
+)

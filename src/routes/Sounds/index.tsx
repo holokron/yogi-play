@@ -6,58 +6,64 @@ import SoundsRow from '../../components/SoundsRow'
 import Tag from '../../types/Tag'
 import TabsContainer from '../../containers/TabsContainer'
 import DefaultTemplate from '../../templates/DefaultTemplate'
-import TagsContainer from '../../containers/TagsContainer'
-
 import SoundsForTagContainer from '../../containers/SoundsForTagContainer'
 import Sound from '../../types/Sound'
 import { AppDispatch, loadTags, loadSounds } from '../../store/actions'
 import { connect } from 'react-redux'
+import AppState from 'src/store/state'
+import { getTagsByOrder } from 'src/store/selectors'
 
 export interface Props {
   loadTags: () => {}
   loadSounds: () => {}
+  tags: Tag[]
 }
 
 class Sounds extends React.PureComponent<Props> {
+  static readonly defaultProps: Partial<Props> = {
+    tags: [],
+  }
+
   public componentDidMount() {
     this.props.loadTags()
     this.props.loadSounds()
   }
 
   public render() {
+    const {
+      tags,
+    } = this.props
+
     return (
-      <TagsContainer>
-        {(tags: Tag[]) => (
-          <TabsContainer initialTab={tags[1]}>
-            {(currentTag: Tag | null, changeTab: {(tab: any): void}) => (
-              <DefaultTemplate>
-                <Container fluid>
-                  <Row>
-                    <SoundsNav
-                      currentTag={currentTag}
-                      tags={tags
-                        .filter((tag: Tag) => 
-                          tag.sounds || ['all', 'misc', 'recent'].includes(tag.slug)
-                        )}
-                      changeTag={changeTab}
-                    />
-                  </Row>
-                  <SoundsForTagContainer tag={currentTag}>
-                    {(sounds: Sound[]) => (
-                      <SoundsRow
-                        sounds={sounds}
-                      />                    
-                    )}
-                  </SoundsForTagContainer>
-                </Container>
-              </DefaultTemplate>
-            )}
-          </TabsContainer>
+      <TabsContainer initialTab={tags[1]}>
+        {(currentTag: Tag | null, changeTab: {(tab: any): void}) => (
+          <DefaultTemplate>
+            <Container fluid>
+              <Row>
+                <SoundsNav
+                  currentTag={currentTag}
+                  tags={tags}
+                  changeTag={changeTab}
+                />
+              </Row>
+              <SoundsForTagContainer tag={currentTag}>
+                {(sounds: Sound[]) => (
+                  <SoundsRow
+                    sounds={sounds}
+                  />                    
+                )}
+              </SoundsForTagContainer>
+            </Container>
+          </DefaultTemplate>
         )}
-      </TagsContainer>
+      </TabsContainer>
     )
   }
 }
+
+const mapStateToProps = (state: AppState) => ({
+  tags: getTagsByOrder(state),
+})
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
   loadTags: async (): Promise<void> => {
@@ -68,4 +74,4 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
 })
 
-export default connect(null, mapDispatchToProps)(Sounds)
+export default connect(mapStateToProps, mapDispatchToProps)(Sounds)
