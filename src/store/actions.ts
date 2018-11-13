@@ -115,7 +115,7 @@ export function playSound(soundId: string): ThunkAction<void, AppState, any, Sou
         if (!audio) {                
             const soundSrc: string = await audioProvider.getAudio(sound.path)
             audio = new Audio(soundSrc)
-            audio.preload = 'metadata'
+            audio.preload = 'auto'
             audio.addEventListener('loadstart', (): void => {
                 dispatch(createLoadSoundAction(soundId))
             })
