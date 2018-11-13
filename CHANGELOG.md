@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.22.0] - 2018-11-13
+### Added
+- Deeper redux integration
+
+### Changed
+- UI improvements
+
 ## [0.21.0] - 2018-11-08
 ### Added
 - Redux

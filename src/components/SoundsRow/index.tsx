@@ -15,9 +15,9 @@ export default function SoundsRow({
         <Row withTopPadding>
             {sounds.map((sound: Sound) => (
                 <Col
-                    xl="1"
+                    xl="2"
                     lg="2"
-                    md="2"
+                    md="3"
                     sm="4"
                     xs="6"
                     className="mb-2 pl-1 pr-1"

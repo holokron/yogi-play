@@ -41,35 +41,6 @@ export const getSounds = createSelector<AppState, SoundsCollection, Sound[]>(
     }
 )
 
-export function createGetSoundsForTag(tag: Tag) {
-    return createSelector<AppState, Sound[], Sound[]>(
-        getSounds,
-        (sounds: Sound[]): Sound[] => sounds
-            .filter((sound: Sound) => {
-                if ('all' === tag.slug) {
-                    return true
-                }
-
-                if ('recent' === tag.slug) {
-                    return sound.isNew || false
-                }
-
-                if ('misc' === tag.slug) {
-                    return !sound.tags || !Object.values(sound.tags).length
-                }
-            
-                return sound.tags && sound.tags[tag.id]
-            })
-    )
-}
-
-export function createGetSound(soundId: string) {
-    return createSelector<AppState, SoundsCollection, Sound | null>(
-        getSoundsCollection,
-        (sounds: SoundsCollection): Sound | null => sounds[soundId] || null,
-    )
-}
-
 export function getSound(state: AppState, soundId: string): Sound | null {
     return state.sounds[soundId] || null
 }
@@ -99,6 +70,40 @@ export const getTagsByOrder = createSelector<AppState, TagsCollection, Tag[]>(
             return tagA.name < tagB.name ? -1 : 1
         })
 
-        return tags
+        return tags.filter((tag: Tag) => tag.sounds || ['all', 'recent', 'misc'].includes(tag.slug) || false)
+    }
+)
+
+export const getChosenTag = createSelector<AppState, string | null, TagsCollection, Tag | null>(
+    (state: AppState): string => state.chosenTagSlug,
+    getTagsCollection,
+    (chosenTagSlug: string | null, tags: TagsCollection): Tag | null => {
+        const chosenTags = Object.values(tags).filter((tag: Tag): boolean => chosenTagSlug === tag.slug)
+
+        return chosenTags[0] || null
+    }
+)
+
+export const getChosenSounds = createSelector<AppState, Sound[], Tag | null, Sound[]>(
+    getSounds,
+    getChosenTag,
+    (sounds: Sound[], tag: Tag | null): Sound[] => {
+        if (!tag) {
+            return []
+        }
+
+        if ('all' === tag.slug) {
+            return sounds
+        }
+
+        if ('recent' === tag.slug) {
+            return sounds.filter((sound: Sound): boolean => sound.isNew || false)
+        }
+
+        if ('misc' === tag.slug) {
+            return sounds.filter((sound: Sound): boolean => !sound.tags || false)
+        }
+
+        return sounds.filter((sound: Sound): boolean => sound.tags && sound.tags[tag.id] || false)
     }
 )

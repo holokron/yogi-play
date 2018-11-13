@@ -15,6 +15,7 @@ export enum ACTIONS {
     LOAD_SOUND = '@app/LOAD_SOUND',
     LOAD_SOUNDS = '@app/LOAD_SOUNDS',
     LOAD_TAGS = '@app/LOAD_TAGS',
+    CHOOSE_TAG = '@app/CHOOSE_TAG',
 }
 
 const audios: Map<string, HTMLAudioElement> = new Map<string, HTMLAudioElement>()
@@ -37,7 +38,13 @@ export interface LoadTagsAction extends Action<ACTIONS> {
     },
 }
 
-export type AppAction = SoundAction & LoadSoundsAction & LoadTagsAction
+export interface ChooseTagAction extends Action<ACTIONS> {
+    payload: {
+        tagSlug: string
+    },
+}
+
+export type AppAction = SoundAction & LoadSoundsAction & LoadTagsAction & ChooseTagAction
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>
 
@@ -86,6 +93,15 @@ export function createLoadTagsAction(tags: TagsCollection): LoadTagsAction {
     }
 }
 
+export function createChooseTagAction(tagSlug: string): ChooseTagAction {
+    return {
+        type: ACTIONS.CHOOSE_TAG,
+        payload: {
+            tagSlug,
+        },
+    }
+}
+
 export function playSound(soundId: string): ThunkAction<void, AppState, any, SoundAction> {
     return async (dispatch, getState) => {
         const sound: Sound | null = getSound(getState(), soundId)
@@ -99,7 +115,7 @@ export function playSound(soundId: string): ThunkAction<void, AppState, any, Sou
         if (!audio) {                
             const soundSrc: string = await audioProvider.getAudio(sound.path)
             audio = new Audio(soundSrc)
-            audio.preload = 'metadata'
+            audio.preload = 'auto'
             audio.addEventListener('loadstart', (): void => {
                 dispatch(createLoadSoundAction(soundId))
             })
@@ -156,5 +172,23 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
                     dispatch(createLoadTagsAction(snapshot.val()))
                 }
             )
+    }
+}
+
+export function chooseTag(tagSlug: string): ThunkAction<void, AppState, any, ChooseTagAction> {
+    return (dispatch) => {
+        dispatch(createChooseTagAction(tagSlug))
+    }
+}
+
+export function readText(text: string): ThunkAction<void, AppState, any, any> {
+    return () => {
+        if (!speechSynthesis) {
+            return
+        }
+
+        const speech: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text)
+        speech.rate = 0.7
+        speechSynthesis.speak(speech)
     }
 }

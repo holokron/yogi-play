@@ -1,17 +1,11 @@
 import * as React from 'react'
+import { connect } from 'react-redux'
 import Container from '../../components/Container'
 import Row from '../../components/Row'
-import SoundsNav from '../../components/SoundsNav'
-import SoundsRow from '../../components/SoundsRow'
-import Tag from '../../types/Tag'
-import TabsContainer from '../../containers/TabsContainer'
 import DefaultTemplate from '../../templates/DefaultTemplate'
-import TagsContainer from '../../containers/TagsContainer'
-
-import SoundsForTagContainer from '../../containers/SoundsForTagContainer'
-import Sound from '../../types/Sound'
 import { AppDispatch, loadTags, loadSounds } from '../../store/actions'
-import { connect } from 'react-redux'
+import SoundsNavContainer from '../../containers/SoundsNavContainer'
+import SoundsRowContainer from '../../containers/SoundsRowContainer'
 
 export interface Props {
   loadTags: () => {}
@@ -26,35 +20,14 @@ class Sounds extends React.PureComponent<Props> {
 
   public render() {
     return (
-      <TagsContainer>
-        {(tags: Tag[]) => (
-          <TabsContainer initialTab={tags[1]}>
-            {(currentTag: Tag | null, changeTab: {(tab: any): void}) => (
-              <DefaultTemplate>
-                <Container fluid>
-                  <Row>
-                    <SoundsNav
-                      currentTag={currentTag}
-                      tags={tags
-                        .filter((tag: Tag) => 
-                          tag.sounds || ['all', 'misc', 'recent'].includes(tag.slug)
-                        )}
-                      changeTag={changeTab}
-                    />
-                  </Row>
-                  <SoundsForTagContainer tag={currentTag}>
-                    {(sounds: Sound[]) => (
-                      <SoundsRow
-                        sounds={sounds}
-                      />                    
-                    )}
-                  </SoundsForTagContainer>
-                </Container>
-              </DefaultTemplate>
-            )}
-          </TabsContainer>
-        )}
-      </TagsContainer>
+      <DefaultTemplate>
+        <Container fluid>
+          <Row> 
+            <SoundsNavContainer />
+          </Row>
+          <SoundsRowContainer />
+        </Container>
+      </DefaultTemplate>
     )
   }
 }

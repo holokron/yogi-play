@@ -1,0 +1,7 @@
+.input-rounded-left {
+    border-radius: 30px 0 0 30px !important;
+}
+
+.button-rounded-right {
+    border-radius: 0 30px 30px 0 !important;
+}
