@@ -6,7 +6,6 @@ import AuthMenu from '../AuthMenu'
 import MainMenu from '../MainMenu'
 import ToggleContainer from '../../containers/ToggleContainer'
 import NavBrandLink from '../../components/NavBrandLink'
-import ThemeMenu from '../ThemeMenu'
 import TextToSpeech from '../TextToSpeech'
 
 export interface Props {
@@ -64,7 +63,6 @@ export default class Navigation extends React.PureComponent<Props, State> {
                             >
                                 <MainMenu onLinkClick={toggleOff} />
                                 <TextToSpeech />
-                                <ThemeMenu />
                                 <AuthMenu onLinkClick={toggleOff} />
                             </Collapse>
                         </React.Fragment>}

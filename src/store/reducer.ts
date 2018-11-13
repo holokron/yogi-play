@@ -57,7 +57,7 @@ export default function appReducer(state: AppState = initialState, action: AppAc
     case ACTIONS.CHOOSE_TAG:
         return {
             ...state,
-            chosenTagId: action.payload.tagId,
+            chosenTagSlug: action.payload.tagSlug,
         }
     default:
         return state

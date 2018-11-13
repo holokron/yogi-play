@@ -40,7 +40,7 @@ export interface LoadTagsAction extends Action<ACTIONS> {
 
 export interface ChooseTagAction extends Action<ACTIONS> {
     payload: {
-        tagId: string
+        tagSlug: string
     },
 }
 
@@ -93,11 +93,11 @@ export function createLoadTagsAction(tags: TagsCollection): LoadTagsAction {
     }
 }
 
-export function createChooseTagAction(tagId: string): ChooseTagAction {
+export function createChooseTagAction(tagSlug: string): ChooseTagAction {
     return {
         type: ACTIONS.CHOOSE_TAG,
         payload: {
-            tagId,
+            tagSlug,
         },
     }
 }
@@ -175,8 +175,20 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
     }
 }
 
-export function choseTag(tagId: string): ThunkAction<void, AppState, any, ChooseTagAction> {
+export function chooseTag(tagSlug: string): ThunkAction<void, AppState, any, ChooseTagAction> {
     return (dispatch) => {
-        dispatch(createChooseTagAction(tagId))
+        dispatch(createChooseTagAction(tagSlug))
+    }
+}
+
+export function readText(text: string): ThunkAction<void, AppState, any, any> {
+    return () => {
+        if (!speechSynthesis) {
+            return
+        }
+
+        const speech: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text)
+        speech.rate = 0.7
+        speechSynthesis.speak(speech)
     }
 }

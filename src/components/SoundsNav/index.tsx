@@ -7,7 +7,7 @@ import Tag from '../../types/Tag'
 export interface Props {
     currentTag?: Tag | null
     tags: Tag[]
-    changeTag?: Function
+    changeTag?: {(tagId: string): void}
 }
 
 export default function SoundsNav({ changeTag = () => {}, currentTag = null, tags = [] }: Props) {
@@ -15,9 +15,9 @@ export default function SoundsNav({ changeTag = () => {}, currentTag = null, tag
         <Nav pills className="sounds-nav">
             {tags.map((tag: Tag) =>
                 <SoundNavItem
-                    key={tag.id}
-                    onClick={() => changeTag(tag)}
-                    isActive={!!currentTag && currentTag.id === tag.id}
+                    key={tag.slug}
+                    onClick={() => changeTag(tag.slug)}
+                    isActive={!!currentTag && currentTag.slug === tag.slug}
                 >
                     {tag.name}
                 </SoundNavItem>

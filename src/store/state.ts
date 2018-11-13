@@ -4,11 +4,11 @@ import TagsCollection from '../types/TagsCollection'
 export default interface AppState {
     sounds: SoundsCollection
     tags: TagsCollection
-    chosenTagId: string | null
+    chosenTagSlug: string
 }
 
 export const initialState: AppState = {
     sounds: {},
     tags: {},
-    chosenTagId: null,
+    chosenTagSlug: 'recent',
 }
