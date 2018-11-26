@@ -8,17 +8,22 @@ import { getSound } from './selectors'
 import Sound from '../types/Sound'
 import SoundsCollection from '../types/SoundsCollection'
 import TagsCollection from '../types/TagsCollection'
+import User from '../types/User'
 
 export enum ACTIONS {
+    INITIALIZE = '@app/INITIALIZE',
     PLAY_SOUND = '@app/PLAY_SOUND',
     STOP_SOUND = '@app/STOP_SOUND',
     LOAD_SOUND = '@app/LOAD_SOUND',
     LOAD_SOUNDS = '@app/LOAD_SOUNDS',
     LOAD_TAGS = '@app/LOAD_TAGS',
     CHOOSE_TAG = '@app/CHOOSE_TAG',
+    LOAD_USER = '@app/LOAD_USER',
 }
 
 const audios: Map<string, HTMLAudioElement> = new Map<string, HTMLAudioElement>()
+
+export interface InitializeAction extends Action<ACTIONS> {}
 
 export interface SoundAction extends Action<ACTIONS> {
     payload: {
@@ -44,9 +49,21 @@ export interface ChooseTagAction extends Action<ACTIONS> {
     },
 }
 
-export type AppAction = SoundAction & LoadSoundsAction & LoadTagsAction & ChooseTagAction
+export interface LoadUserAction extends Action<ACTIONS> {
+    payload: {
+        user: User
+    },
+}
+
+export type AppAction = SoundAction & LoadSoundsAction & LoadTagsAction & ChooseTagAction & LoadUserAction
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>
+
+export function createInitializeAction(): InitializeAction {
+    return {
+        type: ACTIONS.INITIALIZE,
+    }
+}
 
 export function createPlaySoundAction(soundId: string): SoundAction {
     return {
@@ -98,6 +115,15 @@ export function createChooseTagAction(tagSlug: string): ChooseTagAction {
         type: ACTIONS.CHOOSE_TAG,
         payload: {
             tagSlug,
+        },
+    }
+}
+
+export function createLoadUserAction(user: User): LoadUserAction {
+    return {
+        type: ACTIONS.LOAD_USER,
+        payload: {
+            user,
         },
     }
 }
@@ -190,5 +216,52 @@ export function readText(text: string): ThunkAction<void, AppState, any, any> {
         const speech: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text)
         speech.rate = 0.7
         speechSynthesis.speak(speech)
+    }
+}
+
+export function authenticate(): ThunkAction<void, AppState, any, LoadUserAction> {
+    return (dispatch) => {
+        let userId: string | null = localStorage.getItem('userId')
+
+        if (!userId) {
+
+            console.log('no userId in localstorage, signing in anonymously')
+
+            firebase.auth().signInAnonymously()
+                .then((value: firebase.auth.UserCredential) => {
+                    if (!value.user) {
+                        console.log('no user credentials')
+
+                        return
+                    }
+
+                    console.log(`setting userId: ${value.user.uid} in localstorage`, value)
+
+                    localStorage.setItem('userId', value.user.uid)
+                })
+        }
+
+        firebase.auth().onAuthStateChanged(async (user: firebase.User | null): Promise<void> => {
+            if (!user) {
+                console.log('no authenticated')
+
+                return
+            }
+
+            console.log(`getting user: ${user.uid} from database`)
+
+            firebase.database().ref(`/users/${user.uid}`)
+                .on('value', (data: firebase.database.DataSnapshot) => {
+
+                    firebase.auth().fetchSignInMethodsForEmail(data.val().email).then(methods => console.log(methods))
+
+                    console.log(`got user: ${user.uid} from database`)
+
+                    console.log(data.val())
+
+                    dispatch(createLoadUserAction(data.val()))
+                })
+
+        })
     }
 }

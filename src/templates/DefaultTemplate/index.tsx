@@ -1,5 +1,5 @@
 import * as React from 'react'
-import NavigationContainer from '../../containers/NavigationContainer'
+import Navigation from '../../components/Navigation'
 
 export interface Props {
     children?: any
@@ -8,7 +8,7 @@ export interface Props {
 export default function DefaultTemplate ({ children }: Props): React.ReactElement<Props> {
     return (
         <React.Fragment>
-            <NavigationContainer />
+            <Navigation />
             {children}
         </React.Fragment>
     )

@@ -44,6 +44,7 @@ export default class ExternalAuthProviders extends React.PureComponent<Props, St
         try {
             await this.props.onLoginWithGoogle()
         } catch (error) {
+            console.log(error)
             this.setState({
                 error: true,
                 isGoogleLoading: false,

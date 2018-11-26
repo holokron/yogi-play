@@ -59,6 +59,11 @@ export default function appReducer(state: AppState = initialState, action: AppAc
             ...state,
             chosenTagSlug: action.payload.tagSlug,
         }
+    case ACTIONS.LOAD_USER:
+        return {
+            ...state,
+            user: action.payload.user,
+        }
     default:
         return state
     }

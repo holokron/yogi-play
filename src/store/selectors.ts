@@ -4,6 +4,7 @@ import Sound from '../types/Sound'
 import SoundsCollection from '../types/SoundsCollection'
 import TagsCollection from '../types/TagsCollection'
 import Tag from '../types/Tag'
+import User from '../types/User'
 
 export const getSoundsCollection = createSelector<AppState, SoundsCollection, SoundsCollection>(
     (state: AppState): SoundsCollection => state.sounds,
@@ -106,4 +107,9 @@ export const getChosenSounds = createSelector<AppState, Sound[], Tag | null, Sou
 
         return sounds.filter((sound: Sound): boolean => sound.tags && sound.tags[tag.id] || false)
     }
+)
+
+export const getUser = createSelector<AppState, User | null, User | null>(
+    (state: AppState) => state.user,
+    (user: User | null) => user,
 )

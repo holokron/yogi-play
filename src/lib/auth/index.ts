@@ -4,6 +4,7 @@ import * as firebase from 'firebase'
 export interface Auth {
     register(email: string, password: string): Promise<any>
     login(email: string, password: string): Promise<any>
+    loginAnonymously(): Promise<any>
     loginWithGoogle(): Promise<any>
     loginWithFacebook(): Promise<any>
     logout(): Promise<any>
@@ -18,6 +19,9 @@ const auth: Auth = {
     login: (email: string, password: string): Promise<any> => {
         return app.auth()
             .signInWithEmailAndPassword(email, password)
+    },
+    loginAnonymously(): Promise<any> {
+        return app.auth().signInAnonymously()
     },
     loginWithGoogle(): Promise<any> {
         const provider: firebase.auth.GoogleAuthProvider = new firebase.auth.GoogleAuthProvider()
