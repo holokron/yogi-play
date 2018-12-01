@@ -64,7 +64,7 @@ describe('@components/PlayButton', () => {
 
         const result = mount(<PlayButton sound={sound} onClick={onClick} />)
 
-        result.find('button').simulate('click')
+        result.find('button.play-btn__play').simulate('click')
         
         expect(changeAfterClick).toEqual(true)
     })

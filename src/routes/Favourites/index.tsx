@@ -1,47 +1,52 @@
 import * as React from 'react'
-import { Link } from 'react-router-dom'
-import { Col } from 'reactstrap'
-import Container from '../../components/Container'
-import Row from '../../components/Row'
-import DefaultTemplate from '../../templates/DefaultTemplate'
-import { AppDispatch, /*authenticate*/ } from '../../store/actions'
 import { connect } from 'react-redux'
+import Container from '../../components/Container'
+import DefaultTemplate from '../../templates/DefaultTemplate'
+import { AppDispatch, loadSounds, authenticate } from '../../store/actions'
+import UserSoundsContainer from '../../containers/UserSoundsContainer'
+import Sound from '../../types/Sound'
+import SoundsRow from '../../components/SoundsRow'
+import SoundsNavHeader from '../../components/SoundsNavHeader'
+import Row from '../../components/Row'
 
-export interface Props {
-    authenticate: {(): void}
+interface DispatchProps {
+  loadSounds: () => {}
+  authenticate: () => {}
 }
 
-class Favourites extends React.PureComponent<Props> {
-    componentDidMount() {
-        this.props.authenticate()
-    }
+export type Props = DispatchProps
 
-    render() {
-        return (
-            <DefaultTemplate>
-                <Container>
-                    <Row>
-                        <Col className="text-center">
-                            <h1 className="display-4">Wkrótce</h1>
-                            <p className="lead">
-                                Tutaj będzie lista twoich ulubionych dźwięków.
-                            </p>
-                            <br />
-                            <Link className="btn btn-primary" to="/">
-                                Home
-                            </Link>
-                        </Col>
-                    </Row>
-                </Container>
-            </DefaultTemplate>
-        )
-    }
+class Sounds extends React.PureComponent<Props> {
+  public componentDidMount() {
+    this.props.loadSounds()
+    this.props.authenticate()
+  }
+
+  public render() {
+    return (
+      <DefaultTemplate>
+        <Container fluid>
+          <Row>
+            <SoundsNavHeader>
+                Ulubione
+            </SoundsNavHeader>  
+          </Row>
+          <UserSoundsContainer>
+              {(sounds: Sound[]) => <SoundsRow sounds={sounds}/>}
+          </UserSoundsContainer>
+        </Container>
+      </DefaultTemplate>
+    )
+  }
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-    authenticate: () => {
-        // dispatch(authenticate())
-    },
+  loadSounds: async (): Promise<void> => {
+    dispatch(loadSounds())
+  },
+  authenticate: async (): Promise<void> => {
+    dispatch(authenticate())
+  },
 })
 
-export default connect(null, mapDispatchToProps)(Favourites)
+export default connect<{}, DispatchProps, {}>(null, mapDispatchToProps)(Sounds)

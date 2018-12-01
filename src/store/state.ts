@@ -6,14 +6,16 @@ export default interface AppState {
     sounds: SoundsCollection
     tags: TagsCollection
     chosenTagSlug: string
-    isInitialized: boolean
-    user: User | null
+    user: User
 }
 
 export const initialState: AppState = {
     sounds: {},
     tags: {},
     chosenTagSlug: 'recent',
-    isInitialized: false,
-    user: null
+    user: {
+        id: '',
+        displayName: '',
+        email: '',
+    },
 }

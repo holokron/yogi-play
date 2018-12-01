@@ -9,21 +9,9 @@ exports[`@components/AuthMenu renders correctly 1`] = `
   >
     <a
       className="nav-link text-uppercase"
-      href="/logowanie"
-      onClick={[Function]}
+      href="#"
     >
-      Logowanie
-    </a>
-  </li>
-  <li
-    className="nav-item"
-  >
-    <a
-      className="nav-link text-uppercase"
-      href="/rejestracja"
-      onClick={[Function]}
-    >
-      Rejestracja
+      Foo Bar
     </a>
   </li>
 </ul>

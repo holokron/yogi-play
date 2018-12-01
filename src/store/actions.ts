@@ -19,6 +19,8 @@ export enum ACTIONS {
     LOAD_TAGS = '@app/LOAD_TAGS',
     CHOOSE_TAG = '@app/CHOOSE_TAG',
     LOAD_USER = '@app/LOAD_USER',
+    ADD_USER_SOUND = '@app/ADD_USER_SOUND',
+    REMOVE_USER_SOUND = '@app/REMOVE_USER_SOUND',
 }
 
 const audios: Map<string, HTMLAudioElement> = new Map<string, HTMLAudioElement>()
@@ -55,7 +57,18 @@ export interface LoadUserAction extends Action<ACTIONS> {
     },
 }
 
-export type AppAction = SoundAction & LoadSoundsAction & LoadTagsAction & ChooseTagAction & LoadUserAction
+export interface UserSoundAction extends Action<ACTIONS> {
+    payload: {
+        soundId: string
+    },
+}
+
+export type AppAction = SoundAction 
+    & LoadSoundsAction 
+    & LoadTagsAction 
+    & ChooseTagAction 
+    & LoadUserAction 
+    & UserSoundAction
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>
 
@@ -128,6 +141,24 @@ export function createLoadUserAction(user: User): LoadUserAction {
     }
 }
 
+export function createAddUserSoundAction(soundId: string): UserSoundAction {
+    return {
+        type: ACTIONS.ADD_USER_SOUND,
+        payload: {
+            soundId,
+        },
+    }
+}
+
+export function  createRemoveUserSoundAction(soundId: string): UserSoundAction {
+    return {
+        type: ACTIONS.REMOVE_USER_SOUND,
+        payload: {
+            soundId,
+        },
+    }
+}
+
 export function playSound(soundId: string): ThunkAction<void, AppState, any, SoundAction> {
     return async (dispatch, getState) => {
         const sound: Sound | null = getSound(getState(), soundId)
@@ -177,8 +208,14 @@ export function stopSound(soundId: string):  ThunkAction<void, AppState, any, So
     }
 }
 
+let soundsLoaded: boolean = false
+
 export function loadSounds(): ThunkAction<void, AppState, any, LoadSoundsAction> {
-    return (dispatch) => {        
+    return (dispatch) => {
+        if (soundsLoaded) {
+            return
+        }
+
         database.getSoundsRef()
             .on(
                 'value',
@@ -186,11 +223,19 @@ export function loadSounds(): ThunkAction<void, AppState, any, LoadSoundsAction>
                     dispatch(createLoadSoundsAction(snapshot.val()))
                 }
             )
+
+        soundsLoaded = true
     }
 }
 
+let tagsLoaded: boolean = false
+
 export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
     return (dispatch) => {
+        if (tagsLoaded) {
+            return
+        }
+
         database.getTagsRef()
             .on(
                 'value',
@@ -198,6 +243,8 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
                     dispatch(createLoadTagsAction(snapshot.val()))
                 }
             )
+            
+        tagsLoaded = true
     }
 }
 
@@ -221,47 +268,67 @@ export function readText(text: string): ThunkAction<void, AppState, any, any> {
 
 export function authenticate(): ThunkAction<void, AppState, any, LoadUserAction> {
     return (dispatch) => {
-        let userId: string | null = localStorage.getItem('userId')
-
-        if (!userId) {
-
-            console.log('no userId in localstorage, signing in anonymously')
+        const currentUser: firebase.User | null = firebase.auth().currentUser
+        console.log('currentUser', currentUser)
+        if (!currentUser) {
+            console.log('No user in localstorage, signing in anonymously')
 
             firebase.auth().signInAnonymously()
                 .then((value: firebase.auth.UserCredential) => {
                     if (!value.user) {
-                        console.log('no user credentials')
+                        console.log('No user credentials')
 
                         return
                     }
-
-                    console.log(`setting userId: ${value.user.uid} in localstorage`, value)
-
-                    localStorage.setItem('userId', value.user.uid)
                 })
         }
 
         firebase.auth().onAuthStateChanged(async (user: firebase.User | null): Promise<void> => {
             if (!user) {
-                console.log('no authenticated')
+                console.log('User did not sign in or logout')
 
                 return
             }
 
-            console.log(`getting user: ${user.uid} from database`)
+            console.log(`Getting user: ${user.uid} from database`)
 
             firebase.database().ref(`/users/${user.uid}`)
                 .on('value', (data: firebase.database.DataSnapshot) => {
-
-                    firebase.auth().fetchSignInMethodsForEmail(data.val().email).then(methods => console.log(methods))
-
                     console.log(`got user: ${user.uid} from database`)
-
-                    console.log(data.val())
 
                     dispatch(createLoadUserAction(data.val()))
                 })
 
         })
+    }
+}
+
+export function addUserSound(soundId: string): ThunkAction<void, AppState, any, UserSoundAction> {
+    return (dispatch) => {
+        dispatch(createAddUserSoundAction(soundId))
+
+        const user = firebase.auth().currentUser        
+        if (!user) {
+            return
+        }
+
+        firebase.database()
+            .ref(`/users/${user.uid}/sounds/${soundId}`)
+            .set(true)
+    }
+}
+
+export function removeUserSound(soundId: string): ThunkAction<void, AppState, any, UserSoundAction> {
+    return (dispatch) => {
+        dispatch(createRemoveUserSoundAction(soundId))
+
+        const user = firebase.auth().currentUser        
+        if (!user) {
+            return
+        }
+
+        firebase.database()
+            .ref(`/users/${user.uid}/sounds/${soundId}`)
+            .remove()
     }
 }

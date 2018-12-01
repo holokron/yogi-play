@@ -3,6 +3,7 @@ import {
     faPause,
     faPlay,
     faSpinner,
+    faStar,
 } from '@fortawesome/free-solid-svg-icons'
 
 import {
@@ -14,6 +15,7 @@ library.add(
     faPause,
     faPlay,
     faSpinner,
+    faStar,
     faGoogle,
     faFacebook,
 )

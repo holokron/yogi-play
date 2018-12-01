@@ -1,8 +1,7 @@
 import * as functions from 'firebase-functions'
 import * as admin from 'firebase-admin'
-import 'firebase-functions'
 import { IncomingWebhook } from '@slack/client'
-import * as faker from 'faker'
+import * as faker from 'faker/locale/pl'
 
 admin.initializeApp()
 
@@ -11,7 +10,7 @@ export const onCreateSound = functions.database.ref('/sounds/{soundId}')
         const sound = snapshot.val()
         const webhook = new IncomingWebhook(functions.config().slack.url)
 
-       return  webhook.send(`Nowy dźwięk: *${sound.name}* w Yogi Play! --> https://yogi-play.pl`)
+        return webhook.send(`Nowy dźwięk: *${sound.name}* w Yogi Play! --> https://yogi-play.pl`)
     })
 
 export const onSignIn = functions.auth.user()
@@ -25,15 +24,12 @@ export const onSignIn = functions.auth.user()
             .once('value')
             .then(async (value: admin.database.DataSnapshot) => {
                 if (!value.exists()) {
-                    const firstName: string = faker.name.firstName()
-                    const lastName: string = faker.name.lastName()
-                    const displayName: string = faker.name.findName(firstName, lastName)
-                    const email: string = faker.internet.email(firstName, lastName)
-
                     const newUser = {
                         id: user.uid,
-                        displayName,
-                        email,
+                        displayName: faker.name.jobTitle(),
+                        email: faker.internet.email(undefined, undefined, 'yogi-play.pl'),
+                        isAnonymous: true,
+                        createdAt: new Date().getTime(),
                     }
 
                     console.log(`Creating user: ${user.uid}`, newUser)
@@ -70,32 +66,3 @@ export const onSignIn = functions.auth.user()
                 console.error(`Error while checking if user: ${user.uid} exists`, error)
             })
     })
-
-export const updateSoundPaths = functions.https.onRequest((request: functions.Request, response: functions.Response) => {
-    return admin
-        .database()
-        .ref('/sounds')
-        .once('value')
-        .then((data: admin.database.DataSnapshot) => {
-            const sounds = data.val()
-            const updates = {}
-
-            Object.values(sounds).forEach(async (sound: { id: string, path: string, fullPath?: string }) => {
-                updates[`/sounds/${sound.id}/path`] = await admin.storage()
-                    .bucket('yogi-play.appspot.com')
-                    .file(sound.path)
-                    .getSignedUrl({
-                        action: 'READ',
-                        expires: '2019-12-30',
-                    })
-            })
-
-            response.send(JSON.stringify(updates))
-
-        })
-        .catch((error) => {
-            console.error('Error while updating sound paths', error)
-
-            response.sendStatus(500)
-        })
-})

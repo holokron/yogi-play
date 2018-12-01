@@ -113,3 +113,23 @@ export const getUser = createSelector<AppState, User | null, User | null>(
     (state: AppState) => state.user,
     (user: User | null) => user,
 )
+
+export const hasUserSound = (state: AppState, soundId: string): boolean => {
+    const user: User | null = getUser(state)
+
+    return user && user.sounds && user.sounds[soundId] || false
+}
+
+export const getUserSounds = createSelector<AppState, User | null, Sound[], Sound[]>(
+    getUser,
+    getSounds,
+    (user: User | null, sounds: Sound[]) => {
+        if (!user || !user.sounds) {
+            return []
+        }
+
+        const keys: string[] = Object.keys(user.sounds)
+        
+        return sounds.filter((sound: Sound): boolean => keys.includes(sound.id))
+    }
+)

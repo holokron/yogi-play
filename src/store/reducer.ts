@@ -64,6 +64,17 @@ export default function appReducer(state: AppState = initialState, action: AppAc
             ...state,
             user: action.payload.user,
         }
+    case ACTIONS.ADD_USER_SOUND:
+        return {
+            ...state,
+            user: {
+                ...state.user,
+                sounds: {
+                    ...state.user.sounds,
+                    [action.payload.soundId]: true,
+                },
+            }
+        }
     default:
         return state
     }
