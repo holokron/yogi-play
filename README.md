@@ -10,10 +10,7 @@ Simple React JS app that plays funny sounds :) Built using:
 - Bootstrap
 
 ## To do
-
-- [x] Update to React JS 16.3
-- [x] Update to Typescript 2.8
-- [ ] Favourites functionality
+- [x] Favourites functionality
 - [ ] User requests functionality
 - [ ] Sounds search
 

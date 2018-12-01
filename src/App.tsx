@@ -1,17 +1,15 @@
 import * as React from 'react'
 import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
 import { Provider } from 'react-redux'
+import './icons'
 import Sounds from './routes/Sounds'
-import Favourities from './routes/Favourities'
+import Favourites from './routes/Favourites'
 import Request from './routes/Request'
-import Authentication from './routes/Authentication'
-import Registration from './routes/Registration'
-import SecuredRoute from './routes/SecuredRoute'
 import Footer from './components/Footer'
 import configureStore from './store'
 
 export const APP_NAME = 'Yogi PLAY'
-export const APP_VERSION = '0.22.0'
+export const APP_VERSION = '0.23.0'
 
 const store = configureStore()
 
@@ -24,10 +22,8 @@ class App extends React.PureComponent {
             <main>
               <Switch>
                 <Route exact path="/" component={Sounds} />
-                <SecuredRoute exact path="/ulubione" component={Favourities} />
+                <Route exact path="/ulubione" component={Favourites} />
                 <Route exact path="/dodaj" component={Request} />
-                <Route exact path="/logowanie" component={Authentication} />
-                <Route exact path="/rejestracja" component={Registration} />
               </Switch>
             </main>
             <Footer>

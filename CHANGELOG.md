@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.23.0] - 2018-12-01
+### Added
+- Favourites functionality
+
 ## [0.22.0] - 2018-11-13
 ### Added
 - Deeper redux integration

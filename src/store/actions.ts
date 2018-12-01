@@ -8,17 +8,24 @@ import { getSound } from './selectors'
 import Sound from '../types/Sound'
 import SoundsCollection from '../types/SoundsCollection'
 import TagsCollection from '../types/TagsCollection'
+import User from '../types/User'
 
 export enum ACTIONS {
+    INITIALIZE = '@app/INITIALIZE',
     PLAY_SOUND = '@app/PLAY_SOUND',
     STOP_SOUND = '@app/STOP_SOUND',
     LOAD_SOUND = '@app/LOAD_SOUND',
     LOAD_SOUNDS = '@app/LOAD_SOUNDS',
     LOAD_TAGS = '@app/LOAD_TAGS',
     CHOOSE_TAG = '@app/CHOOSE_TAG',
+    LOAD_USER = '@app/LOAD_USER',
+    ADD_USER_SOUND = '@app/ADD_USER_SOUND',
+    REMOVE_USER_SOUND = '@app/REMOVE_USER_SOUND',
 }
 
 const audios: Map<string, HTMLAudioElement> = new Map<string, HTMLAudioElement>()
+
+export interface InitializeAction extends Action<ACTIONS> {}
 
 export interface SoundAction extends Action<ACTIONS> {
     payload: {
@@ -44,9 +51,32 @@ export interface ChooseTagAction extends Action<ACTIONS> {
     },
 }
 
-export type AppAction = SoundAction & LoadSoundsAction & LoadTagsAction & ChooseTagAction
+export interface LoadUserAction extends Action<ACTIONS> {
+    payload: {
+        user: User
+    },
+}
+
+export interface UserSoundAction extends Action<ACTIONS> {
+    payload: {
+        soundId: string
+    },
+}
+
+export type AppAction = SoundAction 
+    & LoadSoundsAction 
+    & LoadTagsAction 
+    & ChooseTagAction 
+    & LoadUserAction 
+    & UserSoundAction
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>
+
+export function createInitializeAction(): InitializeAction {
+    return {
+        type: ACTIONS.INITIALIZE,
+    }
+}
 
 export function createPlaySoundAction(soundId: string): SoundAction {
     return {
@@ -102,6 +132,33 @@ export function createChooseTagAction(tagSlug: string): ChooseTagAction {
     }
 }
 
+export function createLoadUserAction(user: User): LoadUserAction {
+    return {
+        type: ACTIONS.LOAD_USER,
+        payload: {
+            user,
+        },
+    }
+}
+
+export function createAddUserSoundAction(soundId: string): UserSoundAction {
+    return {
+        type: ACTIONS.ADD_USER_SOUND,
+        payload: {
+            soundId,
+        },
+    }
+}
+
+export function  createRemoveUserSoundAction(soundId: string): UserSoundAction {
+    return {
+        type: ACTIONS.REMOVE_USER_SOUND,
+        payload: {
+            soundId,
+        },
+    }
+}
+
 export function playSound(soundId: string): ThunkAction<void, AppState, any, SoundAction> {
     return async (dispatch, getState) => {
         const sound: Sound | null = getSound(getState(), soundId)
@@ -151,8 +208,14 @@ export function stopSound(soundId: string):  ThunkAction<void, AppState, any, So
     }
 }
 
+let soundsLoaded: boolean = false
+
 export function loadSounds(): ThunkAction<void, AppState, any, LoadSoundsAction> {
-    return (dispatch) => {        
+    return (dispatch) => {
+        if (soundsLoaded) {
+            return
+        }
+
         database.getSoundsRef()
             .on(
                 'value',
@@ -160,11 +223,19 @@ export function loadSounds(): ThunkAction<void, AppState, any, LoadSoundsAction>
                     dispatch(createLoadSoundsAction(snapshot.val()))
                 }
             )
+
+        soundsLoaded = true
     }
 }
 
+let tagsLoaded: boolean = false
+
 export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
     return (dispatch) => {
+        if (tagsLoaded) {
+            return
+        }
+
         database.getTagsRef()
             .on(
                 'value',
@@ -172,6 +243,8 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
                     dispatch(createLoadTagsAction(snapshot.val()))
                 }
             )
+            
+        tagsLoaded = true
     }
 }
 
@@ -190,5 +263,72 @@ export function readText(text: string): ThunkAction<void, AppState, any, any> {
         const speech: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text)
         speech.rate = 0.7
         speechSynthesis.speak(speech)
+    }
+}
+
+export function authenticate(): ThunkAction<void, AppState, any, LoadUserAction> {
+    return (dispatch) => {
+        const currentUser: firebase.User | null = firebase.auth().currentUser
+        console.log('currentUser', currentUser)
+        if (!currentUser) {
+            console.log('No user in localstorage, signing in anonymously')
+
+            firebase.auth().signInAnonymously()
+                .then((value: firebase.auth.UserCredential) => {
+                    if (!value.user) {
+                        console.log('No user credentials')
+
+                        return
+                    }
+                })
+        }
+
+        firebase.auth().onAuthStateChanged(async (user: firebase.User | null): Promise<void> => {
+            if (!user) {
+                console.log('User did not sign in or logout')
+
+                return
+            }
+
+            console.log(`Getting user: ${user.uid} from database`)
+
+            firebase.database().ref(`/users/${user.uid}`)
+                .on('value', (data: firebase.database.DataSnapshot) => {
+                    console.log(`got user: ${user.uid} from database`)
+
+                    dispatch(createLoadUserAction(data.val()))
+                })
+
+        })
+    }
+}
+
+export function addUserSound(soundId: string): ThunkAction<void, AppState, any, UserSoundAction> {
+    return (dispatch) => {
+        dispatch(createAddUserSoundAction(soundId))
+
+        const user = firebase.auth().currentUser        
+        if (!user) {
+            return
+        }
+
+        firebase.database()
+            .ref(`/users/${user.uid}/sounds/${soundId}`)
+            .set(true)
+    }
+}
+
+export function removeUserSound(soundId: string): ThunkAction<void, AppState, any, UserSoundAction> {
+    return (dispatch) => {
+        dispatch(createRemoveUserSoundAction(soundId))
+
+        const user = firebase.auth().currentUser        
+        if (!user) {
+            return
+        }
+
+        firebase.database()
+            .ref(`/users/${user.uid}/sounds/${soundId}`)
+            .remove()
     }
 }

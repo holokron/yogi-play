@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { Navbar, NavbarToggler, Collapse } from 'reactstrap'
-import { User } from 'firebase'
 import './index.css'
 import AuthMenu from '../AuthMenu'
 import MainMenu from '../MainMenu'
@@ -9,8 +8,6 @@ import NavBrandLink from '../../components/NavBrandLink'
 import TextToSpeech from '../TextToSpeech'
 
 export interface Props {
-    logout?: {(): void}
-    user?: User | null
 }
 
 export interface State {
@@ -18,11 +15,6 @@ export interface State {
 }
 
 export default class Navigation extends React.PureComponent<Props, State> {
-    static defaultProps: Partial<Props> = {
-        logout: () => {},
-        user: null,
-    }
-
     state: State = {
         toggled: false
     }

@@ -1,21 +1,23 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
 import Container from '../../components/Container'
-import Row from '../../components/Row'
 import DefaultTemplate from '../../templates/DefaultTemplate'
-import { AppDispatch, loadTags, loadSounds, authenticate } from '../../store/actions'
-import SoundsNavContainer from '../../containers/SoundsNavContainer'
-import SoundsRowContainer from '../../containers/SoundsRowContainer'
+import { AppDispatch, loadSounds, authenticate } from '../../store/actions'
+import UserSoundsContainer from '../../containers/UserSoundsContainer'
+import Sound from '../../types/Sound'
+import SoundsRow from '../../components/SoundsRow'
+import SoundsNavHeader from '../../components/SoundsNavHeader'
+import Row from '../../components/Row'
 
-export interface Props {
-  loadTags: () => {}
+interface DispatchProps {
   loadSounds: () => {}
   authenticate: () => {}
 }
 
+export type Props = DispatchProps
+
 class Sounds extends React.PureComponent<Props> {
   public componentDidMount() {
-    this.props.loadTags()
     this.props.loadSounds()
     this.props.authenticate()
   }
@@ -24,10 +26,14 @@ class Sounds extends React.PureComponent<Props> {
     return (
       <DefaultTemplate>
         <Container fluid>
-          <Row> 
-            <SoundsNavContainer />
+          <Row>
+            <SoundsNavHeader>
+                Ulubione
+            </SoundsNavHeader>  
           </Row>
-          <SoundsRowContainer />
+          <UserSoundsContainer>
+              {(sounds: Sound[]) => <SoundsRow sounds={sounds}/>}
+          </UserSoundsContainer>
         </Container>
       </DefaultTemplate>
     )
@@ -35,9 +41,6 @@ class Sounds extends React.PureComponent<Props> {
 }
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  loadTags: async (): Promise<void> => {
-    dispatch(loadTags())
-  },
   loadSounds: async (): Promise<void> => {
     dispatch(loadSounds())
   },
@@ -46,4 +49,4 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
   },
 })
 
-export default connect(null, mapDispatchToProps)(Sounds)
+export default connect<{}, DispatchProps, {}>(null, mapDispatchToProps)(Sounds)
