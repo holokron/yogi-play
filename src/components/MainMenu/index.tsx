@@ -11,7 +11,7 @@ export default function MainMenu({ onLinkClick = () => {} }: Props): React.React
         <Nav navbar className="mr-auto">
             <NavItem>
                 <Link to="/ulubione" className="nav-link text-uppercase" onClick={onLinkClick}>
-                    Ulubione <small className="text-muted">Soon</small>
+                    Ulubione
                 </Link>
             </NavItem>
             <NavItem>

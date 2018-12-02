@@ -4,10 +4,15 @@ import AppState from '../store/state'
 import { getTagsByOrder } from '../store/selectors'
 import { connect } from 'react-redux'
 
-export interface Props {
+interface OwnProps {
     children: (tags: Tag[]) => React.ReactElement<any> 
+}
+
+interface StateProps {
     tags: Tag[],
 }
+
+export type Props = OwnProps & StateProps
 
 function TagsContainer({ children, tags = [] }: Props): React.ReactElement<Props> {
     return children(tags)
@@ -17,4 +22,4 @@ const mapStateToProps = (state: AppState) => ({
     tags: getTagsByOrder(state),
 })
 
-export default connect(mapStateToProps)(TagsContainer)
+export default connect<StateProps, {}, OwnProps>(mapStateToProps)(TagsContainer)

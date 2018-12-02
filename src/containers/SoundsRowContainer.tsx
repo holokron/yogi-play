@@ -14,4 +14,4 @@ const mapStateToProps = (state: AppState) => ({
     sounds: getChosenSounds(state),
 })
 
-export default connect(mapStateToProps)(SoundsRowContainer)
+export default connect<Props>(mapStateToProps)(SoundsRowContainer)
