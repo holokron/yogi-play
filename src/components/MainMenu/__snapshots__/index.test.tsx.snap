@@ -12,12 +12,7 @@ exports[`@components/MainMenu renders correctly 1`] = `
       href="/ulubione"
       onClick={[Function]}
     >
-      Ulubione 
-      <small
-        className="text-muted"
-      >
-        Soon
-      </small>
+      Ulubione
     </a>
   </li>
   <li
