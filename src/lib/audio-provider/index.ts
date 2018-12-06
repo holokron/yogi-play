@@ -1,4 +1,5 @@
 import app from '../app'
+import 'firebase/storage'
 
 export interface AudioProvider {
     getAudio(path: string): Promise<string>

@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Nav } from 'reactstrap'
+import Nav from 'reactstrap/lib/Nav'
 import './index.css'
 import SoundNavItem from '../../components/SoundNavItem'
 import Tag from '../../types/Tag'

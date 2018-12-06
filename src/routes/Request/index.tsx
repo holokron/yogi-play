@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Link } from 'react-router-dom'
-import { Col } from 'reactstrap'
+import Col from 'reactstrap/lib/Col'
 import DefaultTemplate from '../../templates/DefaultTemplate'
 import Container from '../../components/Container'
 import Row from '../../components/Row'

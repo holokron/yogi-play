@@ -1,5 +1,6 @@
 import app from '../app'
-import * as firebase from 'firebase'
+import * as firebase from 'firebase/app'
+import 'firebase/auth'
 import User from '../../types/User'
 
 export interface Database {

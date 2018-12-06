@@ -1,5 +1,6 @@
 import * as React from 'react'
-import { Nav, NavItem } from 'reactstrap'
+import Nav from 'reactstrap/lib/Nav'
+import NavItem from 'reactstrap/lib/NavItem'
 import { Link } from 'react-router-dom'
 
 export interface Props {

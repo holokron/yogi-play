@@ -1,6 +1,11 @@
 import * as React from 'react'
 import { connect } from 'react-redux'
-import { Form, Input, InputGroup, InputGroupAddon, Button, Nav } from 'reactstrap'
+import Form from 'reactstrap/lib/Form'
+import Input from 'reactstrap/lib/Input'
+import InputGroup from 'reactstrap/lib/InputGroup'
+import InputGroupAddon from 'reactstrap/lib/InputGroupAddon'
+import Button from 'reactstrap/lib/Button'
+import Nav from 'reactstrap/lib/Nav'
 import './index.css'
 import { readText, AppDispatch } from '../../store/actions'
 

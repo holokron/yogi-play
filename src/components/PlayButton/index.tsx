@@ -1,8 +1,8 @@
 import * as React from 'react'
-import { Button } from 'reactstrap'
+import Button from 'reactstrap/lib/Button'
+import ButtonGroup from 'reactstrap/lib/ButtonGroup'
 import './index.css'
 import Sound from '../../types/Sound'
-import ButtonGroup from 'reactstrap/lib/ButtonGroup'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 export interface Props {
