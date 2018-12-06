@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { Col } from 'reactstrap'
+import Col from 'reactstrap/lib/Col'
 import Row from '../../components/Row'
 import PlayButtonContainer from '../../containers/PlayButtonContainer'
 import Sound from '../../types/Sound'

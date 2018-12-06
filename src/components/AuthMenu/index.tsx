@@ -1,13 +1,10 @@
 import * as React from 'react'
-import { Nav, NavItem } from 'reactstrap'
+import Nav from 'reactstrap/lib/Nav'
+import NavItem from 'reactstrap/lib/NavItem'
 import User from '../../types/User'
 import UserContainer from '../../containers/UserContainer'
 
-export interface Props {
-    onLinkClick?(): void 
-}
-
-export default function AuthMenu({onLinkClick = () => {}}: Props): React.ReactElement<Props> {
+export default function AuthMenu(): React.ReactElement<{}> {
     return (
         <UserContainer>
             {(user: User | null): React.ReactElement<any> | null => {

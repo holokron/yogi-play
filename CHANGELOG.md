@@ -1,5 +1,9 @@
 # Changelog
 
+## [0.24.0] - 2018-12-06
+### Changed
+- Bundle optimizations
+
 ## [0.23.0] - 2018-12-01
 ### Added
 - Favourites functionality

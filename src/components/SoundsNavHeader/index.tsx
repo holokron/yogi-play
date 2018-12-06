@@ -1,5 +1,7 @@
 import * as React from 'react'
-import { Nav, NavItem, NavLink } from 'reactstrap'
+import Nav from 'reactstrap/lib/Nav'
+import NavItem from 'reactstrap/lib/NavItem'
+import NavLink from 'reactstrap/lib/NavLink'
 import './index.css'
 
 export interface Props {
