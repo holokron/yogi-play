@@ -22,4 +22,4 @@ const mapStateToProps = (state: AppState) => ({
     sounds: getUserSounds(state),
 })
 
-export default connect<StateProps, {}, OwnProps>(mapStateToProps)(UserSoundsContainer)
+export default connect<StateProps, {}, OwnProps, AppState>(mapStateToProps)(UserSoundsContainer)
