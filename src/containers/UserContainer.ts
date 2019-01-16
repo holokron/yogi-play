@@ -22,4 +22,4 @@ const mapStateToProps = (state: AppState) => ({
     user: getUser(state),
 })
 
-export default connect<StateProps, {}, OwnProps>(mapStateToProps)(UserContainer)
+export default connect<StateProps, {}, OwnProps, AppState>(mapStateToProps)(UserContainer)

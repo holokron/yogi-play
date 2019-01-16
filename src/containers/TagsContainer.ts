@@ -22,4 +22,4 @@ const mapStateToProps = (state: AppState) => ({
     tags: getTagsByOrder(state),
 })
 
-export default connect<StateProps, {}, OwnProps>(mapStateToProps)(TagsContainer)
+export default connect<StateProps, {}, OwnProps, AppState>(mapStateToProps)(TagsContainer)

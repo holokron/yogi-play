@@ -221,8 +221,8 @@ export function loadSounds(): ThunkAction<void, AppState, any, LoadSoundsAction>
         database.getSoundsRef()
             .on(
                 'value',
-                (snapshot: firebase.database.DataSnapshot) => {
-                    dispatch(createLoadSoundsAction(snapshot.val()))
+                (snapshot: firebase.database.DataSnapshot | null) => {
+                    snapshot && dispatch(createLoadSoundsAction(snapshot.val()))
                 }
             )
 
@@ -241,8 +241,8 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
         database.getTagsRef()
             .on(
                 'value',
-                (snapshot: firebase.database.DataSnapshot) => {
-                    dispatch(createLoadTagsAction(snapshot.val()))
+                (snapshot: firebase.database.DataSnapshot | null) => {
+                    snapshot && dispatch(createLoadTagsAction(snapshot.val()))
                 }
             )
             
@@ -295,7 +295,13 @@ export function authenticate(): ThunkAction<void, AppState, any, LoadUserAction>
             console.log(`Getting user: ${user.uid} from database`)
 
             firebase.database().ref(`/users/${user.uid}`)
-                .on('value', (data: firebase.database.DataSnapshot) => {
+                .on('value', (data: firebase.database.DataSnapshot | null) => {
+                    if (!data) {
+                        console.log(`no user: ${user.uid} found`)
+
+                        return
+                    }
+
                     console.log(`got user: ${user.uid} from database`)
 
                     dispatch(createLoadUserAction(data.val()))

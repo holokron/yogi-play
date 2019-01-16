@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.25.0] - 2019-01-16
+### Changed
+- Moved to original react-scripts with TS
+- Updated packages
+
 ## [0.24.0] - 2018-12-06
 ### Changed
 - Bundle optimizations

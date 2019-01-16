@@ -26,4 +26,4 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     },
 })
 
-export default connect<Props>(mapStateToProps, mapDispatchToProps)(SoundsNavContainer)
+export default connect<Props, {}, {}, AppState>(mapStateToProps, mapDispatchToProps)(SoundsNavContainer)

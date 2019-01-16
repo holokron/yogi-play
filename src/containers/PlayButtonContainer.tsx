@@ -99,5 +99,5 @@ const mapDispatchToProps = (dispatch: AppDispatch) => ({
     }
 })
 
-export default connect<StateProps, DispatchProps, OwnProps>
+export default connect<StateProps, DispatchProps, OwnProps, AppState>
     (mapStateToProps, mapDispatchToProps)(PlayButtonContainer)
