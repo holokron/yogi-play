@@ -23,11 +23,11 @@
         ]
       },
       {
-        "source": "**/sounds/*.mp3",
+        "source": "/static/(js|css)/**",
         "headers": [
           {
             "key": "Cache-Control",
-            "value": "max-age=10800"
+            "value": "public, max-age=31536000"
           }
         ]
       }

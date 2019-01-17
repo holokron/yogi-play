@@ -4,7 +4,7 @@
     <script src="https://cdn.ravenjs.com/3.24.2/raven.min.js" crossorigin="anonymous"></script>
     <script type="text/javascript">
       Raven.config('https://7bed8600645e49139a41f514cdc90dc9@sentry.io/1199139', {
-        release: 'v0.18.0',
+        release: 'v0.26.0',
         environment: '%NODE_ENV%',
       }).install()
     </script>
@@ -20,6 +20,8 @@
     <meta name="theme-color" content="#000000">
     <link rel="manifest" href="%PUBLIC_URL%/manifest.json">
     <link rel="shortcut icon" href="%PUBLIC_URL%/icons/icon-64x64.png">
+    <link rel="preload" href="%REACT_APP_FIREBASE_DATABASE_URL%/tags.json" as="fetch">
+    <link rel="preload" href="%REACT_APP_FIREBASE_DATABASE_URL%/sounds.json" as="fetch">
     <title>Yogi PLAY</title>
   </head>
   <body class="bg-light">

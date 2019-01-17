@@ -1,11 +1,9 @@
 import { Action } from 'redux'
 import { ThunkAction, ThunkDispatch } from 'redux-thunk'
-import * as firebase from 'firebase/app'
+import { default as firebase } from '../lib/app'
 import 'firebase/auth'
 import 'firebase/database'
 import AppState from './state'
-import audioProvider from '../lib/audio-provider'
-import database from '../lib/database'
 import { getSound } from './selectors'
 import Sound from '../types/Sound'
 import SoundsCollection from '../types/SoundsCollection'
@@ -13,7 +11,6 @@ import TagsCollection from '../types/TagsCollection'
 import User from '../types/User'
 
 export enum ACTIONS {
-    INITIALIZE = '@app/INITIALIZE',
     PLAY_SOUND = '@app/PLAY_SOUND',
     STOP_SOUND = '@app/STOP_SOUND',
     LOAD_SOUND = '@app/LOAD_SOUND',
@@ -26,8 +23,6 @@ export enum ACTIONS {
 }
 
 const audios: Map<string, HTMLAudioElement> = new Map<string, HTMLAudioElement>()
-
-export interface InitializeAction extends Action<ACTIONS> {}
 
 export interface SoundAction extends Action<ACTIONS> {
     payload: {
@@ -73,12 +68,6 @@ export type AppAction = SoundAction
     & UserSoundAction
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>
-
-export function createInitializeAction(): InitializeAction {
-    return {
-        type: ACTIONS.INITIALIZE,
-    }
-}
 
 export function createPlaySoundAction(soundId: string): SoundAction {
     return {
@@ -171,9 +160,8 @@ export function playSound(soundId: string): ThunkAction<void, AppState, any, Sou
 
         let audio: HTMLAudioElement | undefined = audios.get(soundId)
 
-        if (!audio) {                
-            const soundSrc: string = await audioProvider.getAudio(sound.path)
-            audio = new Audio(soundSrc)
+        if (!audio) {
+            audio = new Audio(sound.path)
             audio.preload = 'auto'
             audio.addEventListener('loadstart', (): void => {
                 dispatch(createLoadSoundAction(soundId))
@@ -218,13 +206,13 @@ export function loadSounds(): ThunkAction<void, AppState, any, LoadSoundsAction>
             return
         }
 
-        database.getSoundsRef()
-            .on(
-                'value',
-                (snapshot: firebase.database.DataSnapshot | null) => {
-                    snapshot && dispatch(createLoadSoundsAction(snapshot.val()))
-                }
-            )
+        const soundsUrl: string = `${process.env.REACT_APP_FIREBASE_DATABASE_URL}/sounds.json`
+
+        fetch(soundsUrl)
+            .then((response):Promise<SoundsCollection> => response.json())
+            .then(async (sounds: SoundsCollection): Promise<void> => {
+                dispatch(createLoadSoundsAction(sounds))
+            })
 
         soundsLoaded = true
     }
@@ -238,13 +226,13 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
             return
         }
 
-        database.getTagsRef()
-            .on(
-                'value',
-                (snapshot: firebase.database.DataSnapshot | null) => {
-                    snapshot && dispatch(createLoadTagsAction(snapshot.val()))
-                }
-            )
+        const tagsUrl: string = `${process.env.REACT_APP_FIREBASE_DATABASE_URL}/tags.json`
+
+        fetch(tagsUrl)
+            .then((response):Promise<TagsCollection> => response.json())
+            .then((tags: TagsCollection): void => {
+                dispatch(createLoadTagsAction(tags))
+            })
             
         tagsLoaded = true
     }
