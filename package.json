@@ -1,7 +1,7 @@
 {
   "name": "yogi-play",
   "homepage": "https://yogi-play.pl",
-  "version": "0.26.0",
+  "version": "0.26.1",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
@@ -13,6 +13,7 @@
     "@fortawesome/react-fontawesome": "^0.1.4",
     "animate.css": "^3.7.0",
     "bootstrap": "^4.2.1",
+    "core-js": "^2.6.2",
     "firebase": "^5.7.3",
     "react": "^16.7.0",
     "react-app-polyfill": "^0.2.0",
@@ -38,6 +39,7 @@
     "fix": "tslint --fix -c ./tslint.json -p ."
   },
   "devDependencies": {
+    "@types/core-js": "^2.5.0",
     "@types/enzyme": "^3.1.15",
     "@types/enzyme-adapter-react-16": "^1.0.3",
     "@types/jest": "^23.3.12",
