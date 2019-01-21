@@ -1,6 +1,6 @@
 # Yogi PLAY
 
-[![Build Status](https://travis-ci.org/holokron/yogi-play.svg?branch=master)](https://travis-ci.org/holokron/yogi-play)
+[![Build Status](https://travis-ci.org/holokron/yogi-play.svg?branch=master)](https://travis-ci.org/holokron/yogi-play) [![Greenkeeper badge](https://badges.greenkeeper.io/holokron/yogi-play.svg)](https://greenkeeper.io/)
 
 Simple React JS app that plays funny sounds :) Built using:
 
