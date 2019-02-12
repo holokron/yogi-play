@@ -1,4 +1,6 @@
 import 'react-app-polyfill/ie11'
+import 'core-js/fn/object/keys'
+import 'core-js/fn/object/values'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import './icons'
