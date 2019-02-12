@@ -1,5 +1,22 @@
 # Changelog
 
+## [0.27.0] - 2019-02-12
+### Changed
+- Updated dependencies
+- Switched off service worker
+- Cache rules
+
+### Removed
+- Unused files
+
+## [0.26.1] - 2019-01-17
+### Fixed
+- Fixes for legacy devices
+
+## [0.26.0] - 2019-01-17
+### Changed
+- Massive performance optimizations, moved to REST api instead of Firebase live data fetching
+
 ## [0.25.0] - 2019-01-16
 ### Changed
 - Moved to original react-scripts with TS
