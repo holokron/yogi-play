@@ -1,12 +1,13 @@
+import 'bootstrap/dist/css/bootstrap.min.css'
+import 'animate.css/animate.min.css'
+import './icons'
 import 'react-app-polyfill/ie11'
-import 'core-js/fn/object/keys'
-import 'core-js/fn/object/values'
+import 'core-js-pure/features/object/keys'
+import 'core-js-pure/features/object/values'
 import * as React from 'react'
 import * as ReactDOM from 'react-dom'
 import './icons'
 import App from './App'
-import 'bootstrap/dist/css/bootstrap.min.css'
-import 'animate.css/animate.min.css'
 
 ReactDOM.render(
   <App />,
