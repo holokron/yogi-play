@@ -1,5 +1,10 @@
 # Changelog
 
+## [0.28.0] - 2019-03-28
+### Changed
+- Updated dependencies
+- Changed Footer
+
 ## [0.27.0] - 2019-02-12
 ### Changed
 - Updated dependencies

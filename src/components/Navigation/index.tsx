@@ -3,7 +3,6 @@ import Navbar from 'reactstrap/lib/Navbar'
 import NavbarToggler from 'reactstrap/lib/NavbarToggler'
 import Collapse from 'reactstrap/lib/Collapse'
 import './index.css'
-import AuthMenu from '../AuthMenu'
 import MainMenu from '../MainMenu'
 import ToggleContainer from '../../containers/ToggleContainer'
 import NavBrandLink from '../../components/NavBrandLink'
@@ -57,7 +56,6 @@ export default class Navigation extends React.PureComponent<Props, State> {
                             >
                                 <MainMenu onLinkClick={toggleOff} />
                                 <TextToSpeech />
-                                <AuthMenu />
                             </Collapse>
                         </React.Fragment>}
                 </ToggleContainer>

@@ -7,9 +7,9 @@ exports[`@components/Footer renders correctly 1`] = `
   © 
   <a
     className="text-muted"
-    href="mailto:michalv8@gmail.com"
+    href="https://github.com/holokron"
   >
-    Yogi
+    Holokron
   </a>
 </p>
 `;
