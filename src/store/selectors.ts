@@ -5,6 +5,7 @@ import SoundsCollection from '../types/SoundsCollection'
 import TagsCollection from '../types/TagsCollection'
 import Tag from '../types/Tag'
 import User from '../types/User'
+import SoundState from '../types/SoundState';
 
 export const getSoundsCollection = createSelector<AppState, SoundsCollection, SoundsCollection>(
     (state: AppState): SoundsCollection => state.sounds,
@@ -41,6 +42,13 @@ export const getSounds = createSelector<AppState, SoundsCollection, Sound[]>(
         return sounds
     }
 )
+
+export function getSoundState(state: AppState, soundId: string): SoundState {
+    return state.soundStates[soundId] || {
+        isPlaying: false,
+        isLoading: false,
+    }
+}
 
 export function getSound(state: AppState, soundId: string): Sound | null {
     return state.sounds[soundId] || null

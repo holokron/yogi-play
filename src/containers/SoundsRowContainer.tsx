@@ -14,4 +14,4 @@ const mapStateToProps = (state: AppState) => ({
     sounds: getChosenSounds(state),
 })
 
-export default connect<Props, {}, {}, AppState>(mapStateToProps)(SoundsRowContainer)
+export default connect<Props, {}, {}, AppState>(mapStateToProps)(React.memo(SoundsRowContainer))

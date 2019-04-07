@@ -4,7 +4,8 @@ import Sound from '../types/Sound'
 import PlayButton from '../components/PlayButton'
 import { AppDispatch, playSound, stopSound, addUserSound, removeUserSound } from '../store/actions'
 import AppState from '../store/state'
-import { hasUserSound } from '../store/selectors'
+import { hasUserSound, getSoundState } from '../store/selectors'
+import SoundState from '../types/SoundState';
 
 interface OwnProps {
     sound: Sound
@@ -12,6 +13,7 @@ interface OwnProps {
 
 interface StateProps {
     isInUserSounds: boolean
+    soundState: SoundState
 }
 
 interface DispatchProps {
@@ -23,12 +25,18 @@ interface DispatchProps {
 
 type Props = OwnProps & StateProps & DispatchProps
 
-class PlayButtonContainer extends React.PureComponent<Props> {
+class PlayButtonContainer extends React.Component<Props> {
     constructor(props: Props) {
         super(props)
 
         this.onClick = this.onClick.bind(this)
         this.onClickFavourites = this.onClickFavourites.bind(this)
+    }
+
+    public shouldComponentUpdate(nextProps: Props): boolean {
+        return nextProps.soundState.soundId !== this.props.soundState.soundId
+            || nextProps.soundState.isLoading !== this.props.soundState.isLoading
+            || nextProps.soundState.isPlaying !== this.props.soundState.isPlaying
     }
 
     public render() {
@@ -38,6 +46,7 @@ class PlayButtonContainer extends React.PureComponent<Props> {
             props: {
                 sound,
                 isInUserSounds,
+                soundState,
             },
         } = this
 
@@ -45,8 +54,8 @@ class PlayButtonContainer extends React.PureComponent<Props> {
             <PlayButton 
                 sound={sound} 
                 onClick={onClick} 
-                isLoading={sound.isLoading} 
-                isPlaying={sound.isPlaying} 
+                isLoading={soundState.isLoading} 
+                isPlaying={soundState.isPlaying} 
                 onFavClick={onClickFavourites}
                 isFavourite={isInUserSounds}
             />
@@ -56,13 +65,14 @@ class PlayButtonContainer extends React.PureComponent<Props> {
     public onClick() {
         const {
             sound,
+            soundState,
         } = this.props
 
-        if (sound.isLoading) {
+        if (soundState.isLoading) {
             return
         }
 
-        if (sound.isPlaying) {
+        if (soundState.isPlaying) {
             this.props.stopSound(sound.id)
 
             return
@@ -80,9 +90,12 @@ class PlayButtonContainer extends React.PureComponent<Props> {
     }
 }
 
-const mapStateToProps = (state: AppState, ownProps: OwnProps) => ({
-    isInUserSounds: hasUserSound(state, ownProps.sound.id)
-})
+const mapStateToProps = (state: AppState, ownProps: OwnProps) => {
+    return {
+        soundState: getSoundState(state, ownProps.sound.id),
+        isInUserSounds: hasUserSound(state, ownProps.sound.id)
+    }
+}
 
 const mapDispatchToProps = (dispatch: AppDispatch) => ({
     playSound: (soundId: string): void => {

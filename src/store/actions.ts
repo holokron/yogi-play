@@ -1,4 +1,3 @@
-import { Action } from 'redux'
 import { ThunkAction, ThunkDispatch } from 'redux-thunk'
 import { default as firebase } from '../lib/app'
 import 'firebase/auth'
@@ -24,48 +23,54 @@ export enum ACTIONS {
 
 const audios: Map<string, HTMLAudioElement> = new Map<string, HTMLAudioElement>()
 
-export interface SoundAction extends Action<ACTIONS> {
+export interface SoundAction {
+    type: ACTIONS.PLAY_SOUND | ACTIONS.STOP_SOUND | ACTIONS.LOAD_SOUND
     payload: {
         soundId: string
     }
 }
 
-export interface LoadSoundsAction extends Action<ACTIONS> {
+export interface LoadSoundsAction {
+    type: ACTIONS.LOAD_SOUNDS
     payload: {
         sounds: SoundsCollection
     },
 }
 
-export interface LoadTagsAction extends Action<ACTIONS> {
+export interface LoadTagsAction {
+    type: ACTIONS.LOAD_TAGS
     payload: {
         tags: TagsCollection
     },
 }
 
-export interface ChooseTagAction extends Action<ACTIONS> {
+export interface ChooseTagAction {
+    type: ACTIONS.CHOOSE_TAG
     payload: {
         tagSlug: string
     },
 }
 
-export interface LoadUserAction extends Action<ACTIONS> {
+export interface LoadUserAction {
+    type: ACTIONS.LOAD_USER
     payload: {
         user: User
     },
 }
 
-export interface UserSoundAction extends Action<ACTIONS> {
+export interface UserSoundAction {
+    type: ACTIONS.ADD_USER_SOUND | ACTIONS.REMOVE_USER_SOUND
     payload: {
         soundId: string
     },
 }
 
 export type AppAction = SoundAction 
-    & LoadSoundsAction 
-    & LoadTagsAction 
-    & ChooseTagAction 
-    & LoadUserAction 
-    & UserSoundAction
+    | LoadSoundsAction 
+    | LoadTagsAction 
+    | ChooseTagAction 
+    | LoadUserAction 
+    | UserSoundAction
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>
 
@@ -87,7 +92,7 @@ export function createStopSoundAction(soundId: string): SoundAction {
     }
 }
 
-export function createLoadSoundAction(soundId: string) {
+export function createLoadSoundAction(soundId: string): SoundAction {
     return {
         type: ACTIONS.LOAD_SOUND,
         payload: {
@@ -230,7 +235,7 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
 
         fetch(tagsUrl)
             .then((response):Promise<TagsCollection> => response.json())
-            .then((tags: TagsCollection): void => {
+            .then(async (tags: TagsCollection): Promise<void> => {
                 dispatch(createLoadTagsAction(tags))
             })
             

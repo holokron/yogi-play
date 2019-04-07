@@ -6,10 +6,11 @@ export default function appReducer(state: AppState = initialState, action: AppAc
     case ACTIONS.PLAY_SOUND:
         return {
             ...state,
-            sounds: {
-                ...state.sounds,
+            soundStates: {
+                ...state.soundStates,
                 [action.payload.soundId]: {
-                    ...state.sounds[action.payload.soundId],
+                    ...state.soundStates[action.payload.soundId],
+                    soundId: action.payload.soundId,
                     isPlaying: true,
                     isLoading: false,
                 },
@@ -18,10 +19,11 @@ export default function appReducer(state: AppState = initialState, action: AppAc
     case ACTIONS.STOP_SOUND:
         return {
             ...state,
-            sounds: {
-                ...state.sounds,
+            soundStates: {
+                ...state.soundStates,
                 [action.payload.soundId]: {
-                    ...state.sounds[action.payload.soundId],
+                    ...state.soundStates[action.payload.soundId],
+                    soundId: action.payload.soundId,
                     isPlaying: false,
                     isLoading: false,
                 },
