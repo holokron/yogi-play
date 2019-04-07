@@ -52,7 +52,10 @@
     "@types/reselect": "^2.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
+    "husky": "^1.3.1",
     "jest-enzyme": "^7.0.2",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.16.4",
     "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8",
     "tslib": "^1.9.3",
@@ -64,5 +67,16 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{ts,tsx,js,json,css,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }
