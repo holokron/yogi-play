@@ -1,27 +1,33 @@
-import * as React from 'react'
-import Nav from 'reactstrap/lib/Nav'
-import './index.css'
-import SoundNavItem from '../../components/SoundNavItem'
-import Tag from '../../types/Tag'
+import * as React from "react";
+import Nav from "reactstrap/lib/Nav";
+import "./index.css";
+import SoundNavItem from "../../components/SoundNavItem";
+import Tag from "../../types/Tag";
 
 export interface Props {
-    currentTag?: Tag | null
-    tags: Tag[]
-    changeTag?: {(tagId: string): void}
+  currentTag?: Tag | null;
+  tags: Tag[];
+  changeTag?: { (tagId: string): void };
 }
 
-export default function SoundsNav({ changeTag = () => {}, currentTag = null, tags = [] }: Props) {
-    return (
-        <Nav pills className="sounds-nav">
-            {tags.map((tag: Tag) =>
-                <SoundNavItem
-                    key={tag.slug}
-                    onClick={() => changeTag(tag.slug)}
-                    isActive={!!currentTag && currentTag.slug === tag.slug}
-                >
-                    {tag.name}
-                </SoundNavItem>
-            )}
-        </Nav>
-    )
+function SoundsNav({
+  changeTag = () => {},
+  currentTag = null,
+  tags = []
+}: Props) {
+  return (
+    <Nav pills className="sounds-nav">
+      {tags.map((tag: Tag) => (
+        <SoundNavItem
+          key={tag.slug}
+          onClick={() => changeTag(tag.slug)}
+          isActive={!!currentTag && currentTag.slug === tag.slug}
+        >
+          {tag.name}
+        </SoundNavItem>
+      ))}
+    </Nav>
+  );
 }
+
+export default React.memo(SoundsNav);
