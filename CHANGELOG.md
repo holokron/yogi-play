@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.29.0] - 2019-04-13
+### Added
+- SoundState state in store
+
+### Changed
+- Updated dependencies
+
 ## [0.28.0] - 2019-03-28
 ### Changed
 - Updated dependencies
