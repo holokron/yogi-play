@@ -1,4 +1,4 @@
-import * as React from 'react'
+import React, { ReactElement } from 'react'
 import Nav from 'reactstrap/lib/Nav'
 import NavItem from 'reactstrap/lib/NavItem'
 import { Link } from 'react-router-dom'
@@ -7,7 +7,7 @@ export interface Props {
     onLinkClick?(): void 
 }
 
-export default function MainMenu({ onLinkClick = () => {} }: Props): React.ReactElement<Props> {
+export default function MainMenu({ onLinkClick = () => {} }: Props): ReactElement<Props> {
     return (
         <Nav navbar className="mr-auto">
             <NavItem>
@@ -16,9 +16,9 @@ export default function MainMenu({ onLinkClick = () => {} }: Props): React.React
                 </Link>
             </NavItem>
             <NavItem>
-                <Link to="/dodaj" className="nav-link text-uppercase" onClick={onLinkClick}>
-                    Dodaj dźwięk <small className="text-muted">Soon</small>
-                </Link>
+                <a href="https://github.com/holokron/yogi-play/issues/new?labels=sounds&assignee=michalv8" target="_blank" className="nav-link text-uppercase">
+                    Dodaj dźwięk
+                </a>
             </NavItem>
         </Nav>
     )

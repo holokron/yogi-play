@@ -20,15 +20,10 @@ exports[`@components/MainMenu renders correctly 1`] = `
   >
     <a
       className="nav-link text-uppercase"
-      href="/dodaj"
-      onClick={[Function]}
+      href="https://github.com/holokron/yogi-play/issues/new?labels=sounds&assignee=michalv8"
+      target="_blank"
     >
-      Dodaj dźwięk 
-      <small
-        className="text-muted"
-      >
-        Soon
-      </small>
+      Dodaj dźwięk
     </a>
   </li>
 </ul>
