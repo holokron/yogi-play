@@ -1,0 +1,64 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`store/reducer action = { type: '@app/LOAD_SOUND', payload: { soundId: '123' } } 1`] = `
+Object {
+  "chosenTagSlug": "recent",
+  "sounds": Object {
+    "123": Object {
+      "id": "123",
+      "isLoading": true,
+      "isPlaying": false,
+      "name": "Foo",
+      "path": "/foo.mp3",
+    },
+  },
+  "tags": Object {},
+  "user": Object {
+    "displayName": "",
+    "email": "",
+    "id": "",
+  },
+}
+`;
+
+exports[`store/reducer action = { type: '@app/PLAY_SOUND', payload: { soundId: '123' } } 1`] = `
+Object {
+  "chosenTagSlug": "recent",
+  "sounds": Object {
+    "123": Object {
+      "id": "123",
+      "isLoading": false,
+      "isPlaying": true,
+      "name": "Foo",
+      "path": "/foo.mp3",
+    },
+  },
+  "tags": Object {},
+  "user": Object {
+    "displayName": "",
+    "email": "",
+    "id": "",
+  },
+}
+`;
+
+exports[`store/reducer action = { type: '@app/STOP_SOUND', payload: { soundId: '123' } } 1`] = `
+Object {
+  "chosenTagSlug": "recent",
+  "sounds": Object {
+    "123": Object {
+      "id": "123",
+      "isLoading": false,
+      "isPlaying": false,
+      "name": "Foo",
+      "path": "/foo.mp3",
+    },
+  },
+  "tags": Object {},
+  "user": Object {
+    "displayName": "",
+    "email": "",
+    "id": "",
+  },
+}
+`;
