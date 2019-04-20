@@ -1,5 +1,5 @@
-import Sound from './Sound'
+import Sound from "./Sound";
 
 export default interface SoundsCollection {
-    [soundId: string]: Sound
+  [soundId: string]: Sound;
 }
