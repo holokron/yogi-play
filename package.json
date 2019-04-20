@@ -32,8 +32,7 @@
     "prebuild": "cp ./public/index_prod.html ./public/index.html",
     "start": "react-scripts start",
     "build": "react-scripts build",
-    "test": "react-scripts test",
-    "test-coverage": "react-scripts test --coverage",
+    "test": "react-scripts test --coverage",
     "eject": "react-scripts eject"
   },
   "devDependencies": {
@@ -52,7 +51,10 @@
     "@types/reselect": "^2.2.0",
     "enzyme": "^3.9.0",
     "enzyme-adapter-react-16": "^1.11.2",
+    "husky": "^1.3.1",
     "jest-enzyme": "^7.0.2",
+    "lint-staged": "^8.1.5",
+    "prettier": "^1.17.0",
     "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8",
     "tslib": "^1.9.3",
@@ -63,5 +65,16 @@
     "not dead",
     "not ie <= 11",
     "not op_mini all"
-  ]
+  ],
+  "husky": {
+    "hooks": {
+      "pre-commit": "lint-staged"
+    }
+  },
+  "lint-staged": {
+    "*.{js,css,json,md}": [
+      "prettier --write",
+      "git add"
+    ]
+  }
 }

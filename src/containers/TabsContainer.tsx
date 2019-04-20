@@ -1,49 +1,47 @@
-import * as React from 'react'
+import * as React from "react";
 
 export interface Props {
-    initialTab?: any
-    children(
-        currentTab: any | null, 
-        changeTabHandler: {(tabId: string): void}
-    ): React.ReactElement<any>
+  initialTab?: any;
+  children(
+    currentTab: any | null,
+    changeTabHandler: { (tabId: string): void }
+  ): React.ReactElement<any>;
 }
 
 export interface State {
-    currentTab: any | null
+  currentTab: any | null;
 }
 
 export default class TabsContainer extends React.PureComponent<Props, State> {
-    constructor(props: Props) {
-        super(props)
+  constructor(props: Props) {
+    super(props);
 
-        this.state = {
-            currentTab: props.initialTab,
-        }
+    this.state = {
+      currentTab: props.initialTab
+    };
 
-        this.changeTab = this.changeTab.bind(this)
+    this.changeTab = this.changeTab.bind(this);
+  }
+
+  componentWillReceiveProps(nextProps: Props) {
+    if (this.props.initialTab) {
+      return;
     }
 
-    componentWillReceiveProps(nextProps: Props) {
-        if (this.props.initialTab) {
-            return
-        }
+    this.setState({
+      currentTab: nextProps.initialTab
+    });
+  }
 
-        this.setState({
-            currentTab: nextProps.initialTab,
-        })
-    }
+  changeTab(tab: any | null): void {
+    this.setState({
+      currentTab: tab
+    });
+  }
 
-    changeTab(tab: any | null): void {
-        this.setState({
-            currentTab: tab,
-        })
-    }
+  render() {
+    const { currentTab } = this.state;
 
-    render() {
-        const {
-            currentTab,
-        } = this.state
-
-        return this.props.children(currentTab, this.changeTab)
-    }
+    return this.props.children(currentTab, this.changeTab);
+  }
 }

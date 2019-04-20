@@ -1,10 +1,10 @@
 export default interface Sound {
-    id: string
-    name: string
-    path: string
-    tags?: object
-    order?: number
-    isNew?: boolean
-    isPlaying?: boolean
-    isLoading?: boolean
+  id: string;
+  name: string;
+  path: string;
+  tags?: object;
+  order?: number;
+  isNew?: boolean;
+  isPlaying?: boolean;
+  isLoading?: boolean;
 }
