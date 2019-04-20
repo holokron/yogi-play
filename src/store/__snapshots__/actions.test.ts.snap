@@ -1,0 +1,43 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`store/actions @app/LOAD_SOUND 1`] = `
+Object {
+  "payload": Object {
+    "soundId": "123",
+  },
+  "type": "@app/LOAD_SOUND",
+}
+`;
+
+exports[`store/actions @app/LOAD_SOUNDS 1`] = `
+Object {
+  "payload": Object {
+    "sounds": Object {
+      "123": Object {
+        "id": "123",
+        "name": "Foo",
+        "path": "/foo/bar.mp3",
+      },
+    },
+  },
+  "type": "@app/LOAD_SOUNDS",
+}
+`;
+
+exports[`store/actions @app/PLAY_SOUND 1`] = `
+Object {
+  "payload": Object {
+    "soundId": "123",
+  },
+  "type": "@app/PLAY_SOUND",
+}
+`;
+
+exports[`store/actions @app/STOP_SOUND 1`] = `
+Object {
+  "payload": Object {
+    "soundId": "123",
+  },
+  "type": "@app/STOP_SOUND",
+}
+`;
