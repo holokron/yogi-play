@@ -10,6 +10,7 @@
 ### Changed
 
 - Changed add sound link
+- Updated tests
 
 ## [0.30.0] - 2019-04-20
 
