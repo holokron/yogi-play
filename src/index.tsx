@@ -9,6 +9,13 @@ import * as ReactDOM from 'react-dom'
 import './icons'
 import App from './App'
 
+if ("production" === process.env.NODE_ENV && process.env.REACT_APP_SENTRY_DSN) {
+  require("@sentry/browser").init({
+    dsn: process.env.REACT_APP_SENTRY_DSN,
+    release: "0.31.0",
+  })
+}
+
 ReactDOM.render(
   <App />,
   document.getElementById('root') as HTMLElement
