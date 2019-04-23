@@ -1,5 +1,20 @@
 # Changelog
 
+## [0.32.0] - 2019-04-23
+
+### Added
+
+- `useToggle` hook
+
+### Changed
+
+- Updated dependencies
+- `Navigation` tests
+
+### Removed
+
+- `ToggleContainer`
+
 ## [0.31.0] - 2019-04-20
 
 ### Added
