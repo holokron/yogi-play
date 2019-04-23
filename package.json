@@ -1,7 +1,6 @@
 {
   "name": "yogi-play",
   "homepage": "https://yogi-play.pl",
-  "version": "0.31.0",
   "private": true,
   "dependencies": {
     "@fortawesome/fontawesome": "^1.1.8",
@@ -11,18 +10,18 @@
     "@fortawesome/free-brands-svg-icons": "^5.8.1",
     "@fortawesome/free-solid-svg-icons": "^5.8.1",
     "@fortawesome/react-fontawesome": "^0.1.4",
-    "@sentry/browser": "^5.1.0",
+    "@sentry/browser": "^5.1.1",
     "animate.css": "^3.7.0",
     "bootstrap": "^4.3.1",
     "core-js": "^3.0.1",
     "firebase": "^5.10.0",
     "react": "^16.8.6",
-    "react-app-polyfill": "^0.2.2",
+    "react-app-polyfill": "^1.0.0",
     "react-dom": "^16.8.6",
     "react-redux": "^7.0.2",
     "react-router": "^5.0.0",
     "react-router-dom": "^5.0.0",
-    "react-scripts": "^2.1.8",
+    "react-scripts": "^3.0.0",
     "reactstrap": "^8.0.0",
     "redux": "^4.0.1",
     "redux-thunk": "^2.3.0",
@@ -41,7 +40,7 @@
     "@types/enzyme": "^3.9.1",
     "@types/enzyme-adapter-react-16": "^1.0.5",
     "@types/jest": "^24.0.11",
-    "@types/node": "^11.13.6",
+    "@types/node": "^11.13.7",
     "@types/react": "^16.8.14",
     "@types/react-dom": "^16.8.4",
     "@types/react-redux": "^7.0.8",
@@ -56,10 +55,11 @@
     "jest-enzyme": "^7.0.2",
     "lint-staged": "^8.1.5",
     "prettier": "^1.17.0",
+    "react-hooks-testing-library": "^0.5.0",
     "react-test-renderer": "^16.8.6",
     "redux-devtools-extension": "^2.13.8",
     "tslib": "^1.9.3",
-    "typescript": "^3.4.4"
+    "typescript": "^3.4.5"
   },
   "browserslist": [
     ">0.2%",
@@ -73,7 +73,7 @@
     }
   },
   "lint-staged": {
-    "*.{js,css,json,md}": [
+    "*.{ts,tsx,js,css,json,md}": [
       "prettier --write",
       "git add"
     ]
