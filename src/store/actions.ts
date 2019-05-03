@@ -18,7 +18,8 @@ export enum ACTIONS {
   CHOOSE_TAG = "@app/CHOOSE_TAG",
   LOAD_USER = "@app/LOAD_USER",
   ADD_USER_SOUND = "@app/ADD_USER_SOUND",
-  REMOVE_USER_SOUND = "@app/REMOVE_USER_SOUND"
+  REMOVE_USER_SOUND = "@app/REMOVE_USER_SOUND",
+  FILTER_SOUNDS = "@app/FILTER_SOUNDS"
 }
 
 const audios: Map<string, HTMLAudioElement> = new Map<
@@ -68,13 +69,21 @@ export interface UserSoundAction {
   };
 }
 
+export interface FilterSoundsAction {
+  type: ACTIONS.FILTER_SOUNDS;
+  payload: {
+    query: string | null;
+  };
+}
+
 export type AppAction =
   | SoundAction
   | LoadSoundsAction
   | LoadTagsAction
   | ChooseTagAction
   | LoadUserAction
-  | UserSoundAction;
+  | UserSoundAction
+  | FilterSoundsAction;
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>;
 
@@ -157,6 +166,17 @@ export function createRemoveUserSoundAction(soundId: string): UserSoundAction {
     type: ACTIONS.REMOVE_USER_SOUND,
     payload: {
       soundId
+    }
+  };
+}
+
+export function createFilterSoundsAction(
+  query: string | null
+): FilterSoundsAction {
+  return {
+    type: ACTIONS.FILTER_SOUNDS,
+    payload: {
+      query
     }
   };
 }

@@ -7,6 +7,7 @@ import MainMenu from "../MainMenu";
 import NavBrandLink from "../../components/NavBrandLink";
 import TextToSpeech from "../TextToSpeech";
 import useToggle from "../../hooks/useToggle";
+import SoundSearchContainer from "../../containers/SoundSearchContainer";
 
 export default function Navigation(): ReactElement {
   const [toggled, toggle, toggleOf] = useToggle();
@@ -17,6 +18,7 @@ export default function Navigation(): ReactElement {
       <NavbarToggler type="button" onClick={toggle} />
       <Collapse isOpen={toggled} navbar>
         <MainMenu onLinkClick={toggleOf} />
+        <SoundSearchContainer />
         <TextToSpeech />
       </Collapse>
     </Navbar>

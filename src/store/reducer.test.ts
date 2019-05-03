@@ -63,6 +63,24 @@ describe("store/reducer", () => {
           }
         }
       }
+    ],
+    [
+      {
+        type: ACTIONS.FILTER_SOUNDS,
+        payload: {
+          query: "foo"
+        }
+      },
+      { ...initialState }
+    ],
+    [
+      {
+        type: ACTIONS.FILTER_SOUNDS,
+        payload: {
+          query: null
+        }
+      },
+      { ...initialState }
     ]
   ])("action = %o", (action: AppAction, state: AppState) => {
     const result = appReducer(state, action);
