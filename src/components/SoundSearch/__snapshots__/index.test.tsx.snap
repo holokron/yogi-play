@@ -2,7 +2,7 @@
 
 exports[`@components/SoundSearch renders correctly with props: {"onChange": [Function onChange], "query": "foo"} 1`] = `
 <ul
-  className="mr-auto navbar-nav"
+  className="navbar-nav"
 >
   <form
     className="form-inline"
@@ -25,7 +25,7 @@ exports[`@components/SoundSearch renders correctly with props: {"onChange": [Fun
 
 exports[`@components/SoundSearch renders correctly with props: {"onChange": [Function onChange], "query": null} 1`] = `
 <ul
-  className="mr-auto navbar-nav"
+  className="navbar-nav"
 >
   <form
     className="form-inline"

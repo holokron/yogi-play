@@ -63,26 +63,6 @@ exports[`@components/Navigation renders correctly 1`] = `
       <form
         className="form-inline"
         noValidate={true}
-      >
-        <div
-          className="input-group"
-        >
-          <input
-            className="input-rounded form-control-sm form-control"
-            onChange={[Function]}
-            placeholder="szukaj dżwięku"
-            type="search"
-            value=""
-          />
-        </div>
-      </form>
-    </ul>
-    <ul
-      className="mr-auto navbar-nav"
-    >
-      <form
-        className="form-inline"
-        noValidate={true}
         onSubmit={[Function]}
       >
         <div
@@ -106,6 +86,26 @@ exports[`@components/Navigation renders correctly 1`] = `
               Czytaj
             </button>
           </div>
+        </div>
+      </form>
+    </ul>
+    <ul
+      className="navbar-nav"
+    >
+      <form
+        className="form-inline"
+        noValidate={true}
+      >
+        <div
+          className="input-group"
+        >
+          <input
+            className="input-rounded form-control-sm form-control"
+            onChange={[Function]}
+            placeholder="szukaj dżwięku"
+            type="search"
+            value=""
+          />
         </div>
       </form>
     </ul>
