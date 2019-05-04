@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.33.0] - 2019-05-04
+
+### Added
+
+- Sound search
+
+### Changed
+
+- Added container to `TextToSpeech` and refactored to hooks
+- Updated dependencies
+
 ## [0.32.0] - 2019-04-23
 
 ### Added
