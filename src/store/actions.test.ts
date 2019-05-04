@@ -30,4 +30,10 @@ describe("store/actions", () => {
 
     expect(result).toMatchSnapshot();
   });
+
+  it("@app/FILTER_SOUNDS", () => {
+    const result = actions.createFilterSoundsAction("foo");
+
+    expect(result).toMatchSnapshot();
+  });
 });

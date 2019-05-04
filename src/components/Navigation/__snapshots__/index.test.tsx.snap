@@ -89,6 +89,26 @@ exports[`@components/Navigation renders correctly 1`] = `
         </div>
       </form>
     </ul>
+    <ul
+      className="navbar-nav"
+    >
+      <form
+        className="form-inline"
+        noValidate={true}
+      >
+        <div
+          className="input-group"
+        >
+          <input
+            className="input-rounded form-control-sm form-control"
+            onChange={[Function]}
+            placeholder="szukaj dżwięku"
+            type="search"
+            value=""
+          />
+        </div>
+      </form>
+    </ul>
   </div>
 </nav>
 `;

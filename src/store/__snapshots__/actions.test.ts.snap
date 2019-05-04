@@ -1,5 +1,14 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`store/actions @app/FILTER_SOUNDS 1`] = `
+Object {
+  "payload": Object {
+    "query": "foo",
+  },
+  "type": "@app/FILTER_SOUNDS",
+}
+`;
+
 exports[`store/actions @app/LOAD_SOUND 1`] = `
 Object {
   "payload": Object {

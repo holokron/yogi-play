@@ -47,6 +47,34 @@ export const getSounds = createSelector<AppState, SoundsCollection, Sound[]>(
   }
 );
 
+export const getSoundsFilter = createSelector<
+  AppState,
+  string | null,
+  string | null
+>(
+  (state: AppState) => state.soundsFilter,
+  (soundsFilter: string | null) => soundsFilter
+);
+
+export const filterSounds = createSelector<
+  AppState,
+  string | null,
+  Sound[],
+  Sound[]
+>(
+  getSoundsFilter,
+  getSounds,
+  (soundsfilter: string | null, sounds: Sound[]): Sound[] => {
+    if (null === soundsfilter) {
+      return sounds;
+    }
+
+    const regexp = new RegExp(soundsfilter.trim().toLowerCase(), "ig");
+
+    return sounds.filter((sound: Sound) => regexp.test(sound.name));
+  }
+);
+
 export function getSound(state: AppState, soundId: string): Sound | null {
   return state.sounds[soundId] || null;
 }
@@ -110,7 +138,7 @@ export const getChosenSounds = createSelector<
   Tag | null,
   Sound[]
 >(
-  getSounds,
+  filterSounds,
   getChosenTag,
   (sounds: Sound[], tag: Tag | null): Sound[] => {
     if (!tag) {
@@ -153,7 +181,7 @@ export const getUserSounds = createSelector<
   Sound[]
 >(
   getUser,
-  getSounds,
+  filterSounds,
   (user: User | null, sounds: Sound[]) => {
     if (!user || !user.sounds) {
       return [];
