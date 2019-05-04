@@ -1,95 +1,67 @@
-import * as React from 'react'
-import { connect } from 'react-redux'
-import Form from 'reactstrap/lib/Form'
-import Input from 'reactstrap/lib/Input'
-import InputGroup from 'reactstrap/lib/InputGroup'
-import InputGroupAddon from 'reactstrap/lib/InputGroupAddon'
-import Button from 'reactstrap/lib/Button'
-import Nav from 'reactstrap/lib/Nav'
-import './index.css'
-import { readText, AppDispatch } from '../../store/actions'
+import React, {
+  ReactElement,
+  useCallback,
+  FormEvent,
+  useState,
+  ChangeEvent
+} from "react";
+import Form from "reactstrap/lib/Form";
+import Input from "reactstrap/lib/Input";
+import InputGroup from "reactstrap/lib/InputGroup";
+import InputGroupAddon from "reactstrap/lib/InputGroupAddon";
+import Button from "reactstrap/lib/Button";
+import Nav from "reactstrap/lib/Nav";
+import "./index.css";
 
-export interface Props {
-    readText: {(text: string): void}
+export interface TextToSpeechProps {
+  readText: { (text: string): void };
 }
 
-export interface State {
-    text: string | null
-}
+export default function TextToSpeech({
+  readText
+}: TextToSpeechProps): ReactElement<TextToSpeechProps> {
+  const [text, setText] = useState<string | null>(null);
 
-class TextToSpeech extends React.PureComponent<Props, State> {
-    public state: State = {
-        text: null,
-    }
+  const handleChangeText = useCallback(
+    (event: ChangeEvent<HTMLInputElement>) => {
+      event.preventDefault();
 
-    constructor(props: Props) {
-        super(props)
-
-        this.handleChange = this.handleChange.bind(this)
-        this.handleClick = this.handleClick.bind(this)
-        this.handleSubmit = this.handleSubmit.bind(this)
-    }
-
-    public handleChange(event: React.ChangeEvent<HTMLInputElement>): void {
-        event.preventDefault()
-
-        this.setState({
-            text: event.currentTarget.value,
-        })
-    }
-
-    public handleClick(event: React.MouseEvent<HTMLButtonElement> | React.TouchEvent<HTMLButtonElement>): void {
-        event.preventDefault()
-
-        this.readText()
-    }
-
-    public handleSubmit(event: React.FormEvent<HTMLFormElement>): void {
-        event.preventDefault()
-
-        this.readText()
-    }
-
-    public render() {
-        return (
-            <Nav navbar className="mr-auto">
-                <Form onSubmit={this.handleSubmit} inline noValidate>
-                    <InputGroup>
-                        <Input
-                            bsSize="sm"
-                            className="input-rounded-left"
-                            onChange={this.handleChange}
-                            placeholder="wpisz tekst"
-                        />
-                        <InputGroupAddon addonType="append">
-                            <Button
-                                className="button-rounded-right"
-                                color="primary"
-                                onClick={this.handleClick}
-                                size="sm"
-                            >
-                                Czytaj
-                            </Button>
-                        </InputGroupAddon>
-                    </InputGroup>
-                </Form>
-            </Nav>
-        )
-    }
-
-    private readText(): void {
-        if (!this.state.text) {
-            return
-        }
-
-        this.props.readText(this.state.text)
-    }
-}
-
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-    readText: (text: string): void => {
-        dispatch(readText(text))
+      setText(event.currentTarget.value);
     },
-})
+    [setText]
+  );
 
-export default connect(null, mapDispatchToProps)(TextToSpeech)
+  const handleReadText = useCallback(
+    (event: FormEvent<HTMLFormElement> | MouseEvent | TouchEvent) => {
+      event.preventDefault();
+
+      readText(text || "");
+    },
+    [readText, text]
+  );
+
+  return (
+    <Nav navbar className="mr-auto">
+      <Form onSubmit={handleReadText} inline noValidate>
+        <InputGroup>
+          <Input
+            bsSize="sm"
+            className="input-rounded-left"
+            onChange={handleChangeText}
+            placeholder="wpisz tekst"
+          />
+          <InputGroupAddon addonType="append">
+            <Button
+              className="button-rounded-right"
+              color="primary"
+              onClick={handleReadText}
+              size="sm"
+            >
+              Czytaj
+            </Button>
+          </InputGroupAddon>
+        </InputGroup>
+      </Form>
+    </Nav>
+  );
+}

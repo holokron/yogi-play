@@ -21,7 +21,7 @@ export default function SoundSearch({
   );
 
   return (
-    <Nav navbar className="mr-auto">
+    <Nav navbar>
       <Form inline noValidate>
         <InputGroup>
           <Input
