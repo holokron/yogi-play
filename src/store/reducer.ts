@@ -78,6 +78,12 @@ export default function appReducer(
           }
         }
       };
+    case ACTIONS.FILTER_SOUNDS: {
+      return {
+        ...state,
+        soundsFilter: action.payload.query
+      };
+    }
     default:
       return state;
   }
