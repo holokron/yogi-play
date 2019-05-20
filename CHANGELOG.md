@@ -1,5 +1,12 @@
 # Changelog
 
+## [0.33.1] - 2019-05-20
+
+## Changed
+
+- Packages update
+- Docs update
+
 ## [0.33.0] - 2019-05-04
 
 ### Added
