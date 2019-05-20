@@ -38,8 +38,8 @@ npm run build
 ## To do
 
 - [x] Favourites functionality
-- [ ] User requests functionality
-- [ ] Sounds search
+- [x] User requests functionality
+- [x] Sounds search
 
 ## Contributing
 
