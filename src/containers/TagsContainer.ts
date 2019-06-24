@@ -1,30 +1,16 @@
-import * as React from "react";
+import { ReactElement } from "react";
 import Tag from "../types/Tag";
-import AppState from "../store/state";
 import { getTagsByOrder } from "../store/selectors";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 
-interface OwnProps {
+interface Props {
   children: (tags: Tag[]) => React.ReactElement<any>;
 }
 
-interface StateProps {
-  tags: Tag[];
-}
+export default function TagsContainer({
+  children
+}: Props): ReactElement<Props> {
+  const tags = useSelector(getTagsByOrder);
 
-export type Props = OwnProps & StateProps;
-
-function TagsContainer({
-  children,
-  tags = []
-}: Props): React.ReactElement<Props> {
   return children(tags);
 }
-
-const mapStateToProps = (state: AppState) => ({
-  tags: getTagsByOrder(state)
-});
-
-export default connect<StateProps, {}, OwnProps, AppState>(mapStateToProps)(
-  TagsContainer
-);

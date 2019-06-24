@@ -1,5 +1,11 @@
 # Changelog
 
+## [Unreleased]
+
+### Added
+
+- Added some `react-redux` hooks
+
 ## [0.33.2] - 2019-06-11
 
 ### Changed
