@@ -9,6 +9,7 @@
 ### Changed
 
 - Packages update
+- Node version bumped to 12
 
 ## [0.33.2] - 2019-06-11
 
