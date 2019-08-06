@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.34.0] - 2019-08-06
+
+### Added
+
+- Added some `react-redux` hooks
+
+### Changed
+
+- Packages update
+- Node version bumped to 12
+
 ## [0.33.2] - 2019-06-11
 
 ### Changed

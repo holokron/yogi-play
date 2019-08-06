@@ -1,18 +1,18 @@
-import * as React from "react";
+import { ReactElement, PureComponent } from "react";
 
 export interface Props {
   initialTab?: any;
   children(
     currentTab: any | null,
     changeTabHandler: { (tabId: string): void }
-  ): React.ReactElement<any>;
+  ): ReactElement<any>;
 }
 
 export interface State {
   currentTab: any | null;
 }
 
-export default class TabsContainer extends React.PureComponent<Props, State> {
+export default class TabsContainer extends PureComponent<Props, State> {
   constructor(props: Props) {
     super(props);
 

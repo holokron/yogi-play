@@ -8,7 +8,7 @@ import Footer from "./components/Footer";
 import configureStore from "./store";
 
 export const APP_NAME = "Yogi PLAY";
-export const APP_VERSION = "0.33.2";
+export const APP_VERSION = "0.34.0";
 
 const store = configureStore();
 

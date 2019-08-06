@@ -1,106 +1,52 @@
-import * as React from "react";
-import { connect } from "react-redux";
+import React, { useCallback } from "react";
 import Sound from "../types/Sound";
 import PlayButton from "../components/PlayButton";
-import {
-  AppDispatch,
-  playSound,
-  stopSound,
-  addUserSound,
-  removeUserSound
-} from "../store/actions";
-import AppState from "../store/state";
-import { hasUserSound } from "../store/selectors";
+import useSoundPlayer from "../hooks/useSoundPlayer";
+import useUserSoundManager from "../hooks/useUserSoundManager";
 
-interface OwnProps {
+interface Props {
   sound: Sound;
 }
 
-interface StateProps {
-  isInUserSounds: boolean;
-}
+export default function PlayButtonContainer({
+  sound
+}: Props): React.ReactElement<Props> {
+  const { playSound, stopSound } = useSoundPlayer(sound);
 
-interface DispatchProps {
-  playSound: { (soundId: string): void };
-  stopSound: { (soundId: string): void };
-  addUserSound: { (soundId: string): void };
-  removeUserSound: { (soundId: string): void };
-}
+  const { addUserSound, removeUserSound, isInUserSounds } = useUserSoundManager(
+    sound
+  );
 
-type Props = OwnProps & StateProps & DispatchProps;
-
-class PlayButtonContainer extends React.PureComponent<Props> {
-  constructor(props: Props) {
-    super(props);
-
-    this.onClick = this.onClick.bind(this);
-    this.onClickFavourites = this.onClickFavourites.bind(this);
-  }
-
-  public render() {
-    const {
-      onClick,
-      onClickFavourites,
-      props: { sound, isInUserSounds }
-    } = this;
-
-    return (
-      <PlayButton
-        sound={sound}
-        onClick={onClick}
-        isLoading={sound.isLoading}
-        isPlaying={sound.isPlaying}
-        onFavClick={onClickFavourites}
-        isFavourite={isInUserSounds}
-      />
-    );
-  }
-
-  public onClick() {
-    const { sound } = this.props;
-
+  const handleClickPlay = useCallback((): void => {
     if (sound.isLoading) {
       return;
     }
 
     if (sound.isPlaying) {
-      this.props.stopSound(sound.id);
+      stopSound();
 
       return;
     }
 
-    this.props.playSound(sound.id);
-  }
+    playSound();
+  }, [sound, playSound, stopSound]);
 
-  public onClickFavourites() {
-    if (this.props.isInUserSounds) {
-      this.props.removeUserSound(this.props.sound.id);
+  const handleClickFavourites = useCallback((): void => {
+    if (isInUserSounds) {
+      removeUserSound();
     } else {
-      this.props.addUserSound(this.props.sound.id);
+      addUserSound();
     }
-  }
+  }, [isInUserSounds, addUserSound, removeUserSound]);
+
+  return (
+    <PlayButton
+      sound={sound}
+      onClick={handleClickPlay}
+      isLoading={sound.isLoading}
+      isPlaying={sound.isPlaying}
+      onFavClick={handleClickFavourites}
+      isFavourite={isInUserSounds}
+    />
+  );
 }
-
-const mapStateToProps = (state: AppState, ownProps: OwnProps) => ({
-  isInUserSounds: hasUserSound(state, ownProps.sound.id)
-});
-
-const mapDispatchToProps = (dispatch: AppDispatch) => ({
-  playSound: (soundId: string): void => {
-    dispatch(playSound(soundId));
-  },
-  stopSound: (soundId: string): void => {
-    dispatch(stopSound(soundId));
-  },
-  addUserSound: (soundId: string): void => {
-    dispatch(addUserSound(soundId));
-  },
-  removeUserSound: (soundId: string): void => {
-    dispatch(removeUserSound(soundId));
-  }
-});
-
-export default connect<StateProps, DispatchProps, OwnProps, AppState>(
-  mapStateToProps,
-  mapDispatchToProps
-)(PlayButtonContainer);

@@ -1,30 +1,16 @@
 import * as React from "react";
-import AppState from "../store/state";
 import { getUserSounds } from "../store/selectors";
-import { connect } from "react-redux";
+import { useSelector } from "react-redux";
 import Sound from "../types/Sound";
 
-interface OwnProps {
+interface Props {
   children: { (sounds: Sound[]): React.ReactElement<any> | null };
 }
 
-interface StateProps {
-  sounds: Sound[];
-}
-
-export type Props = OwnProps & StateProps;
-
-function UserSoundsContainer({
-  children,
-  sounds
+export default function UserSoundsContainer({
+  children
 }: Props): React.ReactElement<Props> | null {
+  const sounds = useSelector(getUserSounds);
+
   return children(sounds);
 }
-
-const mapStateToProps = (state: AppState) => ({
-  sounds: getUserSounds(state)
-});
-
-export default connect<StateProps, {}, OwnProps, AppState>(mapStateToProps)(
-  UserSoundsContainer
-);
