@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.35.0] - 2019-12-15
+
+### Changed
+
+- Removed containers and changed to hooks
+
 ## [0.34.0] - 2019-08-06
 
 ### Added

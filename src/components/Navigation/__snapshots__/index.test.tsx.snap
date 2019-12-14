@@ -18,6 +18,7 @@ exports[`@components/Navigation renders correctly 1`] = `
      Yogi PLAY
   </a>
   <button
+    aria-label="Toggle navigation"
     className="navbar-toggler"
     onClick={[Function]}
     type="button"
@@ -27,6 +28,7 @@ exports[`@components/Navigation renders correctly 1`] = `
     />
   </button>
   <div
+    aria-expanded="false"
     className="collapse navbar-collapse"
     style={Object {}}
   >
@@ -104,7 +106,6 @@ exports[`@components/Navigation renders correctly 1`] = `
             onChange={[Function]}
             placeholder="szukaj dżwięku"
             type="search"
-            value=""
           />
         </div>
       </form>
