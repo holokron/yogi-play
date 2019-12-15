@@ -12,14 +12,9 @@ import InputGroupAddon from "reactstrap/lib/InputGroupAddon";
 import Button from "reactstrap/lib/Button";
 import Nav from "reactstrap/lib/Nav";
 import "./index.css";
+import useTextToSpeech from "../../hooks/useTextToSpeech";
 
-export interface TextToSpeechProps {
-  readText: { (text: string): void };
-}
-
-export default function TextToSpeech({
-  readText
-}: TextToSpeechProps): ReactElement<TextToSpeechProps> {
+export default function TextToSpeech(): ReactElement {
   const [text, setText] = useState<string | null>(null);
 
   const handleChangeText = useCallback(
@@ -30,6 +25,8 @@ export default function TextToSpeech({
     },
     [setText]
   );
+
+  const { readText } = useTextToSpeech();
 
   const handleReadText = useCallback(
     (event: FormEvent<HTMLFormElement> | MouseEvent | TouchEvent) => {

@@ -1,4 +1,4 @@
-import * as React from "react";
+import React, { ReactElement } from "react";
 import Button from "reactstrap/lib/Button";
 import ButtonGroup from "reactstrap/lib/ButtonGroup";
 import "./index.css";
@@ -14,74 +14,42 @@ export interface Props {
   isFavourite?: boolean;
 }
 
-export default class PlayButton extends React.PureComponent<Props> {
-  public static defaultProps: Partial<Props> = {
-    isPlaying: false,
-    isLoading: false,
-    isFavourite: false
-  };
+export default function PlayButton({
+  sound,
+  onClick,
+  onFavClick,
+  isPlaying = false,
+  isLoading = false,
+  isFavourite = false
+}: Props): ReactElement<Props> {
+  let animationClass: string = "";
 
-  public renderPlayButton() {
-    const { sound } = this.props;
-
-    return <Button {...this.getPlayButtonProps()}>{sound.name}</Button>;
+  if (isLoading) {
+    animationClass += "animated infinite flash";
   }
 
-  public renderFavouriteButton() {
-    return (
-      <Button {...this.getFavButtonProps()}>
+  if (isPlaying) {
+    animationClass += "animated infinite pulse active";
+  }
+
+  return (
+    <ButtonGroup className={`play-btn d-flex ${animationClass}`} size="sm">
+      <Button
+        className="play-btn__play text-truncate text-uppercase font-weight-bold"
+        color="primary"
+        outline
+        onClick={onClick}
+      >
+        {sound.name}
+      </Button>
+      <Button
+        className="play-btn__fav"
+        color="primary"
+        outline={!isFavourite}
+        onClick={onFavClick}
+      >
         <FontAwesomeIcon icon="star" />
       </Button>
-    );
-  }
-
-  public render() {
-    return (
-      <ButtonGroup {...this.getButtonGroupProps()}>
-        {this.renderPlayButton()}
-        {this.renderFavouriteButton()}
-      </ButtonGroup>
-    );
-  }
-
-  private getButtonGroupProps(): object {
-    const { isLoading, isPlaying } = this.props;
-
-    let animationClass: string = "";
-
-    if (isLoading) {
-      animationClass += "animated infinite flash";
-    }
-
-    if (isPlaying) {
-      animationClass += "animated infinite pulse active";
-    }
-
-    return {
-      className: `play-btn d-flex ${animationClass}`,
-      size: "sm"
-    };
-  }
-
-  private getPlayButtonProps(): object {
-    const { onClick } = this.props;
-
-    return {
-      className: "play-btn__play text-truncate text-uppercase font-weight-bold",
-      color: "primary",
-      outline: true,
-      onClick
-    };
-  }
-
-  private getFavButtonProps(): object {
-    const { isFavourite, onFavClick } = this.props;
-
-    return {
-      className: "play-btn__fav",
-      color: "primary",
-      outline: !isFavourite,
-      onClick: onFavClick
-    };
-  }
+    </ButtonGroup>
+  );
 }

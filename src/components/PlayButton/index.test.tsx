@@ -1,71 +1,69 @@
-import * as React from 'react'
-import * as renderer from 'react-test-renderer'
-import { mount } from 'enzyme'
-import PlayButton from '.'
-import Sound from '../../types/Sound'
+import * as React from "react";
+import * as renderer from "react-test-renderer";
+import { mount } from "enzyme";
+import PlayButton from ".";
+import Sound from "../../types/Sound";
 
-describe('@components/PlayButton', () => {
-    it('should match snapshot', () => {
-        const sound: Sound = {
-            id: 'test',
-            name: 'Test',
-            path: '/foo/bar.mp3'
-        }
+describe("@components/PlayButton", () => {
+  it("should match snapshot", () => {
+    const sound: Sound = {
+      id: "test",
+      name: "Test",
+      path: "/foo/bar.mp3"
+    };
 
-        const tree = renderer.create(
-            <PlayButton sound={sound} />
-        ).toJSON()
-        
-        expect(tree).toMatchSnapshot()
-    })
+    const tree = renderer.create(<PlayButton sound={sound} />).toJSON();
 
-    it('should match snpashot when audio is playing', () => {
-        const sound: Sound = {
-            id: 'test',
-            name: 'Test',
-            path: '/foo/bar.mp3'
-        }
+    expect(tree).toMatchSnapshot();
+  });
 
-        const tree = renderer.create(
-            <PlayButton sound={sound} isPlaying />
-        ).toJSON()
-        
-        expect(tree).toMatchSnapshot()
-    })
+  it("should match snpashot when audio is playing", () => {
+    const sound: Sound = {
+      id: "test",
+      name: "Test",
+      path: "/foo/bar.mp3"
+    };
 
-    it('should have correct props', () => {
-        const sound: Sound = {
-            id: 'test',
-            name: 'Test',
-            path: '/foo/bar.mp3'
-        }
+    const tree = renderer
+      .create(<PlayButton sound={sound} isPlaying />)
+      .toJSON();
 
-        const isPlaying = false
+    expect(tree).toMatchSnapshot();
+  });
 
-        const result = mount(<PlayButton sound={sound} isPlaying={isPlaying} />)
+  it("should have correct props", () => {
+    const sound: Sound = {
+      id: "test",
+      name: "Test",
+      path: "/foo/bar.mp3"
+    };
 
-        expect(result.props().sound).toEqual(sound)
-        expect(result.props().isPlaying).toEqual(isPlaying)
-        expect(result.props().onClick).toBeUndefined()
-    })
+    const isPlaying = false;
 
-    it('should execute onClick', () => {
-        const sound: Sound = {
-            id: 'test',
-            name: 'Test',
-            path: '/foo/bar.mp3'
-        }
+    const result = mount(<PlayButton sound={sound} isPlaying={isPlaying} />);
 
-        let changeAfterClick = false
+    expect(result.props().sound).toEqual(sound);
+    expect(result.props().isPlaying).toEqual(isPlaying);
+    expect(result.props().onClick).toBeUndefined();
+  });
 
-        const onClick = (): void => {
-            changeAfterClick = true
-        }
+  it("should execute onClick", () => {
+    const sound: Sound = {
+      id: "test",
+      name: "Test",
+      path: "/foo/bar.mp3"
+    };
 
-        const result = mount(<PlayButton sound={sound} onClick={onClick} />)
+    let changeAfterClick = false;
 
-        result.find('button.play-btn__play').simulate('click')
-        
-        expect(changeAfterClick).toEqual(true)
-    })
-})
+    const onClick = (): void => {
+      changeAfterClick = true;
+    };
+
+    const result = mount(<PlayButton sound={sound} onClick={onClick} />);
+
+    result.find("button.play-btn__play").simulate("click");
+
+    expect(changeAfterClick).toEqual(true);
+  });
+});

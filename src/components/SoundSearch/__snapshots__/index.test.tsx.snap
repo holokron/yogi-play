@@ -1,6 +1,6 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
-exports[`@components/SoundSearch renders correctly with props: {"onChange": [Function onChange], "query": "foo"} 1`] = `
+exports[`@components/SoundSearch renders correctly 1`] = `
 <ul
   className="navbar-nav"
 >
@@ -16,30 +16,6 @@ exports[`@components/SoundSearch renders correctly with props: {"onChange": [Fun
         onChange={[Function]}
         placeholder="szukaj dżwięku"
         type="search"
-        value="foo"
-      />
-    </div>
-  </form>
-</ul>
-`;
-
-exports[`@components/SoundSearch renders correctly with props: {"onChange": [Function onChange], "query": null} 1`] = `
-<ul
-  className="navbar-nav"
->
-  <form
-    className="form-inline"
-    noValidate={true}
-  >
-    <div
-      className="input-group"
-    >
-      <input
-        className="input-rounded form-control-sm form-control"
-        onChange={[Function]}
-        placeholder="szukaj dżwięku"
-        type="search"
-        value=""
       />
     </div>
   </form>

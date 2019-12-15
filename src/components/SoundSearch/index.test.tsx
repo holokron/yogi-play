@@ -1,27 +1,21 @@
 import * as React from "react";
 import * as renderer from "react-test-renderer";
-import SoundSearch, { SoundSearchProps } from ".";
+import SoundSearch from ".";
+import { Provider } from "react-redux";
+import configureStore from "../../store";
+
+const store = configureStore();
 
 describe("@components/SoundSearch", () => {
-  it.each([
-    [
-      {
-        onChange: (): void => {},
-        query: null
-      }
-    ],
-    [
-      {
-        onChange: (): void => {},
-        query: "foo"
-      }
-    ]
-  ] as SoundSearchProps[][])(
-    "renders correctly with props: %p",
-    (props: SoundSearchProps) => {
-      const tree = renderer.create(<SoundSearch {...props} />).toJSON();
+  it("renders correctly", () => {
+    const tree = renderer
+      .create(
+        <Provider store={store}>
+          <SoundSearch />
+        </Provider>
+      )
+      .toJSON();
 
-      expect(tree).toMatchSnapshot();
-    }
-  );
+    expect(tree).toMatchSnapshot();
+  });
 });

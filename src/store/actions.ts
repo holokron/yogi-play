@@ -196,30 +196,18 @@ export function playSound(
     if (!audio) {
       audio = new Audio(sound.path);
       audio.preload = "auto";
-      audio.addEventListener(
-        "loadstart",
-        (): void => {
-          dispatch(createLoadSoundAction(soundId));
-        }
-      );
-      audio.addEventListener(
-        "ended",
-        (): void => {
-          dispatch(createStopSoundAction(soundId));
-        }
-      );
-      audio.addEventListener(
-        "pause",
-        (): void => {
-          dispatch(createStopSoundAction(soundId));
-        }
-      );
-      audio.addEventListener(
-        "playing",
-        (): void => {
-          dispatch(createPlaySoundAction(soundId));
-        }
-      );
+      audio.addEventListener("loadstart", (): void => {
+        dispatch(createLoadSoundAction(soundId));
+      });
+      audio.addEventListener("ended", (): void => {
+        dispatch(createStopSoundAction(soundId));
+      });
+      audio.addEventListener("pause", (): void => {
+        dispatch(createStopSoundAction(soundId));
+      });
+      audio.addEventListener("playing", (): void => {
+        dispatch(createPlaySoundAction(soundId));
+      });
 
       audios.set(soundId, audio);
     }
@@ -258,9 +246,7 @@ export function loadSounds(): ThunkAction<
       return;
     }
 
-    const soundsUrl: string = `${
-      process.env.REACT_APP_FIREBASE_DATABASE_URL
-    }/sounds.json`;
+    const soundsUrl: string = `${process.env.REACT_APP_FIREBASE_DATABASE_URL}/sounds.json`;
 
     fetch(soundsUrl)
       .then((response): Promise<SoundsCollection> => response.json())
@@ -282,17 +268,13 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
       return;
     }
 
-    const tagsUrl: string = `${
-      process.env.REACT_APP_FIREBASE_DATABASE_URL
-    }/tags.json`;
+    const tagsUrl: string = `${process.env.REACT_APP_FIREBASE_DATABASE_URL}/tags.json`;
 
     fetch(tagsUrl)
       .then((response): Promise<TagsCollection> => response.json())
-      .then(
-        (tags: TagsCollection): void => {
-          dispatch(createLoadTagsAction(tags));
-        }
-      );
+      .then((tags: TagsCollection): void => {
+        dispatch(createLoadTagsAction(tags));
+      });
 
     tagsLoaded = true;
   };
@@ -303,18 +285,6 @@ export function chooseTag(
 ): ThunkAction<void, AppState, any, ChooseTagAction> {
   return dispatch => {
     dispatch(createChooseTagAction(tagSlug));
-  };
-}
-
-export function readText(text: string): ThunkAction<void, AppState, any, any> {
-  return () => {
-    if (!speechSynthesis) {
-      return;
-    }
-
-    const speech: SpeechSynthesisUtterance = new SpeechSynthesisUtterance(text);
-    speech.rate = 0.7;
-    speechSynthesis.speak(speech);
   };
 }
 

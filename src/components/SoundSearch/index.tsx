@@ -1,16 +1,11 @@
 import React, { useCallback, SyntheticEvent, ReactElement } from "react";
 import "./index.css";
 import { Nav, Form, InputGroup, Input } from "reactstrap";
+import useSoundSearch from "../../hooks/useSoundSearch";
 
-export interface SoundSearchProps {
-  onChange: { (query: string | null): void };
-  query: string | null;
-}
+export default function SoundSearch(): ReactElement {
+  const { onChange } = useSoundSearch();
 
-export default function SoundSearch({
-  onChange,
-  query
-}: SoundSearchProps): ReactElement<SoundSearchProps> {
   const handleChange = useCallback(
     (event: SyntheticEvent<HTMLInputElement>) => {
       event.preventDefault();
@@ -25,7 +20,6 @@ export default function SoundSearch({
       <Form inline noValidate>
         <InputGroup>
           <Input
-            value={query || ""}
             bsSize="sm"
             className="input-rounded"
             onChange={handleChange}
