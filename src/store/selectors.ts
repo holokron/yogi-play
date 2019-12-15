@@ -20,28 +20,26 @@ export const getSounds = createSelector<AppState, SoundsCollection, Sound[]>(
   (soundsCollection: SoundsCollection): Sound[] => {
     const sounds = Object.values(soundsCollection);
 
-    sounds.sort(
-      (soundA: Sound, soundB: Sound): number => {
-        const isNewA: boolean = soundA.isNew || false;
-        const isNewB: boolean = soundB.isNew || false;
-        const orderA: number = soundA.order || 0;
-        const orderB: number = soundB.order || 0;
+    sounds.sort((soundA: Sound, soundB: Sound): number => {
+      const isNewA: boolean = soundA.isNew || false;
+      const isNewB: boolean = soundB.isNew || false;
+      const orderA: number = soundA.order || 0;
+      const orderB: number = soundB.order || 0;
 
-        if (isNewA !== isNewB) {
-          return isNewA ? -1 : 1;
-        }
-
-        if (orderA !== orderB) {
-          return orderA < orderB ? -1 : 1;
-        }
-
-        if (soundA.name === soundB.name) {
-          return 0;
-        }
-
-        return soundA.name < soundB.name ? -1 : 1;
+      if (isNewA !== isNewB) {
+        return isNewA ? -1 : 1;
       }
-    );
+
+      if (orderA !== orderB) {
+        return orderA < orderB ? -1 : 1;
+      }
+
+      if (soundA.name === soundB.name) {
+        return 0;
+      }
+
+      return soundA.name < soundB.name ? -1 : 1;
+    });
 
     return sounds;
   }
@@ -137,31 +135,27 @@ export const getChosenSounds = createSelector<
   Sound[],
   Tag | null,
   Sound[]
->(
-  filterSounds,
-  getChosenTag,
-  (sounds: Sound[], tag: Tag | null): Sound[] => {
-    if (!tag) {
-      return [];
-    }
-
-    if ("all" === tag.slug) {
-      return sounds;
-    }
-
-    if ("recent" === tag.slug) {
-      return sounds.filter((sound: Sound): boolean => sound.isNew || false);
-    }
-
-    if ("misc" === tag.slug) {
-      return sounds.filter((sound: Sound): boolean => !sound.tags || false);
-    }
-
-    return sounds.filter(
-      (sound: Sound): boolean => (sound.tags && sound.tags[tag.id]) || false
-    );
+>(filterSounds, getChosenTag, (sounds: Sound[], tag: Tag | null): Sound[] => {
+  if (!tag) {
+    return [];
   }
-);
+
+  if ("all" === tag.slug) {
+    return sounds;
+  }
+
+  if ("recent" === tag.slug) {
+    return sounds.filter((sound: Sound): boolean => sound.isNew || false);
+  }
+
+  if ("misc" === tag.slug) {
+    return sounds.filter((sound: Sound): boolean => !sound.tags || false);
+  }
+
+  return sounds.filter(
+    (sound: Sound): boolean => (sound.tags && sound.tags[tag.id]) || false
+  );
+});
 
 export const getUser = createSelector<AppState, User | null, User | null>(
   (state: AppState) => state.user,
@@ -179,16 +173,12 @@ export const getUserSounds = createSelector<
   User | null,
   Sound[],
   Sound[]
->(
-  getUser,
-  filterSounds,
-  (user: User | null, sounds: Sound[]) => {
-    if (!user || !user.sounds) {
-      return [];
-    }
-
-    const keys: string[] = Object.keys(user.sounds);
-
-    return sounds.filter((sound: Sound): boolean => keys.includes(sound.id));
+>(getUser, filterSounds, (user: User | null, sounds: Sound[]) => {
+  if (!user || !user.sounds) {
+    return [];
   }
-);
+
+  const keys: string[] = Object.keys(user.sounds);
+
+  return sounds.filter((sound: Sound): boolean => keys.includes(sound.id));
+});
