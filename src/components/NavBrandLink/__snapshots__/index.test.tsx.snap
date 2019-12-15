@@ -12,6 +12,7 @@ exports[`@components/NavBrandLink renders correctly 1`] = `
     src="/icons/icon-64x64.png"
     width={30}
   />
-   Yogi PLAY
+   
+  Yogi PLAY
 </a>
 `;
