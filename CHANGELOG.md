@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.36.0] - 2019-12-19
+
+### Changed
+
+- Improved sound search
+
 ## [0.35.0] - 2019-12-15
 
 ### Changed
