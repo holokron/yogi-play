@@ -6,41 +6,6 @@ export default function appReducer(
   action: AppAction
 ): AppState {
   switch (action.type) {
-    case ACTIONS.PLAY_SOUND:
-      return {
-        ...state,
-        sounds: {
-          ...state.sounds,
-          [action.payload.soundId]: {
-            ...state.sounds[action.payload.soundId],
-            isPlaying: true,
-            isLoading: false
-          }
-        }
-      };
-    case ACTIONS.STOP_SOUND:
-      return {
-        ...state,
-        sounds: {
-          ...state.sounds,
-          [action.payload.soundId]: {
-            ...state.sounds[action.payload.soundId],
-            isPlaying: false,
-            isLoading: false
-          }
-        }
-      };
-    case ACTIONS.LOAD_SOUND:
-      return {
-        ...state,
-        sounds: {
-          ...state.sounds,
-          [action.payload.soundId]: {
-            ...state.sounds[action.payload.soundId],
-            isLoading: true
-          }
-        }
-      };
     case ACTIONS.LOAD_SOUNDS:
       return {
         ...state,

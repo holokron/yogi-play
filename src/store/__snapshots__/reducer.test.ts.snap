@@ -28,13 +28,13 @@ Object {
 }
 `;
 
-exports[`store/reducer action = { type: '@app/LOAD_SOUND', payload: { soundId: '123' } } 1`] = `
+exports[`store/reducer action = { type: undefined, payload: { soundId: '123' } } 1`] = `
 Object {
   "chosenTagSlug": "recent",
   "sounds": Object {
     "123": Object {
       "id": "123",
-      "isLoading": true,
+      "isLoading": false,
       "isPlaying": false,
       "name": "Foo",
       "path": "/foo.mp3",
@@ -50,7 +50,7 @@ Object {
 }
 `;
 
-exports[`store/reducer action = { type: '@app/PLAY_SOUND', payload: { soundId: '123' } } 1`] = `
+exports[`store/reducer action = { type: undefined, payload: { soundId: '123' } } 2`] = `
 Object {
   "chosenTagSlug": "recent",
   "sounds": Object {
@@ -72,7 +72,7 @@ Object {
 }
 `;
 
-exports[`store/reducer action = { type: '@app/STOP_SOUND', payload: { soundId: '123' } } 1`] = `
+exports[`store/reducer action = { type: undefined, payload: { soundId: '123' } } 3`] = `
 Object {
   "chosenTagSlug": "recent",
   "sounds": Object {

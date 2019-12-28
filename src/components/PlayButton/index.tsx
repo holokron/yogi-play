@@ -2,54 +2,94 @@ import React, { ReactElement } from "react";
 import Button from "reactstrap/lib/Button";
 import ButtonGroup from "reactstrap/lib/ButtonGroup";
 import "./index.css";
-import Sound from "../../types/Sound";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
+import useSoundPlayer from "../../hooks/useSoundPlayer";
+import useUserSoundManager from "../../hooks/useUserSoundManager";
+import { useSelector } from "react-redux";
+import { getSound } from "../../store/selectors";
+import AppState from "../../store/state";
 
 export interface Props {
-  sound: Sound;
-  onClick?: () => void;
-  onFavClick?: () => void;
-  isPlaying?: boolean;
-  isLoading?: boolean;
-  isFavourite?: boolean;
+  soundId: string;
 }
 
-export default function PlayButton({
-  sound,
-  onClick,
-  onFavClick,
-  isPlaying = false,
-  isLoading = false,
-  isFavourite = false
-}: Props): ReactElement<Props> {
-  let animationClass: string = "";
+function PlayButton({ soundId }: Props): ReactElement<Props> | null {
+  const {
+    playSound,
+    stopSound,
+    loadSound,
+    isLoading,
+    isPlaying
+  } = useSoundPlayer(soundId);
 
-  if (isLoading) {
-    animationClass += "animated infinite flash";
-  }
+  const { addUserSound, removeUserSound, isInUserSounds } = useUserSoundManager(
+    soundId
+  );
+
+  const handleClickPlay = (): void => {
+    if (isLoading) {
+      return;
+    }
+
+    if (isPlaying) {
+      stopSound();
+
+      return;
+    }
+
+    playSound();
+  };
+
+  const handleClickFavourites = (): void => {
+    if (isInUserSounds) {
+      removeUserSound();
+    } else {
+      addUserSound();
+    }
+  };
+
+  const onMouseEnter = () => {
+    loadSound();
+  };
+
+  let animationClass: string = "";
 
   if (isPlaying) {
     animationClass += "animated infinite pulse active";
   }
 
+  const sound = useSelector((state: AppState) => getSound(state, soundId));
+
+  if (!sound) {
+    return null;
+  }
+
   return (
-    <ButtonGroup className={`play-btn d-flex ${animationClass}`} size="sm">
+    <ButtonGroup
+      onMouseEnter={onMouseEnter}
+      className={`play-btn d-flex ${animationClass}`}
+      size="sm"
+    >
       <Button
+        name={sound.name}
         className="play-btn__play text-truncate text-uppercase font-weight-bold"
         color="primary"
         outline
-        onClick={onClick}
+        onClick={handleClickPlay}
       >
         {sound.name}
       </Button>
       <Button
+        name={isInUserSounds ? "Dodaj do ulubionych" : "Usuń z ulubionych"}
         className="play-btn__fav"
         color="primary"
-        outline={!isFavourite}
-        onClick={onFavClick}
+        outline={!isInUserSounds}
+        onClick={handleClickFavourites}
       >
         <FontAwesomeIcon icon="star" />
       </Button>
     </ButtonGroup>
   );
 }
+
+export default PlayButton;

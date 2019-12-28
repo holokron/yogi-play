@@ -1,6 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
-import Sound from "../types/Sound";
 import * as actions from "../store/actions";
 import AppState from "../store/state";
 import { hasUserSound } from "../store/selectors";
@@ -11,19 +10,21 @@ type UseUserSoundManager = {
   isInUserSounds: boolean;
 };
 
-export default function useUserSoundManager(sound: Sound): UseUserSoundManager {
+export default function useUserSoundManager(
+  soundId: string
+): UseUserSoundManager {
   const dispatch = useDispatch();
 
   const addUserSound = useCallback((): void => {
-    dispatch(actions.addUserSound(sound.id));
-  }, [dispatch, sound]);
+    dispatch(actions.addUserSound(soundId));
+  }, [dispatch, soundId]);
 
   const removeUserSound = useCallback((): void => {
-    dispatch(actions.removeUserSound(sound.id));
-  }, [dispatch, sound]);
+    dispatch(actions.removeUserSound(soundId));
+  }, [dispatch, soundId]);
 
   const isInUserSounds = useSelector<AppState, boolean>(
-    (state: AppState): boolean => hasUserSound(state, sound.id)
+    (state: AppState): boolean => hasUserSound(state, soundId)
   );
 
   return {
