@@ -1,8 +1,8 @@
 import * as React from "react";
 import Col from "reactstrap/lib/Col";
 import Row from "../../components/Row";
-import PlayButtonContainer from "../../containers/PlayButtonContainer";
 import Sound from "../../types/Sound";
+import PlayButton from "../PlayButton";
 
 export interface Props {
   sounds: Sound[];
@@ -21,9 +21,9 @@ export default function SoundsRow({
           sm="4"
           xs="6"
           className="mb-2 pl-1 pr-1"
-          key={sound.name}
+          key={sound.id}
         >
-          <PlayButtonContainer sound={sound} />
+          <PlayButton soundId={sound.id} />
         </Col>
       ))}
     </Row>

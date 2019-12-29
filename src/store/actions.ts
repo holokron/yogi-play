@@ -3,16 +3,11 @@ import { default as firebase } from "../lib/app";
 import "firebase/auth";
 import "firebase/database";
 import AppState from "./state";
-import { getSound } from "./selectors";
-import Sound from "../types/Sound";
 import SoundsCollection from "../types/SoundsCollection";
 import TagsCollection from "../types/TagsCollection";
 import User from "../types/User";
 
 export enum ACTIONS {
-  PLAY_SOUND = "@app/PLAY_SOUND",
-  STOP_SOUND = "@app/STOP_SOUND",
-  LOAD_SOUND = "@app/LOAD_SOUND",
   LOAD_SOUNDS = "@app/LOAD_SOUNDS",
   LOAD_TAGS = "@app/LOAD_TAGS",
   CHOOSE_TAG = "@app/CHOOSE_TAG",
@@ -20,18 +15,6 @@ export enum ACTIONS {
   ADD_USER_SOUND = "@app/ADD_USER_SOUND",
   REMOVE_USER_SOUND = "@app/REMOVE_USER_SOUND",
   FILTER_SOUNDS = "@app/FILTER_SOUNDS"
-}
-
-const audios: Map<string, HTMLAudioElement> = new Map<
-  string,
-  HTMLAudioElement
->();
-
-export interface SoundAction {
-  type: ACTIONS.PLAY_SOUND | ACTIONS.STOP_SOUND | ACTIONS.LOAD_SOUND;
-  payload: {
-    soundId: string;
-  };
 }
 
 export interface LoadSoundsAction {
@@ -77,7 +60,6 @@ export interface FilterSoundsAction {
 }
 
 export type AppAction =
-  | SoundAction
   | LoadSoundsAction
   | LoadTagsAction
   | ChooseTagAction
@@ -86,33 +68,6 @@ export type AppAction =
   | FilterSoundsAction;
 
 export type AppDispatch = ThunkDispatch<AppState, any, AppAction>;
-
-export function createPlaySoundAction(soundId: string): SoundAction {
-  return {
-    type: ACTIONS.PLAY_SOUND,
-    payload: {
-      soundId
-    }
-  };
-}
-
-export function createStopSoundAction(soundId: string): SoundAction {
-  return {
-    type: ACTIONS.STOP_SOUND,
-    payload: {
-      soundId
-    }
-  };
-}
-
-export function createLoadSoundAction(soundId: string): SoundAction {
-  return {
-    type: ACTIONS.LOAD_SOUND,
-    payload: {
-      soundId
-    }
-  };
-}
 
 export function createLoadSoundsAction(
   sounds: SoundsCollection
@@ -178,58 +133,6 @@ export function createFilterSoundsAction(
     payload: {
       query
     }
-  };
-}
-
-export function playSound(
-  soundId: string
-): ThunkAction<void, AppState, any, SoundAction> {
-  return async (dispatch, getState) => {
-    const sound: Sound | null = getSound(getState(), soundId);
-
-    if (!sound) {
-      return;
-    }
-
-    let audio: HTMLAudioElement | undefined = audios.get(soundId);
-
-    if (!audio) {
-      audio = new Audio(sound.path);
-      audio.preload = "auto";
-      audio.addEventListener("loadstart", (): void => {
-        dispatch(createLoadSoundAction(soundId));
-      });
-      audio.addEventListener("ended", (): void => {
-        dispatch(createStopSoundAction(soundId));
-      });
-      audio.addEventListener("pause", (): void => {
-        dispatch(createStopSoundAction(soundId));
-      });
-      audio.addEventListener("playing", (): void => {
-        dispatch(createPlaySoundAction(soundId));
-      });
-
-      audios.set(soundId, audio);
-    }
-
-    audio.play();
-  };
-}
-
-export function stopSound(
-  soundId: string
-): ThunkAction<void, AppState, any, SoundAction> {
-  return dispatch => {
-    let audio: HTMLAudioElement | undefined = audios.get(soundId);
-
-    if (!audio) {
-      return;
-    }
-
-    audio.pause();
-    audio.currentTime = 0;
-
-    dispatch(createStopSoundAction(soundId));
   };
 }
 

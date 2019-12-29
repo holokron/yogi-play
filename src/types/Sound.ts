@@ -5,6 +5,4 @@ export default interface Sound {
   tags?: object;
   order?: number;
   isNew?: boolean;
-  isPlaying?: boolean;
-  isLoading?: boolean;
 }

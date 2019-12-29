@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.37.0] - 2019-12-29
+
+### Changed
+
+- Optimized redux state
+
 ## [0.36.0] - 2019-12-19
 
 ### Changed
