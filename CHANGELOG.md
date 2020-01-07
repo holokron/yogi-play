@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.37.1] - 2020-01-07
+
+### Fixed
+
+- Fixed loading of sounds
+
 ## [0.37.0] - 2019-12-29
 
 ### Changed
