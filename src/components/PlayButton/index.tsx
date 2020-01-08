@@ -14,23 +14,15 @@ export interface Props {
 }
 
 function PlayButton({ soundId }: Props): ReactElement<Props> | null {
-  const {
-    playSound,
-    stopSound,
-    loadSound,
-    isLoading,
-    isPlaying
-  } = useSoundPlayer(soundId);
+  const { playSound, stopSound, loadSound, isPlaying } = useSoundPlayer(
+    soundId
+  );
 
   const { addUserSound, removeUserSound, isInUserSounds } = useUserSoundManager(
     soundId
   );
 
   const handleClickPlay = (): void => {
-    if (isLoading) {
-      return;
-    }
-
     if (isPlaying) {
       stopSound();
 

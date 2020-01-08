@@ -59,6 +59,7 @@ export default function useSoundPlayer(soundId: string): UseSoundPlayer {
       setIsLoading(false);
     });
 
+    audio.currentTime = 0;
     audios.set(soundId, audio);
 
     return audio;
@@ -75,6 +76,7 @@ export default function useSoundPlayer(soundId: string): UseSoundPlayer {
       return;
     }
 
+    audio.currentTime = 0;
     audio.play();
 
     setIsPlaying(true);
