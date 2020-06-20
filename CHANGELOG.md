@@ -1,5 +1,16 @@
 # Changelog
 
+## [0.37.2] - 2020-06-20
+
+### Fixed
+
+- Incorret state of sound after first click
+
+### Changed
+
+- Packages update
+- Changed order of search and text-to-speech
+
 ## [0.37.1] - 2020-01-07
 
 ### Fixed

@@ -3,7 +3,7 @@ import React, {
   useCallback,
   FormEvent,
   useState,
-  ChangeEvent
+  ChangeEvent,
 } from "react";
 import Form from "reactstrap/lib/Form";
 import Input from "reactstrap/lib/Input";
@@ -38,7 +38,7 @@ export default function TextToSpeech(): ReactElement {
   );
 
   return (
-    <Nav navbar className="mr-auto">
+    <Nav navbar>
       <Form onSubmit={handleReadText} inline noValidate>
         <InputGroup>
           <Input

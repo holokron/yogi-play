@@ -1,5 +1,5 @@
 import "bootstrap/dist/css/bootstrap.min.css";
-import "animate.css/animate.min.css";
+import "animate.css/animate.compat.css";
 import "./icons";
 import "react-app-polyfill/ie11";
 import "core-js-pure/features/object/keys";
@@ -12,7 +12,7 @@ import App, { APP_VERSION } from "./App";
 if ("production" === process.env.NODE_ENV && process.env.REACT_APP_SENTRY_DSN) {
   require("@sentry/browser").init({
     dsn: process.env.REACT_APP_SENTRY_DSN,
-    release: APP_VERSION
+    release: APP_VERSION,
   });
 }
 

@@ -2,7 +2,7 @@
 
 exports[`@components/SoundSearch renders correctly 1`] = `
 <ul
-  className="navbar-nav"
+  className="mr-auto navbar-nav"
 >
   <form
     className="form-inline"

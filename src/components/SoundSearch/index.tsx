@@ -16,7 +16,7 @@ export default function SoundSearch(): ReactElement {
   );
 
   return (
-    <Nav navbar>
+    <Nav navbar className="mr-auto">
       <Form inline noValidate>
         <InputGroup>
           <Input

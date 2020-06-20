@@ -52,9 +52,6 @@ export default function useSoundPlayer(soundId: string): UseSoundPlayer {
     audio.addEventListener("ended", (): void => {
       setIsPlaying(false);
     });
-    audio.addEventListener("pause", (): void => {
-      setIsPlaying(false);
-    });
     audio.addEventListener("playing", (): void => {
       setIsLoading(false);
     });
@@ -100,6 +97,6 @@ export default function useSoundPlayer(soundId: string): UseSoundPlayer {
     stopSound,
     loadSound,
     isPlaying,
-    isLoading
+    isLoading,
   };
 }
