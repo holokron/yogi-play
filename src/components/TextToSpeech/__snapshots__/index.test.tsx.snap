@@ -2,7 +2,7 @@
 
 exports[`@components/TextToSpeech renders correctly with props: {"readText": [Function readText]} 1`] = `
 <ul
-  className="mr-auto navbar-nav"
+  className="navbar-nav"
 >
   <form
     className="form-inline"
