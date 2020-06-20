@@ -2,6 +2,10 @@
 
 ## [0.37.2] - 2020-06-20
 
+### Fixed
+
+- Incorret state of sound after first click
+
 ### Changed
 
 - Packages update
