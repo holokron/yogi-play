@@ -6,9 +6,9 @@ describe("@components/TextToSpeech", () => {
   it.each([
     [
       {
-        readText: (): void => {}
-      }
-    ]
+        readText: (): void => {},
+      },
+    ],
   ] as TextToSpeechProps[][])(
     "renders correctly with props: %p",
     (props: TextToSpeechProps) => {

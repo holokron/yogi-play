@@ -5,6 +5,7 @@
 ### Changed
 
 - Packages update
+- Changed order of search and text-to-speech
 
 ## [0.37.1] - 2020-01-07
 

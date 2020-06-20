@@ -18,8 +18,8 @@ export default function Navigation(): ReactElement {
       <NavbarToggler type="button" onClick={toggle} />
       <Collapse isOpen={toggled} navbar>
         <MainMenu onLinkClick={toggleOf} />
-        <TextToSpeech />
         <SoundSearch />
+        <TextToSpeech />
       </Collapse>
     </Navbar>
   );
