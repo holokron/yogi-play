@@ -1,5 +1,11 @@
 # Changelog
 
+## [0.37.2] - 2020-06-20
+
+### Changed
+
+- Packages update
+
 ## [0.37.1] - 2020-01-07
 
 ### Fixed
