@@ -1,7 +1,6 @@
 import * as React from "react";
-import Nav from "reactstrap/lib/Nav";
-import NavItem from "reactstrap/lib/NavItem";
 import useUser from "../../hooks/useUser";
+import { Nav, NavItem } from "reactstrap";
 
 export default function AuthMenu(): React.ReactElement | null {
   const user = useUser();

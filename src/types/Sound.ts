@@ -2,7 +2,7 @@ export default interface Sound {
   id: string;
   name: string;
   path: string;
-  tags?: object;
+  tags?: Record<string, boolean>;
   order?: number;
   isNew?: boolean;
 }

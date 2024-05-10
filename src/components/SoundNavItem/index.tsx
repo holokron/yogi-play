@@ -1,7 +1,6 @@
 import React, { ReactElement, SyntheticEvent } from "react";
-import NavItem from "reactstrap/lib/NavItem";
-import NavLink from "reactstrap/lib/NavLink";
 import "./index.css";
+import { NavItem, NavLink } from "reactstrap";
 
 export interface Props {
   children?: any;

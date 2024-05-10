@@ -3,6 +3,7 @@ import { useCallback } from "react";
 import * as actions from "../store/actions";
 import AppState from "../store/state";
 import { hasUserSound } from "../store/selectors";
+import { AppThunkDispatch } from "../store";
 
 type UseUserSoundManager = {
   addUserSound: { (): void };
@@ -13,7 +14,7 @@ type UseUserSoundManager = {
 export default function useUserSoundManager(
   soundId: string
 ): UseUserSoundManager {
-  const dispatch = useDispatch();
+  const dispatch = useDispatch<AppThunkDispatch>();
 
   const addUserSound = useCallback((): void => {
     dispatch(actions.addUserSound(soundId));
@@ -30,6 +31,6 @@ export default function useUserSoundManager(
   return {
     addUserSound,
     removeUserSound,
-    isInUserSounds
+    isInUserSounds,
   };
 }

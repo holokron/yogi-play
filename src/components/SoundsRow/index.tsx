@@ -1,15 +1,15 @@
 import * as React from "react";
-import Col from "reactstrap/lib/Col";
 import Row from "../../components/Row";
 import Sound from "../../types/Sound";
 import PlayButton from "../PlayButton";
+import { Col } from "reactstrap";
 
 export interface Props {
   sounds: Sound[];
 }
 
 export default function SoundsRow({
-  sounds
+  sounds,
 }: Props): React.ReactElement<Props> {
   return (
     <Row withTopPadding>

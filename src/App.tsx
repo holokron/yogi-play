@@ -1,5 +1,5 @@
-import React, { ReactElement } from "react";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { ReactElement } from "react";
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
 import Sounds from "./routes/Sounds";
 import Favourites from "./routes/Favourites";
@@ -16,16 +16,14 @@ export default function App(): ReactElement {
   return (
     <Provider store={store}>
       <Router>
-        <React.Fragment>
-          <main>
-            <Switch>
-              <Route exact path="/" component={Sounds} />
-              <Route exact path="/ulubione" component={Favourites} />
-              <Route exact path="/dodaj" component={Request} />
-            </Switch>
-          </main>
-          <Footer>v{APP_VERSION}&nbsp;</Footer>
-        </React.Fragment>
+        <main>
+          <Routes>
+            <Route path="/" element={<Sounds />} />
+            <Route path="/ulubione" element={<Favourites />} />
+            <Route path="/dodaj" element={<Request />} />
+          </Routes>
+        </main>
+        <Footer>v{APP_VERSION}&nbsp;</Footer>
       </Router>
     </Provider>
   );

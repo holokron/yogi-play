@@ -1,7 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getTagsByOrder, getChosenTag } from "../store/selectors";
 import Tag from "../types/Tag";
-import { AppDispatch, chooseTag } from "../store/actions";
+import { chooseTag } from "../store/actions";
+import { AppThunkDispatch } from "../store";
 
 interface TagsHook {
   currentTag: Tag | null;
@@ -13,7 +14,7 @@ export default function useTags(): TagsHook {
   const currentTag = useSelector(getChosenTag);
   const tags = useSelector(getTagsByOrder);
 
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppThunkDispatch>();
 
   const changeTag = (tagSlug: string): void => {
     dispatch(chooseTag(tagSlug));
@@ -22,6 +23,6 @@ export default function useTags(): TagsHook {
   return {
     currentTag,
     tags,
-    changeTag
+    changeTag,
   };
 }

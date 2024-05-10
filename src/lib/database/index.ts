@@ -1,33 +1,14 @@
-import app from "../app";
-import * as firebase from "firebase/app";
+import { ref, set, onValue } from "firebase/database";
 import "firebase/auth";
 import User from "../../types/User";
+import { database as db } from "../app";
 
-export interface Database {
-  getSoundsRef(): firebase.database.Reference;
-  getTagsRef(): firebase.database.Reference;
-  getUser(id: string): Promise<User>;
-  createUser(user: User): void;
-}
-
-const database: Database = {
-  getSoundsRef: (): firebase.database.Reference =>
-    app.database().ref("/sounds"),
-  getTagsRef: (): firebase.database.Reference => app.database().ref("/tags"),
-  getUser: async (id: string): Promise<User> => {
-    return app
-      .database()
-      .ref(`/users/${id}`)
-      .once("value")
-      .then((snapshot: firebase.database.DataSnapshot) => snapshot.val());
-  },
-  createUser: (user: User): void => {
-    app
-      .database()
-      .ref("/users")
-      .child(user.id)
-      .set(user);
-  }
+const database = {
+  getSoundsRef: () => ref(db, "/sounds"),
+  getTagsRef: () => ref(db, "/tags"),
+  getUser: (id: string) =>
+    onValue(ref(db, `/users/${id}`), (snapshot) => snapshot.val() as User),
+  createUser: (user: User) => set(ref(db, `/users/${user.id}`), user),
 };
 
 export default database;

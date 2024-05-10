@@ -6,16 +6,12 @@ import TagsCollection from "../types/TagsCollection";
 import Tag from "../types/Tag";
 import User from "../types/User";
 
-export const getSoundsCollection = createSelector<
-  AppState,
-  SoundsCollection,
-  SoundsCollection
->(
+export const getSoundsCollection = createSelector(
   (state: AppState): SoundsCollection => state.sounds,
   (sounds: SoundsCollection): SoundsCollection => sounds
 );
 
-export const getSounds = createSelector<AppState, SoundsCollection, Sound[]>(
+export const getSounds = createSelector(
   getSoundsCollection,
   (soundsCollection: SoundsCollection): Sound[] => {
     const sounds = Object.values(soundsCollection);
@@ -45,21 +41,12 @@ export const getSounds = createSelector<AppState, SoundsCollection, Sound[]>(
   }
 );
 
-export const getSoundsFilter = createSelector<
-  AppState,
-  string | null,
-  string | null
->(
+export const getSoundsFilter = createSelector(
   (state: AppState) => state.soundsFilter,
   (soundsFilter: string | null) => soundsFilter
 );
 
-export const filterSounds = createSelector<
-  AppState,
-  string | null,
-  Sound[],
-  Sound[]
->(
+export const filterSounds = createSelector(
   getSoundsFilter,
   getSounds,
   (soundsfilter: string | null, sounds: Sound[]): Sound[] => {
@@ -77,16 +64,12 @@ export function getSound(state: AppState, soundId: string): Sound | null {
   return state.sounds[soundId] || null;
 }
 
-export const getTagsCollection = createSelector<
-  AppState,
-  TagsCollection,
-  TagsCollection
->(
+export const getTagsCollection = createSelector(
   (state: AppState): TagsCollection => state.tags,
   (tags: TagsCollection): TagsCollection => tags
 );
 
-export const getTagsByOrder = createSelector<AppState, TagsCollection, Tag[]>(
+export const getTagsByOrder = createSelector(
   getTagsCollection,
   (tagsCollection: TagsCollection): Tag[] => {
     const tags = Object.values(tagsCollection);
@@ -113,12 +96,7 @@ export const getTagsByOrder = createSelector<AppState, TagsCollection, Tag[]>(
   }
 );
 
-export const getChosenTag = createSelector<
-  AppState,
-  string | null,
-  TagsCollection,
-  Tag | null
->(
+export const getChosenTag = createSelector(
   (state: AppState): string => state.chosenTagSlug,
   getTagsCollection,
   (chosenTagSlug: string | null, tags: TagsCollection): Tag | null => {
@@ -130,34 +108,33 @@ export const getChosenTag = createSelector<
   }
 );
 
-export const getChosenSounds = createSelector<
-  AppState,
-  Sound[],
-  Tag | null,
-  Sound[]
->(filterSounds, getChosenTag, (sounds: Sound[], tag: Tag | null): Sound[] => {
-  if (!tag) {
-    return [];
+export const getChosenSounds = createSelector(
+  filterSounds,
+  getChosenTag,
+  (sounds: Sound[], tag: Tag | null): Sound[] => {
+    if (!tag) {
+      return [];
+    }
+
+    if ("all" === tag.slug) {
+      return sounds;
+    }
+
+    if ("recent" === tag.slug) {
+      return sounds.filter((sound: Sound): boolean => sound.isNew || false);
+    }
+
+    if ("misc" === tag.slug) {
+      return sounds.filter((sound: Sound): boolean => !sound.tags || false);
+    }
+
+    return sounds.filter(
+      (sound: Sound): boolean => (sound.tags && sound.tags[tag.id]) || false
+    );
   }
+);
 
-  if ("all" === tag.slug) {
-    return sounds;
-  }
-
-  if ("recent" === tag.slug) {
-    return sounds.filter((sound: Sound): boolean => sound.isNew || false);
-  }
-
-  if ("misc" === tag.slug) {
-    return sounds.filter((sound: Sound): boolean => !sound.tags || false);
-  }
-
-  return sounds.filter(
-    (sound: Sound): boolean => (sound.tags && sound.tags[tag.id]) || false
-  );
-});
-
-export const getUser = createSelector<AppState, User | null, User | null>(
+export const getUser = createSelector(
   (state: AppState) => state.user,
   (user: User | null) => user
 );
@@ -168,17 +145,16 @@ export const hasUserSound = (state: AppState, soundId: string): boolean => {
   return (user && user.sounds && user.sounds[soundId]) || false;
 };
 
-export const getUserSounds = createSelector<
-  AppState,
-  User | null,
-  Sound[],
-  Sound[]
->(getUser, filterSounds, (user: User | null, sounds: Sound[]) => {
-  if (!user || !user.sounds) {
-    return [];
+export const getUserSounds = createSelector(
+  getUser,
+  filterSounds,
+  (user: User | null, sounds: Sound[]) => {
+    if (!user || !user.sounds) {
+      return [];
+    }
+
+    const keys: string[] = Object.keys(user.sounds);
+
+    return sounds.filter((sound: Sound): boolean => keys.includes(sound.id));
   }
-
-  const keys: string[] = Object.keys(user.sounds);
-
-  return sounds.filter((sound: Sound): boolean => keys.includes(sound.id));
-});
+);

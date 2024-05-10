@@ -3,15 +3,11 @@ import { useDispatch } from "react-redux";
 import Container from "../../components/Container";
 import Row from "../../components/Row";
 import DefaultTemplate from "../../templates/DefaultTemplate";
-import {
-  AppDispatch,
-  loadTags,
-  loadSounds,
-  authenticate
-} from "../../store/actions";
+import { loadTags, loadSounds, authenticate } from "../../store/actions";
 import SoundsNav from "../../components/SoundsNav";
 import SoundsRow from "../../components/SoundsRow";
 import useChosenSounds from "../../hooks/useChosenSounds";
+import { AppThunkDispatch } from "../../store";
 
 export interface Props {
   loadTags: () => {};
@@ -20,7 +16,7 @@ export interface Props {
 }
 
 export default function Sounds(): React.ReactElement {
-  const dispatch = useDispatch<AppDispatch>();
+  const dispatch = useDispatch<AppThunkDispatch>();
 
   useEffect(() => {
     dispatch(loadTags());

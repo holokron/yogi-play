@@ -1,18 +1,14 @@
 import React, {
   ReactElement,
   useCallback,
-  FormEvent,
   useState,
   ChangeEvent,
+  FormEvent,
+  MouseEvent,
 } from "react";
-import Form from "reactstrap/lib/Form";
-import Input from "reactstrap/lib/Input";
-import InputGroup from "reactstrap/lib/InputGroup";
-import InputGroupAddon from "reactstrap/lib/InputGroupAddon";
-import Button from "reactstrap/lib/Button";
-import Nav from "reactstrap/lib/Nav";
 import "./index.css";
 import useTextToSpeech from "../../hooks/useTextToSpeech";
+import { Button, Form, Input, InputGroup, Nav } from "reactstrap";
 
 export default function TextToSpeech(): ReactElement {
   const [text, setText] = useState<string | null>(null);
@@ -29,7 +25,7 @@ export default function TextToSpeech(): ReactElement {
   const { readText } = useTextToSpeech();
 
   const handleReadText = useCallback(
-    (event: FormEvent<HTMLFormElement> | MouseEvent | TouchEvent) => {
+    (event: MouseEvent<HTMLButtonElement> | FormEvent<HTMLFormElement>) => {
       event.preventDefault();
 
       readText(text || "");
@@ -46,17 +42,16 @@ export default function TextToSpeech(): ReactElement {
             className="input-rounded-left"
             onChange={handleChangeText}
             placeholder="wpisz tekst"
+            addon
           />
-          <InputGroupAddon addonType="append">
-            <Button
-              className="button-rounded-right"
-              color="primary"
-              onClick={handleReadText}
-              size="sm"
-            >
-              Czytaj
-            </Button>
-          </InputGroupAddon>
+          <Button
+            className="button-rounded-right"
+            color="primary"
+            onClick={handleReadText}
+            size="sm"
+          >
+            Czytaj
+          </Button>
         </InputGroup>
       </Form>
     </Nav>
