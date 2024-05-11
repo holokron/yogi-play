@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as renderer from "react-test-renderer";
+import { describe, it, expect } from "vitest";
+import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import { Provider } from "react-redux";
 import AuthMenu from ".";
@@ -11,21 +11,19 @@ const store = configureStore({
   user: {
     id: "foo",
     displayName: "Foo Bar",
-    email: "foo@bar.com"
-  }
+    email: "foo@bar.com",
+  },
 });
 
 describe("@components/AuthMenu", () => {
   it("renders correctly", () => {
-    const tree = renderer
-      .create(
-        <Provider store={store}>
-          <MemoryRouter>
-            <AuthMenu />
-          </MemoryRouter>
-        </Provider>
-      )
-      .toJSON();
+    const tree = render(
+      <Provider store={store}>
+        <MemoryRouter>
+          <AuthMenu />
+        </MemoryRouter>
+      </Provider>
+    );
 
     expect(tree).toMatchSnapshot();
   });

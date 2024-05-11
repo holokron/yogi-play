@@ -6,6 +6,7 @@ import User from "../types/User";
 import { auth, database as db } from "../lib/app";
 import { ref, set, remove, onValue } from "firebase/database";
 import { onAuthStateChanged, signInAnonymously } from "firebase/auth";
+import { config } from "../lib/config";
 
 export enum ACTIONS {
   LOAD_SOUNDS = "@app/LOAD_SOUNDS",
@@ -147,7 +148,7 @@ export function loadSounds(): ThunkAction<
       return;
     }
 
-    const soundsUrl: string = `${process.env.REACT_APP_FIREBASE_DATABASE_URL}/sounds.json`;
+    const soundsUrl: string = `${config.firebase.databaseURL}/sounds.json`;
 
     fetch(soundsUrl)
       .then((response): Promise<SoundsCollection> => response.json())
@@ -167,7 +168,7 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
       return;
     }
 
-    const tagsUrl: string = `${process.env.REACT_APP_FIREBASE_DATABASE_URL}/tags.json`;
+    const tagsUrl: string = `${config.firebase.databaseURL}/tags.json`;
 
     fetch(tagsUrl)
       .then((response): Promise<TagsCollection> => response.json())

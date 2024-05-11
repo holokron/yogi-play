@@ -1,3 +1,4 @@
+import { describe, it, expect } from "vitest";
 import * as actions from "./actions";
 
 describe("store/actions", () => {
@@ -6,8 +7,8 @@ describe("store/actions", () => {
       "123": {
         id: "123",
         name: "Foo",
-        path: "/foo/bar.mp3"
-      }
+        path: "/foo/bar.mp3",
+      },
     });
 
     expect(result).toMatchSnapshot();

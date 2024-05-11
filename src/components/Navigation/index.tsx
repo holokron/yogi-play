@@ -14,7 +14,7 @@ export default function Navigation(): ReactElement {
     <Navbar dark expand="md" color="dark" className="navigation">
       <NavBrandLink />
       <NavbarToggler type="button" onClick={toggle} />
-      <Collapse isOpen={toggled} navbar>
+      <Collapse isOpen={toggled} navbar className="justify-content-between">
         <MainMenu onLinkClick={toggleOf} />
         <SoundSearch />
         <TextToSpeech />

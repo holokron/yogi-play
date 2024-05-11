@@ -2,18 +2,14 @@
   "compilerOptions": {
     "outDir": "build/dist",
     "module": "esnext",
-    "target": "es5",
-    "lib": [
-      "dom",
-      "es2015",
-      "es2016",
-      "es2017"
+    "target": "ESNext",
+    "lib": ["DOM", "DOM.Iterable", "ESNext"
     ],
     "sourceMap": true,
     "inlineSources": true,
     "sourceRoot": "/",
-    "allowJs": true,
-    "jsx": "preserve",
+    "allowJs": false,
+    "jsx": "react-jsx",
     "moduleResolution": "node",
     "rootDir": "src",
     "forceConsistentCasingInFileNames": true,
@@ -24,7 +20,7 @@
     "noUnusedLocals": true,
     "importHelpers": true,
     "skipLibCheck": true,
-    "esModuleInterop": true,
+    "esModuleInterop": false,
     "allowSyntheticDefaultImports": true,
     "strict": true,
     "resolveJsonModule": true,

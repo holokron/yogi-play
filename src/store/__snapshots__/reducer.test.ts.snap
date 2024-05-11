@@ -1,12 +1,12 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`store/reducer action = { type: '@app/FILTER_SOUNDS', payload: { query: 'foo' } } 1`] = `
-Object {
+exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', payload: { query: 'foo' } } 1`] = `
+{
   "chosenTagSlug": "recent",
-  "sounds": Object {},
+  "sounds": {},
   "soundsFilter": "foo",
-  "tags": Object {},
-  "user": Object {
+  "tags": {},
+  "user": {
     "displayName": "",
     "email": "",
     "id": "",
@@ -14,79 +14,13 @@ Object {
 }
 `;
 
-exports[`store/reducer action = { type: '@app/FILTER_SOUNDS', payload: { query: null } } 1`] = `
-Object {
+exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', payload: { query: null } } 1`] = `
+{
   "chosenTagSlug": "recent",
-  "sounds": Object {},
+  "sounds": {},
   "soundsFilter": null,
-  "tags": Object {},
-  "user": Object {
-    "displayName": "",
-    "email": "",
-    "id": "",
-  },
-}
-`;
-
-exports[`store/reducer action = { type: undefined, payload: { soundId: '123' } } 1`] = `
-Object {
-  "chosenTagSlug": "recent",
-  "sounds": Object {
-    "123": Object {
-      "id": "123",
-      "isLoading": false,
-      "isPlaying": false,
-      "name": "Foo",
-      "path": "/foo.mp3",
-    },
-  },
-  "soundsFilter": null,
-  "tags": Object {},
-  "user": Object {
-    "displayName": "",
-    "email": "",
-    "id": "",
-  },
-}
-`;
-
-exports[`store/reducer action = { type: undefined, payload: { soundId: '123' } } 2`] = `
-Object {
-  "chosenTagSlug": "recent",
-  "sounds": Object {
-    "123": Object {
-      "id": "123",
-      "isLoading": false,
-      "isPlaying": true,
-      "name": "Foo",
-      "path": "/foo.mp3",
-    },
-  },
-  "soundsFilter": null,
-  "tags": Object {},
-  "user": Object {
-    "displayName": "",
-    "email": "",
-    "id": "",
-  },
-}
-`;
-
-exports[`store/reducer action = { type: undefined, payload: { soundId: '123' } } 3`] = `
-Object {
-  "chosenTagSlug": "recent",
-  "sounds": Object {
-    "123": Object {
-      "id": "123",
-      "isLoading": false,
-      "isPlaying": false,
-      "name": "Foo",
-      "path": "/foo.mp3",
-    },
-  },
-  "soundsFilter": null,
-  "tags": Object {},
-  "user": Object {
+  "tags": {},
+  "user": {
     "displayName": "",
     "email": "",
     "id": "",

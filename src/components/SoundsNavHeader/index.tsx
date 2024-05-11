@@ -1,4 +1,3 @@
-import * as React from "react";
 import "./index.css";
 import { Nav, NavItem, NavLink } from "reactstrap";
 

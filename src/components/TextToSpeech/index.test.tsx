@@ -1,3 +1,4 @@
+import { describe, it } from "vitest";
 import { ComponentProps } from "react";
 import TextToSpeech from ".";
 

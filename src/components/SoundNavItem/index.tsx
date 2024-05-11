@@ -1,4 +1,4 @@
-import React, { ReactElement, SyntheticEvent } from "react";
+import { ReactElement, SyntheticEvent } from "react";
 import "./index.css";
 import { NavItem, NavLink } from "reactstrap";
 

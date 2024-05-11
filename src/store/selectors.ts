@@ -6,10 +6,8 @@ import TagsCollection from "../types/TagsCollection";
 import Tag from "../types/Tag";
 import User from "../types/User";
 
-export const getSoundsCollection = createSelector(
-  (state: AppState): SoundsCollection => state.sounds,
-  (sounds: SoundsCollection): SoundsCollection => sounds
-);
+export const getSoundsCollection = (state: AppState): SoundsCollection =>
+  state.sounds;
 
 export const getSounds = createSelector(
   getSoundsCollection,
@@ -64,10 +62,8 @@ export function getSound(state: AppState, soundId: string): Sound | null {
   return state.sounds[soundId] || null;
 }
 
-export const getTagsCollection = createSelector(
-  (state: AppState): TagsCollection => state.tags,
-  (tags: TagsCollection): TagsCollection => tags
-);
+export const getTagsCollection = (state: AppState): TagsCollection =>
+  state.tags;
 
 export const getTagsByOrder = createSelector(
   getTagsCollection,
@@ -134,10 +130,7 @@ export const getChosenSounds = createSelector(
   }
 );
 
-export const getUser = createSelector(
-  (state: AppState) => state.user,
-  (user: User | null) => user
-);
+export const getUser = (state: AppState) => state.user;
 
 export const hasUserSound = (state: AppState, soundId: string): boolean => {
   const user: User | null = getUser(state);

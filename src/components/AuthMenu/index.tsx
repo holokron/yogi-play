@@ -1,4 +1,3 @@
-import * as React from "react";
 import useUser from "../../hooks/useUser";
 import { Nav, NavItem } from "reactstrap";
 

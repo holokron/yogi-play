@@ -1,4 +1,4 @@
-import React, { ReactElement, useEffect } from "react";
+import { ReactElement, useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Container from "../../components/Container";
 import DefaultTemplate from "../../templates/DefaultTemplate";

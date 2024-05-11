@@ -1,19 +1,19 @@
-// Jest Snapshot v1, https://goo.gl/fbAQLP
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`store/actions @app/FILTER_SOUNDS 1`] = `
-Object {
-  "payload": Object {
+exports[`store/actions > @app/FILTER_SOUNDS 1`] = `
+{
+  "payload": {
     "query": "foo",
   },
   "type": "@app/FILTER_SOUNDS",
 }
 `;
 
-exports[`store/actions @app/LOAD_SOUNDS 1`] = `
-Object {
-  "payload": Object {
-    "sounds": Object {
-      "123": Object {
+exports[`store/actions > @app/LOAD_SOUNDS 1`] = `
+{
+  "payload": {
+    "sounds": {
+      "123": {
         "id": "123",
         "name": "Foo",
         "path": "/foo/bar.mp3",

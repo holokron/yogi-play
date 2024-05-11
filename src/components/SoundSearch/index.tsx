@@ -1,4 +1,4 @@
-import React, { useCallback, SyntheticEvent, ReactElement } from "react";
+import { useCallback, SyntheticEvent, ReactElement } from "react";
 import "./index.css";
 import { Nav, Form, InputGroup, Input } from "reactstrap";
 import useSoundSearch from "../../hooks/useSoundSearch";
@@ -17,7 +17,7 @@ export default function SoundSearch(): ReactElement {
 
   return (
     <Nav navbar className="mr-auto">
-      <Form inline noValidate>
+      <Form noValidate>
         <InputGroup>
           <Input
             bsSize="sm"

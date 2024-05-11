@@ -1,4 +1,4 @@
-import React, {
+import {
   ReactElement,
   useCallback,
   useState,
@@ -35,7 +35,7 @@ export default function TextToSpeech(): ReactElement {
 
   return (
     <Nav navbar>
-      <Form onSubmit={handleReadText} inline noValidate>
+      <Form onSubmit={handleReadText} noValidate>
         <InputGroup>
           <Input
             bsSize="sm"

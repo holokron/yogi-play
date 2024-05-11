@@ -1,16 +1,16 @@
-import * as React from "react";
-import * as renderer from "react-test-renderer";
+import { describe, it, expect } from "vitest";
+import { render } from "@testing-library/react";
 import Row from ".";
 
 describe("@components/Row", () => {
   it("renders correctly", () => {
-    const tree = renderer.create(<Row>Test</Row>).toJSON();
+    const tree = render(<Row>Test</Row>);
 
     expect(tree).toMatchSnapshot();
   });
 
   it("should render without errors, props (withTopPadding = true)", () => {
-    const tree = renderer.create(<Row withTopPadding>Test</Row>).toJSON();
+    const tree = render(<Row withTopPadding>Test</Row>);
 
     expect(tree).toMatchSnapshot();
   });

@@ -1,4 +1,4 @@
-import React, { ReactElement } from "react";
+import { ReactElement } from "react";
 import "./index.css";
 import SoundNavItem from "../../components/SoundNavItem";
 import Tag from "../../types/Tag";

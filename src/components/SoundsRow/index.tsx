@@ -1,4 +1,3 @@
-import * as React from "react";
 import Row from "../../components/Row";
 import Sound from "../../types/Sound";
 import PlayButton from "../PlayButton";

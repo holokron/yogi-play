@@ -1,17 +1,17 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "animate.css/animate.compat.css";
-import "react-app-polyfill/ie11";
-import "core-js-pure/features/object/keys";
-import "core-js-pure/features/object/values";
-import * as React from "react";
-import * as ReactDOM from "react-dom";
 import App, { APP_VERSION } from "./App";
+import { createRoot } from "react-dom/client";
+import { config } from "./lib/config";
 
-if ("production" === process.env.NODE_ENV && process.env.REACT_APP_SENTRY_DSN) {
+if ("production" === config.nodeEnv && config.sentryDSN) {
   require("@sentry/browser").init({
-    dsn: process.env.REACT_APP_SENTRY_DSN,
+    dsn: config.sentryDSN,
     release: APP_VERSION,
   });
 }
 
-ReactDOM.render(<App />, document.getElementById("root") as HTMLElement);
+const container = document.getElementById("root");
+const root = createRoot(container as HTMLElement);
+
+root.render(<App />);

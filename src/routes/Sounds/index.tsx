@@ -1,4 +1,4 @@
-import React, { useEffect } from "react";
+import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Container from "../../components/Container";
 import Row from "../../components/Row";
@@ -15,7 +15,7 @@ export interface Props {
   authenticate: () => {};
 }
 
-export default function Sounds(): React.ReactElement {
+export default function Sounds(): JSX.Element {
   const dispatch = useDispatch<AppThunkDispatch>();
 
   useEffect(() => {

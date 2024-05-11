@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as renderer from "react-test-renderer";
+import { describe, it, expect } from "vitest";
+import { render } from "@testing-library/react";
 import PlayButton from ".";
 import { Provider } from "react-redux";
 import configureStore from "../../store";
@@ -11,22 +11,20 @@ const state = {
     qwertyasdfgh: {
       id: "test",
       name: "Test",
-      path: "/foo/bar.mp3"
-    }
-  }
+      path: "/foo/bar.mp3",
+    },
+  },
 };
 
 const store = configureStore(state);
 
 describe("@components/PlayButton", () => {
   it("should match snapshot", () => {
-    const tree = renderer
-      .create(
-        <Provider store={store}>
-          <PlayButton soundId="qwertyasdfgh" />
-        </Provider>
-      )
-      .toJSON();
+    const tree = render(
+      <Provider store={store}>
+        <PlayButton soundId="qwertyasdfgh" />
+      </Provider>
+    );
 
     expect(tree).toMatchSnapshot();
   });

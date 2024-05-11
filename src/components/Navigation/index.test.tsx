@@ -1,5 +1,5 @@
-import * as React from "react";
-import * as renderer from "react-test-renderer";
+import { describe, it, expect } from "vitest";
+import { render } from "@testing-library/react";
 import { MemoryRouter } from "react-router-dom";
 import Navigation from ".";
 import configureStore from "../../store";
@@ -9,7 +9,7 @@ const store = configureStore();
 
 describe("@components/Navigation", () => {
   it("renders correctly", () => {
-    const tree = renderer.create(
+    const tree = render(
       <Provider store={store}>
         <MemoryRouter>
           <Navigation />
@@ -17,6 +17,6 @@ describe("@components/Navigation", () => {
       </Provider>
     );
 
-    expect(tree.toJSON()).toMatchSnapshot();
+    expect(tree).toMatchSnapshot();
   });
 });

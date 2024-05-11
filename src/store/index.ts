@@ -8,7 +8,7 @@ import { AppAction } from "./actions";
 const middleware = applyMiddleware(thunk);
 
 const enhancer = compose(middleware);
-  // process.env.NODE_ENV === "development"
+  // import.meta.env.NODE_ENV === "development"
   //   ? composeWithDevTools(middleware)
   //   : compose(middleware);
 
