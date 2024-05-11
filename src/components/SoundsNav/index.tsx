@@ -9,7 +9,7 @@ export default function SoundsNav(): ReactElement {
   const { currentTag, tags, changeTag } = useTags();
 
   return (
-    <Nav pills className="sounds-nav">
+    <Nav pills className="sounds-nav justify-content-md-center">
       {tags.map((tag: Tag) => (
         <SoundNavItem
           key={tag.slug}

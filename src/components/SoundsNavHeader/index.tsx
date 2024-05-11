@@ -9,7 +9,7 @@ export default function SoundsNavHeader({
   children
 }: Props): React.ReactElement<Props> {
   return (
-    <Nav pills className="sounds-nav">
+    <Nav pills className="sounds-nav justify-content-md-center">
       <NavItem>
         <NavLink
           href="#"

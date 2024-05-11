@@ -6,6 +6,7 @@ import { useSelector } from "react-redux";
 import { getSound } from "../../store/selectors";
 import AppState from "../../store/state";
 import { Button, ButtonGroup } from "reactstrap";
+import { Star } from "lucide-react";
 
 export interface Props {
   soundId: string;
@@ -74,6 +75,7 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
         outline={!isInUserSounds}
         onClick={handleClickFavourites}
       >
+        <Star size={16} />
       </Button>
     </ButtonGroup>
   );

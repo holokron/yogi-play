@@ -6,13 +6,13 @@ exports[`@components/SoundsNav > renders correctly 1`] = `
   "baseElement": <body>
     <div>
       <ul
-        class="sounds-nav nav nav-pills"
+        class="sounds-nav justify-content-md-center nav nav-pills"
       />
     </div>
   </body>,
   "container": <div>
     <ul
-      class="sounds-nav nav nav-pills"
+      class="sounds-nav justify-content-md-center nav nav-pills"
     />
   </div>,
   "debug": [Function],
