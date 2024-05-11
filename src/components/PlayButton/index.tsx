@@ -1,6 +1,5 @@
 import React, { ReactElement } from "react";
 import "./index.css";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import useSoundPlayer from "../../hooks/useSoundPlayer";
 import useUserSoundManager from "../../hooks/useUserSoundManager";
 import { useSelector } from "react-redux";
@@ -75,7 +74,6 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
         outline={!isInUserSounds}
         onClick={handleClickFavourites}
       >
-        <FontAwesomeIcon icon="star" />
       </Button>
     </ButtonGroup>
   );
