@@ -38,7 +38,7 @@ export default function appReducer(
         user: {
           ...state.user,
           sounds: {
-            ...state.user.sounds,
+            ...state.user?.sounds,
             [action.payload.soundId]: true
           }
         }
