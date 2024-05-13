@@ -1,5 +1,6 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "animate.css/animate.compat.css";
+import "./index.css";
 import App, { APP_VERSION } from "./App";
 import { createRoot } from "react-dom/client";
 import { config } from "./lib/config";
