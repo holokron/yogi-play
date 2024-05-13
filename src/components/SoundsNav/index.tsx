@@ -15,6 +15,7 @@ export default function SoundsNav(): ReactElement {
         <TabsList>
           {tags.map((tag: Tag) => (
             <TabsTrigger
+              className="uppercase"
               key={tag.slug}
               value={tag.slug}
               onClick={() => changeTag(tag.slug)}
