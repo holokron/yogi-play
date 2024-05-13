@@ -16,15 +16,15 @@ export default function App(): ReactElement {
   return (
     <Provider store={store}>
       <Router>
-        <main>
+        <main className="bg-slate-200 h-screen">
           <Suspense>
             <Routes>
               <Route path="/" element={<Sounds />} />
               <Route path="/ulubione" element={<Favourites />} />
             </Routes>
           </Suspense>
+          <Footer>v{APP_VERSION}&nbsp;</Footer>
         </main>
-        <Footer>v{APP_VERSION}&nbsp;</Footer>
       </Router>
     </Provider>
   );

@@ -1,30 +1,15 @@
-import Row from "@/components/Row";
 import Sound from "@/types/Sound";
 import PlayButton from "@/components/PlayButton";
-import { Col } from "reactstrap";
+import useChosenSounds from "@/hooks/useChosenSounds";
 
-export interface Props {
-  sounds: Sound[];
-}
+export default function SoundsRow(): JSX.Element {
+  const sounds = useChosenSounds();
 
-export default function SoundsRow({
-  sounds,
-}: Props): React.ReactElement<Props> {
   return (
-    <Row withTopPadding>
+    <div className="flex flex-wrap gap-2 justify-center pt-3">
       {sounds.map((sound: Sound) => (
-        <Col
-          xl="2"
-          lg="2"
-          md="3"
-          sm="4"
-          xs="6"
-          className="mb-2 pl-1 pr-1"
-          key={sound.id}
-        >
-          <PlayButton soundId={sound.id} />
-        </Col>
+        <PlayButton key={sound.id} soundId={sound.id} />
       ))}
-    </Row>
+    </div>
   );
 }

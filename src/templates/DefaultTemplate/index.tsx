@@ -4,9 +4,7 @@ export interface Props {
   children?: any;
 }
 
-export default function DefaultTemplate({
-  children
-}: Props): React.ReactElement<Props> {
+export default function DefaultTemplate({ children }: Props): JSX.Element {
   return (
     <>
       <Navigation />

@@ -1,12 +1,12 @@
 import { ReactElement } from "react";
-import "./index.css";
+import { useSelector } from "react-redux";
+import { Star } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import useSoundPlayer from "@/hooks/useSoundPlayer";
 import useUserSoundManager from "@/hooks/useUserSoundManager";
-import { useSelector } from "react-redux";
 import { getSound } from "@/store/selectors";
 import AppState from "@/store/state";
-import { Button, ButtonGroup } from "reactstrap";
-import { Star } from "lucide-react";
+import { cn } from "@/lib/utils";
 
 export interface Props {
   soundId: string;
@@ -41,12 +41,6 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
     loadSound();
   };
 
-  let animationClass: string = "";
-
-  if (isPlaying) {
-    animationClass += "animated infinite pulse active";
-  }
-
   const sound = useSelector((state: AppState) => getSound(state, soundId));
 
   if (!sound) {
@@ -54,30 +48,30 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
   }
 
   return (
-    <ButtonGroup
+    <div
+      className={cn("flex rounded-full gap-0 drop-shadow-md text-blue-500", {
+        ["animated infinite pulse"]: isPlaying,
+      })}
       onMouseEnter={onMouseEnter}
-      className={`play-btn d-flex ${animationClass}`}
-      size="sm"
     >
       <Button
+        className="w-40 md:w-48 truncate uppercase rounded-l-2xl rounded-r-none"
+        variant="outline"
         name={sound.name}
-        className="play-btn__play text-truncate text-uppercase font-weight-bold"
-        color="primary"
-        outline
         onClick={handleClickPlay}
       >
         {sound.name}
       </Button>
+
       <Button
-        name={isInUserSounds ? "Dodaj do ulubionych" : "Usuń z ulubionych"}
-        className="play-btn__fav"
-        color="primary"
-        outline={!isInUserSounds}
+        className="w-10 rounded-r-2xl rounded-l-none"
+        size="icon"
+        variant={isInUserSounds ? "default" : "outline"}
         onClick={handleClickFavourites}
       >
-        <Star size={16} />
+        <Star size={20} />
       </Button>
-    </ButtonGroup>
+    </div>
   );
 }
 

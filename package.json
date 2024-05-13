@@ -4,10 +4,14 @@
   "private": true,
   "type": "module",
   "dependencies": {
+    "@radix-ui/react-slot": "^1.0.2",
+    "@radix-ui/react-tabs": "^1.0.4",
     "@sentry/browser": "^7.114.0",
     "@vitejs/plugin-react": "^4.2.1",
     "animate.css": "^4.1.1",
     "bootstrap": "^5.3.3",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.1",
     "firebase": "^10.11.1",
     "lucide-react": "^0.378.0",
     "react": "^18.3.1",
@@ -19,6 +23,8 @@
     "redux": "^5.0.1",
     "redux-thunk": "^3.1.0",
     "reselect": "^5.1.0",
+    "tailwind-merge": "^2.3.0",
+    "tailwindcss-animate": "^1.0.7",
     "vite": "^5.2.11",
     "vite-tsconfig-paths": "^4.3.2"
   },
