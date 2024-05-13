@@ -6,7 +6,7 @@ exports[`@components/Container > renders correctly 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="pt-4 container"
+        class="pt-4"
       >
         Test
       </div>
@@ -14,7 +14,7 @@ exports[`@components/Container > renders correctly 1`] = `
   </body>,
   "container": <div>
     <div
-      class="pt-4 container"
+      class="pt-4"
     >
       Test
     </div>

@@ -6,31 +6,27 @@ exports[`@components/PlayButton > should match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="play-btn d-flex  btn-group-sm btn-group"
-        role="group"
+        class="flex rounded-full gap-0 drop-shadow-md text-blue-500"
       >
         <button
-          class="play-btn__play text-truncate text-uppercase font-weight-bold btn btn-outline-primary"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 slate border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-40 md:w-48 truncate uppercase rounded-l-2xl rounded-r-none"
           name="Test"
-          type="button"
         >
           Test
         </button>
         <button
-          class="play-btn__fav btn btn-outline-primary"
-          name="Usuń z ulubionych"
-          type="button"
+          class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 slate border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-r-2xl rounded-l-none"
         >
           <svg
             class="lucide lucide-star"
             fill="none"
-            height="16"
+            height="20"
             stroke="currentColor"
             stroke-linecap="round"
             stroke-linejoin="round"
             stroke-width="2"
             viewBox="0 0 24 24"
-            width="16"
+            width="20"
             xmlns="http://www.w3.org/2000/svg"
           >
             <polygon
@@ -43,31 +39,27 @@ exports[`@components/PlayButton > should match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="play-btn d-flex  btn-group-sm btn-group"
-      role="group"
+      class="flex rounded-full gap-0 drop-shadow-md text-blue-500"
     >
       <button
-        class="play-btn__play text-truncate text-uppercase font-weight-bold btn btn-outline-primary"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 slate border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-40 md:w-48 truncate uppercase rounded-l-2xl rounded-r-none"
         name="Test"
-        type="button"
       >
         Test
       </button>
       <button
-        class="play-btn__fav btn btn-outline-primary"
-        name="Usuń z ulubionych"
-        type="button"
+        class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 slate border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 w-10 rounded-r-2xl rounded-l-none"
       >
         <svg
           class="lucide lucide-star"
           fill="none"
-          height="16"
+          height="20"
           stroke="currentColor"
           stroke-linecap="round"
           stroke-linejoin="round"
           stroke-width="2"
           viewBox="0 0 24 24"
-          width="16"
+          width="20"
           xmlns="http://www.w3.org/2000/svg"
         >
           <polygon

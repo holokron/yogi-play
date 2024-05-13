@@ -5,15 +5,43 @@ exports[`@components/SoundsNav > renders correctly 1`] = `
   "asFragment": [Function],
   "baseElement": <body>
     <div>
-      <ul
-        class="sounds-nav justify-content-md-center nav nav-pills"
-      />
+      <div
+        class="flex justify-center"
+      >
+        <div
+          data-orientation="horizontal"
+          dir="ltr"
+        >
+          <div
+            aria-orientation="horizontal"
+            class="inline-flex flex-wrap items-center justify-center rounded-md bg-muted p-1 text-muted-foreground"
+            data-orientation="horizontal"
+            role="tablist"
+            style="outline: none;"
+            tabindex="-1"
+          />
+        </div>
+      </div>
     </div>
   </body>,
   "container": <div>
-    <ul
-      class="sounds-nav justify-content-md-center nav nav-pills"
-    />
+    <div
+      class="flex justify-center"
+    >
+      <div
+        data-orientation="horizontal"
+        dir="ltr"
+      >
+        <div
+          aria-orientation="horizontal"
+          class="inline-flex flex-wrap items-center justify-center rounded-md bg-muted p-1 text-muted-foreground"
+          data-orientation="horizontal"
+          role="tablist"
+          style="outline: none;"
+          tabindex="-1"
+        />
+      </div>
+    </div>
   </div>,
   "debug": [Function],
   "findAllByAltText": [Function],
