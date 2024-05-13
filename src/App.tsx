@@ -1,12 +1,11 @@
 import { ReactElement, Suspense, lazy } from "react";
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
 import { Provider } from "react-redux";
-import Footer from "./components/Footer";
-import configureStore from "./store";
+import Footer from "@/components/Footer";
+import configureStore from "@/store";
 
 const Sounds = lazy(() => import("./routes/Sounds"));
 const Favourites = lazy(() => import("./routes/Favourites"));
-const Request = lazy(() => import("./routes/Request"));
 
 export const APP_NAME = "Yogi PLAY";
 export const APP_VERSION = "0.37.2";
@@ -22,7 +21,6 @@ export default function App(): ReactElement {
             <Routes>
               <Route path="/" element={<Sounds />} />
               <Route path="/ulubione" element={<Favourites />} />
-              <Route path="/dodaj" element={<Request />} />
             </Routes>
           </Suspense>
         </main>

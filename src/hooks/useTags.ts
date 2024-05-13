@@ -1,8 +1,8 @@
 import { useSelector, useDispatch } from "react-redux";
-import { getTagsByOrder, getChosenTag } from "../store/selectors";
-import Tag from "../types/Tag";
-import { chooseTag } from "../store/actions";
-import { AppThunkDispatch } from "../store";
+import { getTagsByOrder, getChosenTag } from "@/store/selectors";
+import Tag from "@/types/Tag";
+import { chooseTag } from "@/store/actions";
+import { AppThunkDispatch } from "@/store";
 
 interface TagsHook {
   currentTag: Tag | null;

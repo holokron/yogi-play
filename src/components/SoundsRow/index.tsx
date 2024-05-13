@@ -1,6 +1,6 @@
-import Row from "../../components/Row";
-import Sound from "../../types/Sound";
-import PlayButton from "../PlayButton";
+import Row from "@/components/Row";
+import Sound from "@/types/Sound";
+import PlayButton from "@/components/PlayButton";
 import { Col } from "reactstrap";
 
 export interface Props {

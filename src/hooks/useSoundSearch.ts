@@ -2,9 +2,9 @@ import { useDispatch, useSelector } from "react-redux";
 import {
   createFilterSoundsAction,
   createChooseTagAction,
-} from "../store/actions";
-import { getChosenTag } from "../store/selectors";
-import { AppThunkDispatch } from "../store";
+} from "@/store/actions";
+import { getChosenTag } from "@/store/selectors";
+import { AppThunkDispatch } from "@/store";
 
 interface SoundSearchHook {
   onChange: { (query: string | null): void };

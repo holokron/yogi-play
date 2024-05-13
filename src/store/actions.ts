@@ -1,12 +1,12 @@
 import { ThunkAction } from "redux-thunk";
 import AppState from "./state";
-import SoundsCollection from "../types/SoundsCollection";
-import TagsCollection from "../types/TagsCollection";
-import User from "../types/User";
-import { auth, database as db } from "../lib/app";
+import SoundsCollection from "@/types/SoundsCollection";
+import TagsCollection from "@/types/TagsCollection";
+import User from "@/types/User";
+import { auth, database as db } from "@/lib/app";
 import { ref, set, remove, onValue } from "firebase/database";
 import { onAuthStateChanged, signInAnonymously } from "firebase/auth";
-import { config } from "../lib/config";
+import { config } from "@/lib/config";
 
 export enum ACTIONS {
   LOAD_SOUNDS = "@app/LOAD_SOUNDS",

@@ -1,9 +1,9 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
-import * as actions from "../store/actions";
-import AppState from "../store/state";
-import { hasUserSound } from "../store/selectors";
-import { AppThunkDispatch } from "../store";
+import * as actions from "@/store/actions";
+import AppState from "@/store/state";
+import { hasUserSound } from "@/store/selectors";
+import { AppThunkDispatch } from "@/store";
 
 type UseUserSoundManager = {
   addUserSound: { (): void };

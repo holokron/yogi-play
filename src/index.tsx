@@ -1,9 +1,9 @@
 import "bootstrap/dist/css/bootstrap.min.css";
 import "animate.css/animate.compat.css";
-import "./index.css";
-import App, { APP_VERSION } from "./App";
+import "@/index.css";
 import { createRoot } from "react-dom/client";
-import { config } from "./lib/config";
+import App, { APP_VERSION } from "@/App";
+import { config } from "@/lib/config";
 
 if ("production" === config.nodeEnv && config.sentryDSN) {
   require("@sentry/browser").init({

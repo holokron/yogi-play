@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 import "./index.css";
-import MainMenu from "../MainMenu";
-import NavBrandLink from "../../components/NavBrandLink";
-import useToggle from "../../hooks/useToggle";
-import SoundSearch from "../SoundSearch";
-import TextToSpeech from "../TextToSpeech";
+import MainMenu from "@/components/MainMenu";
+import NavBrandLink from "@/components/NavBrandLink";
+import useToggle from "@/hooks/useToggle";
+import SoundSearch from "@/components/SoundSearch";
+import TextToSpeech from "@/components/TextToSpeech";
 import { Collapse, Navbar, NavbarToggler } from "reactstrap";
 
 export default function Navigation(): ReactElement {

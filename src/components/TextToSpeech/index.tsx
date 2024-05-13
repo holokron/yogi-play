@@ -7,7 +7,7 @@ import {
   MouseEvent,
 } from "react";
 import "./index.css";
-import useTextToSpeech from "../../hooks/useTextToSpeech";
+import useTextToSpeech from "@/hooks/useTextToSpeech";
 import { Button, Form, Input, InputGroup, Nav } from "reactstrap";
 
 export default function TextToSpeech(): ReactElement {

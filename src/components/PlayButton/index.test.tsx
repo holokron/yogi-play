@@ -2,8 +2,8 @@ import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import PlayButton from ".";
 import { Provider } from "react-redux";
-import configureStore from "../../store";
-import { initialState } from "../../store/state";
+import configureStore from "@/store";
+import { initialState } from "@/store/state";
 
 const state = {
   ...initialState,

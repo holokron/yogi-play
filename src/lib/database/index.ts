@@ -1,7 +1,7 @@
 import { ref, set, onValue } from "firebase/database";
 import "firebase/auth";
-import User from "../../types/User";
-import { database as db } from "../app";
+import User from "@/types/User";
+import { database as db } from "@/lib/app";
 
 const database = {
   getSoundsRef: () => ref(db, "/sounds"),

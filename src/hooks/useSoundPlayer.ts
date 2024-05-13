@@ -1,7 +1,7 @@
 import { useSelector } from "react-redux";
 import { useState } from "react";
-import AppState from "../store/state";
-import { getSound } from "../store/selectors";
+import AppState from "@/store/state";
+import { getSound } from "@/store/selectors";
 
 type UseSoundPlayer = {
   playSound: { (): void };

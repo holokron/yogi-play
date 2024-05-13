@@ -1,7 +1,7 @@
 import { useCallback, SyntheticEvent, ReactElement } from "react";
 import "./index.css";
 import { Nav, Form, InputGroup, Input } from "reactstrap";
-import useSoundSearch from "../../hooks/useSoundSearch";
+import useSoundSearch from "@/hooks/useSoundSearch";
 
 export default function SoundSearch(): ReactElement {
   const { onChange } = useSoundSearch();

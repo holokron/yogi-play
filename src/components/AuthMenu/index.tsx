@@ -1,4 +1,4 @@
-import useUser from "../../hooks/useUser";
+import useUser from "@/hooks/useUser";
 import { Nav, NavItem } from "reactstrap";
 
 export default function AuthMenu(): React.ReactElement | null {

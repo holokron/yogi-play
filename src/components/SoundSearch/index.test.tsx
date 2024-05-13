@@ -2,7 +2,7 @@ import { describe, it, expect } from "vitest";
 import { render } from "@testing-library/react";
 import SoundSearch from ".";
 import { Provider } from "react-redux";
-import configureStore from "../../store";
+import configureStore from "@/store";
 
 const store = configureStore();
 

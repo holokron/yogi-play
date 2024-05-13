@@ -1,10 +1,10 @@
 import { ReactElement } from "react";
 import "./index.css";
-import useSoundPlayer from "../../hooks/useSoundPlayer";
-import useUserSoundManager from "../../hooks/useUserSoundManager";
+import useSoundPlayer from "@/hooks/useSoundPlayer";
+import useUserSoundManager from "@/hooks/useUserSoundManager";
 import { useSelector } from "react-redux";
-import { getSound } from "../../store/selectors";
-import AppState from "../../store/state";
+import { getSound } from "@/store/selectors";
+import AppState from "@/store/state";
 import { Button, ButtonGroup } from "reactstrap";
 import { Star } from "lucide-react";
 

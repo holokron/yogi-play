@@ -1,5 +1,5 @@
-import Sound from "../../types/Sound";
-import Tag from "../../types/Tag";
+import Sound from "@/types/Sound";
+import Tag from "@/types/Tag";
 
 export default class SoundsRepository {
   private sounds: Sound[] = [];

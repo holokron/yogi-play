@@ -1,6 +1,6 @@
-import SoundsCollection from "../types/SoundsCollection";
-import TagsCollection from "../types/TagsCollection";
-import User from "../types/User";
+import SoundsCollection from "@/types/SoundsCollection";
+import TagsCollection from "@/types/TagsCollection";
+import User from "@/types/User";
 
 export default interface AppState {
   sounds: SoundsCollection;

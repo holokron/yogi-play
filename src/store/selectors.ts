@@ -1,10 +1,10 @@
 import { createSelector } from "reselect";
 import AppState from "./state";
-import Sound from "../types/Sound";
-import SoundsCollection from "../types/SoundsCollection";
-import TagsCollection from "../types/TagsCollection";
-import Tag from "../types/Tag";
-import User from "../types/User";
+import Sound from "@/types/Sound";
+import SoundsCollection from "@/types/SoundsCollection";
+import TagsCollection from "@/types/TagsCollection";
+import Tag from "@/types/Tag";
+import User from "@/types/User";
 
 export const getSoundsCollection = (state: AppState): SoundsCollection =>
   state.sounds;

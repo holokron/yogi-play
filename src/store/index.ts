@@ -4,7 +4,7 @@ import { composeWithDevTools } from "@redux-devtools/extension";
 import appReducer from "./reducer";
 import AppState, { initialState } from "./state";
 import { AppAction } from "./actions";
-import { config } from "../lib/config";
+import { config } from "@/lib/config";
 
 const middleware = applyMiddleware(thunk);
 
