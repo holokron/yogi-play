@@ -5,7 +5,6 @@ import DefaultTemplate from "@/templates/DefaultTemplate";
 import { loadSounds, authenticate } from "@/store/actions";
 import SoundsRow from "@/components/SoundsRow";
 import SoundsNavHeader from "@/components/SoundsNavHeader";
-import Row from "@/components/Row";
 import useUserSounds from "@/hooks/useUserSounds";
 import { AppThunkDispatch } from "@/store";
 
@@ -24,10 +23,8 @@ export default function Favourites(): ReactElement {
 
   return (
     <DefaultTemplate>
-      <Container fluid>
-        <Row>
-          <SoundsNavHeader>Ulubione</SoundsNavHeader>
-        </Row>
+      <Container>
+        <SoundsNavHeader>Ulubione</SoundsNavHeader>
         <SoundsRow sounds={sounds} />
       </Container>
     </DefaultTemplate>

@@ -1,5 +1,4 @@
 import { ReactElement } from "react";
-import "./index.css";
 import Tag from "@/types/Tag";
 import useTags from "@/hooks/useTags";
 import { Tabs, TabsList, TabsTrigger } from "@/components/ui/tabs";

@@ -1,12 +1,12 @@
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
 import Container from "@/components/Container";
-import Row from "@/components/Row";
 import DefaultTemplate from "@/templates/DefaultTemplate";
 import { loadTags, loadSounds, authenticate } from "@/store/actions";
 import SoundsNav from "@/components/SoundsNav";
 import SoundsRow from "@/components/SoundsRow";
 import { AppThunkDispatch } from "@/store";
+import useChosenSounds from "@/hooks/useChosenSounds";
 
 export interface Props {
   loadTags: () => {};
@@ -16,6 +16,7 @@ export interface Props {
 
 export default function Sounds(): JSX.Element {
   const dispatch = useDispatch<AppThunkDispatch>();
+  const sounds = useChosenSounds();
 
   useEffect(() => {
     dispatch(loadTags());
@@ -27,7 +28,7 @@ export default function Sounds(): JSX.Element {
     <DefaultTemplate>
       <Container>
         <SoundsNav />
-        <SoundsRow />
+        <SoundsRow sounds={sounds} />
       </Container>
     </DefaultTemplate>
   );
