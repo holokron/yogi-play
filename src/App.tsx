@@ -16,7 +16,7 @@ export default function App(): ReactElement {
   return (
     <Provider store={store}>
       <Router>
-        <main className="bg-slate-200 h-screen">
+        <main className="h-full">
           <Suspense>
             <Routes>
               <Route path="/" element={<Sounds />} />

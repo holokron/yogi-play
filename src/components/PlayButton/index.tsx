@@ -49,22 +49,25 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
 
   return (
     <div
-      className={cn("flex rounded-full gap-0 drop-shadow-md text-blue-500", {
-        ["animated infinite pulse"]: isPlaying,
-      })}
+      className={cn(
+        "flex rounded-full gap-0 drop-shadow-md text-blue-500 w-40 md:w-48 lg:w-64",
+        {
+          ["animated infinite pulse"]: isPlaying,
+        }
+      )}
       onMouseEnter={onMouseEnter}
     >
       <Button
-        className="w-40 md:w-48 truncate uppercase rounded-l-2xl rounded-r-none"
+        className="w-full rounded-l-2xl rounded-r-none overflow-hidden"
         variant="outline"
         name={sound.name}
         onClick={handleClickPlay}
       >
-        {sound.name}
+        <p className="truncate uppercase">{sound.name}</p>
       </Button>
 
       <Button
-        className="w-10 rounded-r-2xl rounded-l-none"
+        className="w-12 rounded-r-2xl rounded-l-none"
         size="icon"
         variant={isInUserSounds ? "default" : "outline"}
         onClick={handleClickFavourites}

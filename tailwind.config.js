@@ -73,5 +73,8 @@ module.exports = {
       },
     },
   },
+  safelist: [
+    "bg-slate-200",
+  ],
   plugins: [require("tailwindcss-animate")],
 }
