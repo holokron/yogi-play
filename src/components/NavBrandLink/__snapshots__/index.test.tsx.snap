@@ -6,33 +6,29 @@ exports[`@components/NavBrandLink > renders correctly 1`] = `
   "baseElement": <body>
     <div>
       <a
-        class="navbar-brand"
+        class=" flex items-center gap-2"
         href="/"
       >
         <img
           alt="Yogi PLAY"
-          class="d-inline-block align-top"
           src="/icons/icon-64x64.png"
           width="30"
         />
-         
-        Yogi PLAY
+         Yogi PLAY
       </a>
     </div>
   </body>,
   "container": <div>
     <a
-      class="navbar-brand"
+      class=" flex items-center gap-2"
       href="/"
     >
       <img
         alt="Yogi PLAY"
-        class="d-inline-block align-top"
         src="/icons/icon-64x64.png"
         width="30"
       />
-       
-      Yogi PLAY
+       Yogi PLAY
     </a>
   </div>,
   "debug": [Function],

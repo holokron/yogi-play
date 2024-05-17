@@ -1,31 +1,34 @@
 import { ReactElement, Suspense, lazy } from "react";
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import { Provider } from "react-redux";
-import Footer from "@/components/Footer";
-import configureStore from "@/store";
+import { Routes, Route } from "react-router-dom";
+import { ContextProviders } from "@/ContextProviders";
+import useInitialize from "@/hooks/useInitialize";
+import { Layout } from "@/components/Layout";
 
-const Sounds = lazy(() => import("./routes/Sounds"));
-const Favourites = lazy(() => import("./routes/Favourites"));
+const Sounds = lazy(() => import("@/routes/Sounds"));
+const Favourites = lazy(() => import("@/routes/Favourites"));
 
 export const APP_NAME = "Yogi PLAY";
-export const APP_VERSION = "0.37.2";
+export const APP_VERSION = "0.38.0";
 
-const store = configureStore();
+function App(): ReactElement {
+  useInitialize();
 
-export default function App(): ReactElement {
   return (
-    <Provider store={store}>
-      <Router>
-        <main className="h-full">
-          <Suspense>
-            <Routes>
-              <Route path="/" element={<Sounds />} />
-              <Route path="/ulubione" element={<Favourites />} />
-            </Routes>
-          </Suspense>
-          <Footer>v{APP_VERSION}&nbsp;</Footer>
-        </main>
-      </Router>
-    </Provider>
+    <Layout>
+      <Suspense>
+        <Routes>
+          <Route index path="/" element={<Sounds />} />
+          <Route index path="/ulubione" element={<Favourites />} />
+        </Routes>
+      </Suspense>
+    </Layout>
+  );
+}
+
+export default function AppWithProviders(): JSX.Element {
+  return (
+    <ContextProviders>
+      <App />
+    </ContextProviders>
   );
 }

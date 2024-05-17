@@ -17,7 +17,7 @@ export type AppDispatch = ReturnType<typeof configureStore>["dispatch"];
 export type AppThunkDispatch = ThunkDispatch<AppState, undefined, AppAction>;
 
 export default function configureStore(
-  state: AppState = initialState
+  state: AppState = initialState,
 ): Store<AppState, AppAction> {
   const store = createStore(appReducer, state, enhancer);
 

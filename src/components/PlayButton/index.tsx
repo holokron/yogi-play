@@ -49,12 +49,9 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
 
   return (
     <div
-      className={cn(
-        "flex rounded-full gap-0 drop-shadow-md text-blue-500 w-40 md:w-48 lg:w-64",
-        {
-          ["animated infinite pulse"]: isPlaying,
-        }
-      )}
+      className={cn("flex rounded-full gap-0 drop-shadow-md ", {
+        ["animate__animated animate__pulse animate__infinite"]: isPlaying,
+      })}
       onMouseEnter={onMouseEnter}
     >
       <Button
@@ -67,7 +64,7 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
       </Button>
 
       <Button
-        className="w-12 rounded-r-2xl rounded-l-none"
+        className="rounded-r-2xl rounded-l-none"
         size="icon"
         variant={isInUserSounds ? "default" : "outline"}
         onClick={handleClickFavourites}

@@ -71,6 +71,15 @@ module.exports = {
         "accordion-down": "accordion-down 0.2s ease-out",
         "accordion-up": "accordion-up 0.2s ease-out",
       },
+      gridTemplateColumns: {
+        '16': 'repeat(16, minmax(0, 1fr))',
+      },
+      gridColumn: {
+        "span-13": "span 13 / span 13",
+        "span-14": "span 14 / span 14",
+        "span-15": "span 15 / span 15",
+        "span-16": "span 16 / span 16"
+      },
     },
   },
   safelist: [

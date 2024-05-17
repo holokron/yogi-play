@@ -14,6 +14,6 @@ export default function useTextToSpeech(): TextToSpeechHook {
   };
 
   return {
-    readText: doReadText
+    readText: doReadText,
   };
 }

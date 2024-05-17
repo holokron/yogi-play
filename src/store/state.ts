@@ -18,6 +18,6 @@ export const initialState: AppState = {
   user: {
     id: "",
     displayName: "",
-    email: ""
-  }
+    email: "",
+  },
 };

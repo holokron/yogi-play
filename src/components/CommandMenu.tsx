@@ -6,6 +6,7 @@ import {
   CommandInput,
   CommandItem,
   CommandList,
+  CommandSeparator,
 } from "@/components/ui/command";
 import { useSelector } from "react-redux";
 import { getSoundsFilter, getUserSounds } from "@/store/selectors";
@@ -18,6 +19,13 @@ import useChosenSounds from "@/hooks/useChosenSounds";
 export function CommandMenu() {
   const [open, setOpen] = useState(false);
 
+  const userSounds = useSelector(getUserSounds);
+
+  const { onChange } = useSoundSearch();
+  const soundsFilter = useSelector(getSoundsFilter);
+
+  const chosenSounds = useChosenSounds();
+
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
       if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
@@ -29,12 +37,13 @@ export function CommandMenu() {
     return () => document.removeEventListener("keydown", down);
   }, []);
 
-  const userSounds = useSelector(getUserSounds);
+  useEffect(() => {
+    if (open) {
+      return;
+    }
 
-  const { onChange } = useSoundSearch();
-  const soundsFilter = useSelector(getSoundsFilter);
-
-  const chosenSounds = useChosenSounds();
+    onChange("");
+  }, [open]);
 
   return (
     <CommandDialog open={open} onOpenChange={setOpen}>
@@ -49,7 +58,7 @@ export function CommandMenu() {
             <SoundCommandItem key={sound.id} sound={sound} />
           ))}
         </CommandGroup>
-
+        <CommandSeparator />
         <CommandGroup heading="Results">
           {chosenSounds.map((sound) => (
             <SoundCommandItem key={sound.id} sound={sound} />
@@ -79,7 +88,7 @@ const SoundCommandItem: FC<SoundCommandItemProps> = ({ sound }) => {
 
   return (
     <CommandItem key={sound.id} value={sound.name} onSelect={handleSelect}>
-      {sound.name} {isPlaying ? <Pause /> : <Play />}
+      {isPlaying ? <Pause size={12} /> : <Play size={8} />} {sound.name}
     </CommandItem>
   );
 };

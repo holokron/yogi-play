@@ -3,9 +3,8 @@ import AppState from "./state";
 import SoundsCollection from "@/types/SoundsCollection";
 import TagsCollection from "@/types/TagsCollection";
 import User from "@/types/User";
-import { auth, database as db } from "@/lib/app";
-import { ref, set, remove, onValue } from "firebase/database";
-import { onAuthStateChanged, signInAnonymously } from "firebase/auth";
+import { ref, set, remove, onValue, getDatabase } from "firebase/database";
+import { getAuth, onAuthStateChanged, signInAnonymously } from "firebase/auth";
 import { config } from "@/lib/config";
 
 export enum ACTIONS {
@@ -69,7 +68,7 @@ export type AppAction =
   | FilterSoundsAction;
 
 export function createLoadSoundsAction(
-  sounds: SoundsCollection
+  sounds: SoundsCollection,
 ): LoadSoundsAction {
   return {
     type: ACTIONS.LOAD_SOUNDS,
@@ -125,7 +124,7 @@ export function createRemoveUserSoundAction(soundId: string): UserSoundAction {
 }
 
 export function createFilterSoundsAction(
-  query: string | null
+  query: string | null,
 ): FilterSoundsAction {
   return {
     type: ACTIONS.FILTER_SOUNDS,
@@ -181,7 +180,7 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
 }
 
 export function chooseTag(
-  tagSlug: string
+  tagSlug: string,
 ): ThunkAction<void, AppState, any, ChooseTagAction> {
   return (dispatch) => {
     dispatch(createChooseTagAction(tagSlug));
@@ -194,7 +193,9 @@ export function authenticate(): ThunkAction<
   any,
   LoadUserAction
 > {
-  return (dispatch) => {
+  return async (dispatch) => {
+    const auth = getAuth();
+
     const currentUser = auth.currentUser;
     console.log("currentUser", currentUser);
     if (!currentUser) {
@@ -218,6 +219,8 @@ export function authenticate(): ThunkAction<
 
       console.log(`Getting user: ${user.uid} from database`);
 
+      const db = getDatabase();
+
       onValue(ref(db, `/users/${user.uid}`), (data) => {
         if (!data) {
           console.log(`no user: ${user.uid} found`);
@@ -234,31 +237,35 @@ export function authenticate(): ThunkAction<
 }
 
 export function addUserSound(
-  soundId: string
+  soundId: string,
 ): ThunkAction<void, AppState, any, UserSoundAction> {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(createAddUserSoundAction(soundId));
 
+    const auth = getAuth();
     const user = auth.currentUser;
     if (!user) {
       return;
     }
 
+    const db = getDatabase();
     set(ref(db, `/users/${user.uid}/sounds/${soundId}`), true);
   };
 }
 
 export function removeUserSound(
-  soundId: string
+  soundId: string,
 ): ThunkAction<void, AppState, any, UserSoundAction> {
-  return (dispatch) => {
+  return async (dispatch) => {
     dispatch(createRemoveUserSoundAction(soundId));
 
+    const auth = getAuth();
     const user = auth.currentUser;
     if (!user) {
       return;
     }
 
+    const db = getDatabase();
     remove(ref(db, `/users/${user.uid}/sounds/${soundId}`));
   };
 }

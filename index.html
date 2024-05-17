@@ -27,15 +27,17 @@
       rel="preload"
       href="%VITE_APP_FIREBASE_DATABASE_URL%/tags.json"
       as="fetch"
+      crossorigin="anonymous"
     />
     <link
       rel="preload"
       href="%VITE_APP_FIREBASE_DATABASE_URL%/sounds.json"
       as="fetch"
+      crossorigin="anonymous"
     />
     <title>Yogi PLAY</title>
   </head>
-  <body class="bg-slate-200">
+  <body>
     <div id="root"></div>
     <script type="module" src="/src/index.tsx"></script>
   </body>

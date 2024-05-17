@@ -12,7 +12,7 @@ type UseUserSoundManager = {
 };
 
 export default function useUserSoundManager(
-  soundId: string
+  soundId: string,
 ): UseUserSoundManager {
   const dispatch = useDispatch<AppThunkDispatch>();
 
@@ -25,7 +25,7 @@ export default function useUserSoundManager(
   }, [dispatch, soundId]);
 
   const isInUserSounds = useSelector<AppState, boolean>(
-    (state: AppState): boolean => hasUserSound(state, soundId)
+    (state: AppState): boolean => hasUserSound(state, soundId),
   );
 
   return {
