@@ -6,7 +6,7 @@ exports[`@components/PlayButton > should match snapshot 1`] = `
   "baseElement": <body>
     <div>
       <div
-        class="flex rounded-full gap-0 drop-shadow-md"
+        class="flex rounded-full gap-0 drop-shadow-md m-2"
       >
         <button
           class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 slate border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full rounded-l-2xl rounded-r-none overflow-hidden"
@@ -43,7 +43,7 @@ exports[`@components/PlayButton > should match snapshot 1`] = `
   </body>,
   "container": <div>
     <div
-      class="flex rounded-full gap-0 drop-shadow-md"
+      class="flex rounded-full gap-0 drop-shadow-md m-2"
     >
       <button
         class="inline-flex items-center justify-center whitespace-nowrap rounded-md text-sm font-medium ring-offset-background transition-colors focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:pointer-events-none disabled:opacity-50 slate border border-input bg-background hover:bg-accent hover:text-accent-foreground h-10 px-4 py-2 w-full rounded-l-2xl rounded-r-none overflow-hidden"
