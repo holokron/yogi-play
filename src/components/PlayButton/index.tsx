@@ -49,7 +49,7 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
 
   return (
     <div
-      className={cn("flex rounded-full gap-0 drop-shadow-md ", {
+      className={cn("flex rounded-full gap-0 drop-shadow-md m-2", {
         ["animate__animated animate__pulse animate__infinite"]: isPlaying,
       })}
       onMouseEnter={onMouseEnter}

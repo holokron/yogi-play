@@ -1,11 +1,10 @@
 import { Heart, ListMusic } from "lucide-react";
-import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { ScrollArea } from "@/components/ui/scroll-area";
 import useTags from "@/hooks/useTags";
 import { useLocation, useNavigate } from "react-router";
 
-export function Sidebar({ className }: { className?: string }) {
+export function Sidebar() {
   const { tags, currentTag, changeTag } = useTags();
 
   const location = useLocation();
@@ -14,12 +13,7 @@ export function Sidebar({ className }: { className?: string }) {
   const isOnFavourites = location.pathname === "/ulubione";
 
   return (
-    <nav
-      className={cn(
-        "pb-12 bg-slate-900 text-background dark:text-foreground",
-        className,
-      )}
-    >
+    <nav className="pb-12 bg-slate-900 text-background dark:text-foreground">
       <div className="space-y-4 py-4 px-2">
         <div className="px-1 py-2">
           <h2 className="px-4 text-lg font-semibold tracking-tight">

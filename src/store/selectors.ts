@@ -5,6 +5,7 @@ import SoundsCollection from "@/types/SoundsCollection";
 import TagsCollection from "@/types/TagsCollection";
 import Tag from "@/types/Tag";
 import User from "@/types/User";
+import { createSearchRegex } from "@/lib/search";
 
 export const getSoundsCollection = (state: AppState): SoundsCollection =>
   state.sounds;
@@ -39,10 +40,7 @@ export const getSounds = createSelector(
   },
 );
 
-export const getSoundsFilter = createSelector(
-  (state: AppState) => state.soundsFilter,
-  (soundsFilter: string | null) => soundsFilter,
-);
+export const getSoundsFilter = (state: AppState) => state.soundsFilter;
 
 export const filterSounds = createSelector(
   getSoundsFilter,
@@ -52,7 +50,7 @@ export const filterSounds = createSelector(
       return sounds;
     }
 
-    const regexp = new RegExp(soundsfilter.trim().toLowerCase(), "ig");
+    const regexp = createSearchRegex(soundsfilter);
 
     return sounds.filter((sound: Sound) => regexp.test(sound.name));
   },
@@ -150,4 +148,8 @@ export const getUserSounds = createSelector(
 
     return sounds.filter((sound: Sound): boolean => keys.includes(sound.id));
   },
+);
+
+export const getUserSoundsIds = createSelector(getUser, (user) =>
+  Object.keys(user.sounds || {}),
 );

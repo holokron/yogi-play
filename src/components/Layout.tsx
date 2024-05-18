@@ -16,9 +16,11 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           <NavMenu />
         </div>
       </header>
-      <main className="grid grid-cols-16">
-        <Sidebar className="hidden md:block md:col-span-4" />
-        {children}
+      <main className="grid md:grid-cols-[216px_auto]">
+        <div className="hidden md:block ">
+          <Sidebar />
+        </div>
+        <div className="md:border-l w-full">{children}</div>
       </main>
     </div>
   );

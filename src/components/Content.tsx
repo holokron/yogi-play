@@ -8,12 +8,10 @@ type Props = PropsWithChildren & {
 
 export const Content: FC<Props> = ({ header, children }) => {
   return (
-    <main className="md:border-l col-span-16 md:col-span-12 w-full">
-      <div className="py-6 px-4">
-        {header}
-        <Separator className="my-4 w-full" />
-        <ScrollArea className="h-lvh">{children}</ScrollArea>
-      </div>
-    </main>
+    <div className="py-6 px-4">
+      {header}
+      <Separator className="my-4 w-full" />
+      <ScrollArea className="h-lvh">{children}</ScrollArea>
+    </div>
   );
 };
