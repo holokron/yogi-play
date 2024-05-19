@@ -13,6 +13,7 @@ export function initSentry() {
   Sentry.init({
     dsn: config.sentryDSN,
     release: APP_VERSION,
+    environment: config.nodeEnv,
     integrations: [
       // See docs for support of different versions of variation of react router
       // https://docs.sentry.io/platforms/javascript/guides/react/configuration/integrations/react-router/
