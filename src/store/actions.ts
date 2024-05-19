@@ -66,7 +66,7 @@ export type AppAction =
   | FilterSoundsAction;
 
 export function createLoadSoundsAction(
-  sounds: SoundsCollection
+  sounds: SoundsCollection,
 ): LoadSoundsAction {
   return {
     type: ACTIONS.LOAD_SOUNDS,
@@ -122,7 +122,7 @@ export function createRemoveUserSoundAction(soundId: string): UserSoundAction {
 }
 
 export function createFilterSoundsAction(
-  query: string | null
+  query: string | null,
 ): FilterSoundsAction {
   return {
     type: ACTIONS.FILTER_SOUNDS,
@@ -178,7 +178,7 @@ export function loadTags(): ThunkAction<void, AppState, any, LoadTagsAction> {
 }
 
 export function chooseTag(
-  tagSlug: string
+  tagSlug: string,
 ): ThunkAction<void, AppState, any, ChooseTagAction> {
   return (dispatch) => {
     dispatch(createChooseTagAction(tagSlug));
@@ -235,7 +235,7 @@ export function authenticate(): ThunkAction<
 }
 
 export function addUserSound(
-  soundId: string
+  soundId: string,
 ): ThunkAction<void, AppState, any, UserSoundAction> {
   return async (dispatch) => {
     dispatch(createAddUserSoundAction(soundId));
@@ -252,7 +252,7 @@ export function addUserSound(
 }
 
 export function removeUserSound(
-  soundId: string
+  soundId: string,
 ): ThunkAction<void, AppState, any, UserSoundAction> {
   return async (dispatch) => {
     dispatch(createRemoveUserSoundAction(soundId));

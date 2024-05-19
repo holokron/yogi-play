@@ -20,7 +20,7 @@ import { createSearchRegex } from "@/lib/search";
 import { useLocation, useNavigate } from "react-router";
 import { type Sound, type Tag } from "@/types";
 
-export function CommandMenu() {
+export default function CommandMenu() {
   const [open, setOpen] = useState(false);
 
   const userSounds = useUserSounds();

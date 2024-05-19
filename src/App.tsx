@@ -6,6 +6,7 @@ import { Layout } from "@/components/Layout";
 
 const Sounds = lazy(() => import("@/routes/Sounds"));
 const Favourites = lazy(() => import("@/routes/Favourites"));
+const CommandMenu = lazy(() => import("@/components/CommandMenu"));
 
 export const APP_NAME = "Yogi PLAY";
 export const APP_VERSION = "0.38.0";
@@ -20,6 +21,7 @@ function App(): ReactElement {
           <Route index path="/" element={<Sounds />} />
           <Route index path="/ulubione" element={<Favourites />} />
         </Routes>
+        <CommandMenu />
       </Suspense>
     </Layout>
   );

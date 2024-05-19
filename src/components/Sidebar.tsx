@@ -15,7 +15,7 @@ export function Sidebar() {
   const isOnFavourites = location.pathname === "/ulubione";
 
   const handleFavouritesClick: MouseEventHandler<HTMLButtonElement> = (
-    event
+    event,
   ) => {
     event.preventDefault();
 
