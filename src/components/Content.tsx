@@ -7,9 +7,11 @@ type Props = PropsWithChildren & {
 
 export const Content: FC<Props> = ({ header, children }) => {
   return (
-    <div className="py-6 px-4">
-      {header}
-      <Separator className="my-4 w-full" />
+    <div className="px-4 overflow-scroll h-lvh pb-24">
+      <div className="sticky top-0 bg-background pt-6">
+        {header}
+        <Separator className="my-6 w-full" />
+      </div>
       {children}
     </div>
   );

@@ -1,15 +1,18 @@
 import { FC, PropsWithChildren } from "react";
 import { ModeToggle } from "@/components/ModeToggle";
-import NavBrandLink from "@/components/NavBrandLink";
 import { Sidebar } from "@/components/Sidebar";
 import { NavMenu } from "@/components/NavMenu";
 import { SoundSearchInput } from "./SoundSearchInput";
+import { Link } from "react-router-dom";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
   return (
     <div className="bg-slate-300 dark:bg-background fixed w-full">
       <header className="flex justify-between items-center border-b px-4 p-2 gap-2">
-        <NavBrandLink />
+        <Link to="/" className=" flex items-center gap-2">
+          <img alt="Yogi PLAY" width={30} src="/icons/icon-64x64.png" /> Yogi
+          PLAY
+        </Link>
         <SoundSearchInput />
         <div className="flex gap-2">
           <ModeToggle />
@@ -20,7 +23,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         <div className="hidden md:block h-full">
           <Sidebar />
         </div>
-        <div className="md:border-l w-full">{children}</div>
+        <div className="md:border-l w-full h-full">{children}</div>
       </main>
     </div>
   );

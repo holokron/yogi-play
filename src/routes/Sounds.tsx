@@ -5,6 +5,7 @@ import SoundsRow from "@/components/SoundsRow";
 import useChosenSounds from "@/hooks/useChosenSounds";
 import useTags from "@/hooks/useTags";
 import { CommandMenu } from "@/components/CommandMenu";
+import { ListMusic } from "lucide-react";
 
 export default function Sounds() {
   const sounds = useChosenSounds();
@@ -22,5 +23,10 @@ export default function Sounds() {
 const SoundsHeader: FC = () => {
   const { currentTag } = useTags();
 
-  return <Header>{currentTag?.name}</Header>;
+  return (
+    <Header>
+      <ListMusic size={28} />
+      {currentTag?.name}
+    </Header>
+  );
 };
