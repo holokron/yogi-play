@@ -2,7 +2,6 @@ import { FC, PropsWithChildren } from "react";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Sidebar } from "@/components/Sidebar";
 import { NavMenu } from "@/components/NavMenu";
-import { SoundSearchInput } from "./SoundSearchInput";
 import { Link } from "react-router-dom";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
@@ -13,7 +12,6 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
           <img alt="Yogi PLAY" width={30} src="/icons/icon-64x64.png" /> Yogi
           PLAY
         </Link>
-        <SoundSearchInput />
         <div className="flex gap-2">
           <ModeToggle />
           <NavMenu />

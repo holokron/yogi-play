@@ -3,6 +3,9 @@
 exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', payload: { query: 'foo' } } 1`] = `
 {
   "chosenTagSlug": "recent",
+  "command": {
+    "open": false,
+  },
   "sounds": {},
   "soundsFilter": "foo",
   "tags": {},
@@ -17,6 +20,9 @@ exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', payload: { query
 exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', payload: { query: null } } 1`] = `
 {
   "chosenTagSlug": "recent",
+  "command": {
+    "open": false,
+  },
   "sounds": {},
   "soundsFilter": null,
   "tags": {},

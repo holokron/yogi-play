@@ -151,7 +151,7 @@ export function loadSounds(): ThunkAction<
 > {
   return (dispatch) => {
     if (soundsLoaded) {
-      // return;
+      return;
     }
 
     const soundsUrl: string = `${config.firebase.databaseURL}/sounds.json`;
