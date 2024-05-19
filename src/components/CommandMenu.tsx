@@ -7,6 +7,7 @@ import {
   CommandItem,
   CommandList,
   CommandSeparator,
+  CommandShortcut,
 } from "@/components/ui/command";
 import useSoundPlayer from "@/hooks/useSoundPlayer";
 import Sound from "@/types/Sound";
@@ -128,6 +129,7 @@ const SoundCommandItem: FC<SoundCommandItemProps> = ({ sound }) => {
         <CirclePlay className="mr-2 h-4 w-4" />
       )}{" "}
       {sound.name}
+      <CommandShortcut>↵</CommandShortcut>
     </CommandItem>
   );
 };

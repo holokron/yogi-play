@@ -17,7 +17,7 @@ export const Layout: FC<PropsWithChildren> = ({ children }) => {
         </div>
       </header>
       <main className="grid md:grid-cols-[216px_auto]">
-        <div className="hidden md:block ">
+        <div className="hidden md:block h-full">
           <Sidebar />
         </div>
         <div className="md:border-l w-full">{children}</div>
