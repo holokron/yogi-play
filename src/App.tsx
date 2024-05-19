@@ -9,7 +9,7 @@ const Favourites = lazy(() => import("@/routes/Favourites"));
 const CommandMenu = lazy(() => import("@/components/CommandMenu"));
 
 export const APP_NAME = "Yogi PLAY";
-export const APP_VERSION = "0.38.0";
+export const APP_VERSION = "0.39.0";
 
 function App(): ReactElement {
   useInitialize();
