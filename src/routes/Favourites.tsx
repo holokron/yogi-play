@@ -4,6 +4,7 @@ import { Header } from "@/components/Header";
 import SoundsRow from "@/components/SoundsRow";
 import { CommandMenu } from "@/components/CommandMenu";
 import useUserSounds from "@/hooks/useUserSounds";
+import { Heart } from "lucide-react";
 
 export default function Favourites() {
   const sounds = useUserSounds();
@@ -19,5 +20,10 @@ export default function Favourites() {
 }
 
 const FavouritesHeader: FC = () => {
-  return <Header>Ulubione</Header>;
+  return (
+    <Header>
+      <Heart size={28} />
+      Ulubione
+    </Header>
+  );
 };
