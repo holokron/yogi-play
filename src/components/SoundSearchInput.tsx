@@ -1,6 +1,6 @@
 import { ChangeEventHandler, FC } from "react";
 import { Input } from "@/components/ui/input";
-import useSoundSearch from "@/hooks/useSoundSearch";
+import useSoundSearch from "@/hooks/use-sound-search";
 import { useSelector } from "react-redux";
 import { getSoundsFilter } from "@/store/selectors";
 

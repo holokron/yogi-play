@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from "react";
+import { FC, useEffect } from "react";
 import {
   CommandDialog,
   CommandEmpty,
@@ -9,19 +9,20 @@ import {
   CommandSeparator,
   CommandShortcut,
 } from "@/components/ui/command";
-import useSoundPlayer from "@/hooks/useSoundPlayer";
+import useSoundPlayer from "@/hooks/use-sound-player";
 import { CirclePause, CirclePlay, ListMusic } from "lucide-react";
-import useTags from "@/hooks/useTags";
-import useSounds from "@/hooks/useSounds";
-import useUserSounds from "@/hooks/useUserSounds";
+import useTags from "@/hooks/use-tags";
+import useSounds from "@/hooks/use-sounds";
+import useUserSounds from "@/hooks/use-user-sounds";
 import { useSelector } from "react-redux";
 import { getUserSoundsIds } from "@/store/selectors";
 import { createSearchRegex } from "@/lib/search";
 import { useLocation, useNavigate } from "react-router";
 import { type Sound, type Tag } from "@/types";
+import useCommand from "@/hooks/use-command";
 
 export default function CommandMenu() {
-  const [open, setOpen] = useState(false);
+  const { open, setOpen } = useCommand();
 
   const userSounds = useUserSounds();
   const { tags } = useTags();
@@ -33,9 +34,9 @@ export default function CommandMenu() {
 
   useEffect(() => {
     const down = (e: KeyboardEvent) => {
-      if (e.key === "k" && (e.metaKey || e.ctrlKey)) {
+      if (["k", "f"].includes(e.key) && (e.metaKey || e.ctrlKey)) {
         e.preventDefault();
-        setOpen((open) => !open);
+        setOpen(!open);
       }
     };
     document.addEventListener("keydown", down);

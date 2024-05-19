@@ -13,6 +13,7 @@ export enum ACTIONS {
   ADD_USER_SOUND = "@app/ADD_USER_SOUND",
   REMOVE_USER_SOUND = "@app/REMOVE_USER_SOUND",
   FILTER_SOUNDS = "@app/FILTER_SOUNDS",
+  OPEN_COMMAND = "@app/OPEN_COMMAND",
 }
 
 export interface LoadSoundsAction {
@@ -57,13 +58,21 @@ export interface FilterSoundsAction {
   };
 }
 
+export interface OpenCommandAction {
+  type: ACTIONS.OPEN_COMMAND;
+  payload: {
+    open: boolean;
+  };
+}
+
 export type AppAction =
   | LoadSoundsAction
   | LoadTagsAction
   | ChooseTagAction
   | LoadUserAction
   | UserSoundAction
-  | FilterSoundsAction;
+  | FilterSoundsAction
+  | OpenCommandAction;
 
 export function createLoadSoundsAction(
   sounds: SoundsCollection,
@@ -142,7 +151,7 @@ export function loadSounds(): ThunkAction<
 > {
   return (dispatch) => {
     if (soundsLoaded) {
-      return;
+      // return;
     }
 
     const soundsUrl: string = `${config.firebase.databaseURL}/sounds.json`;
@@ -265,5 +274,14 @@ export function removeUserSound(
 
     const db = getDatabase();
     remove(ref(db, `/users/${user.uid}/sounds/${soundId}`));
+  };
+}
+
+export function createOpenCommandAction(open: boolean): AppAction {
+  return {
+    type: ACTIONS.OPEN_COMMAND,
+    payload: {
+      open,
+    },
   };
 }

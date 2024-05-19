@@ -6,6 +6,9 @@ export default interface AppState {
   tags: TagsCollection;
   chosenTagSlug: string;
   user: User;
+  command: {
+    open: boolean;
+  };
 }
 
 export const initialState: AppState = {
@@ -17,5 +20,8 @@ export const initialState: AppState = {
     id: "",
     displayName: "",
     email: "",
+  },
+  command: {
+    open: false,
   },
 };

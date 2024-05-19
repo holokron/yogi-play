@@ -1,6 +1,6 @@
 import { Github, Heart, ListMusic } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import useTags from "@/hooks/useTags";
+import useTags from "@/hooks/use-tags";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { FC, MouseEventHandler } from "react";

@@ -1,7 +1,7 @@
 import { ReactElement, Suspense, lazy } from "react";
 import { Routes, Route } from "react-router-dom";
 import { ContextProviders } from "@/ContextProviders";
-import useInitialize from "@/hooks/useInitialize";
+import useInitialize from "@/hooks/use-initialize";
 import { Layout } from "@/components/Layout";
 
 const Sounds = lazy(() => import("@/routes/Sounds"));

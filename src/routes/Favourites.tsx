@@ -2,7 +2,7 @@ import { FC } from "react";
 import { Content } from "@/components/Content";
 import { Header } from "@/components/Header";
 import SoundsRow from "@/components/SoundsRow";
-import useUserSounds from "@/hooks/useUserSounds";
+import useUserSounds from "@/hooks/use-user-sounds";
 import { Heart } from "lucide-react";
 
 export default function Favourites() {

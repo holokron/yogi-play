@@ -49,6 +49,14 @@ export default function appReducer(
         soundsFilter: action.payload.query,
       };
     }
+    case ACTIONS.OPEN_COMMAND: {
+      return {
+        ...state,
+        command: {
+          open: action.payload.open,
+        },
+      };
+    }
     default:
       return state;
   }
