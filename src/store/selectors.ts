@@ -1,11 +1,13 @@
 import { createSelector } from "reselect";
 import AppState from "./state";
-import Sound from "@/types/Sound";
-import SoundsCollection from "@/types/SoundsCollection";
-import TagsCollection from "@/types/TagsCollection";
-import Tag from "@/types/Tag";
-import User from "@/types/User";
 import { createSearchRegex } from "@/lib/search";
+import {
+  type Sound,
+  type SoundsCollection,
+  type Tag,
+  type TagsCollection,
+  type User,
+} from "@/types";
 
 export const getSoundsCollection = (state: AppState): SoundsCollection =>
   state.sounds;
@@ -37,7 +39,7 @@ export const getSounds = createSelector(
     });
 
     return sounds;
-  },
+  }
 );
 
 export const getSoundsFilter = (state: AppState) => state.soundsFilter;
@@ -53,7 +55,7 @@ export const filterSounds = createSelector(
     const regexp = createSearchRegex(soundsfilter);
 
     return sounds.filter((sound: Sound) => regexp.test(sound.name));
-  },
+  }
 );
 
 export function getSound(state: AppState, soundId: string): Sound | null {
@@ -85,9 +87,9 @@ export const getTagsByOrder = createSelector(
 
     return tags.filter(
       (tag: Tag) =>
-        tag.sounds || ["all", "recent", "misc"].includes(tag.slug) || false,
+        tag.sounds || ["all", "recent", "misc"].includes(tag.slug) || false
     );
-  },
+  }
 );
 
 export const getChosenTag = createSelector(
@@ -95,11 +97,11 @@ export const getChosenTag = createSelector(
   getTagsCollection,
   (chosenTagSlug: string | null, tags: TagsCollection): Tag | null => {
     const chosenTags = Object.values(tags).filter(
-      (tag: Tag): boolean => chosenTagSlug === tag.slug,
+      (tag: Tag): boolean => chosenTagSlug === tag.slug
     );
 
     return chosenTags[0] || null;
-  },
+  }
 );
 
 export const getChosenSounds = createSelector(
@@ -123,9 +125,9 @@ export const getChosenSounds = createSelector(
     }
 
     return sounds.filter(
-      (sound: Sound): boolean => (sound.tags && sound.tags[tag.id]) || false,
+      (sound: Sound): boolean => (sound.tags && sound.tags[tag.id]) || false
     );
-  },
+  }
 );
 
 export const getUser = (state: AppState) => state.user;
@@ -147,9 +149,9 @@ export const getUserSounds = createSelector(
     const keys: string[] = Object.keys(user.sounds);
 
     return sounds.filter((sound: Sound): boolean => keys.includes(sound.id));
-  },
+  }
 );
 
 export const getUserSoundsIds = createSelector(getUser, (user) =>
-  Object.keys(user.sounds || {}),
+  Object.keys(user.sounds || {})
 );

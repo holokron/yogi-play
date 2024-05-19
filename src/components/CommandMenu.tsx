@@ -10,16 +10,15 @@ import {
   CommandShortcut,
 } from "@/components/ui/command";
 import useSoundPlayer from "@/hooks/useSoundPlayer";
-import Sound from "@/types/Sound";
 import { CirclePause, CirclePlay, ListMusic } from "lucide-react";
 import useTags from "@/hooks/useTags";
 import useSounds from "@/hooks/useSounds";
 import useUserSounds from "@/hooks/useUserSounds";
-import Tag from "@/types/Tag";
 import { useSelector } from "react-redux";
 import { getUserSoundsIds } from "@/store/selectors";
 import { createSearchRegex } from "@/lib/search";
 import { useLocation, useNavigate } from "react-router";
+import { type Sound, type Tag } from "@/types";
 
 export function CommandMenu() {
   const [open, setOpen] = useState(false);

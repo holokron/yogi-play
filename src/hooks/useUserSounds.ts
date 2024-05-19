@@ -1,4 +1,4 @@
-import Sound from "@/types/Sound";
+import { type Sound } from "@/types";
 import { useSelector } from "react-redux";
 import { getUserSounds } from "@/store/selectors";
 

@@ -1,5 +1,5 @@
-import Sound from "@/types/Sound";
 import PlayButton from "@/components/PlayButton";
+import { type Sound } from "@/types";
 
 export interface Props {
   sounds: Sound[];

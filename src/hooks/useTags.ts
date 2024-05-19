@@ -1,6 +1,6 @@
 import { useSelector, useDispatch } from "react-redux";
 import { getTagsByOrder, getChosenTag } from "@/store/selectors";
-import Tag from "@/types/Tag";
+import { type Tag } from "@/types";
 import { chooseTag } from "@/store/actions";
 import { AppThunkDispatch } from "@/store";
 

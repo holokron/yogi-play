@@ -4,7 +4,7 @@ import useTags from "@/hooks/useTags";
 import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { FC, MouseEventHandler } from "react";
-import Tag from "@/types/Tag";
+import { type Tag } from "@/types";
 
 export function Sidebar() {
   const { tags } = useTags();
@@ -15,7 +15,7 @@ export function Sidebar() {
   const isOnFavourites = location.pathname === "/ulubione";
 
   const handleFavouritesClick: MouseEventHandler<HTMLButtonElement> = (
-    event,
+    event
   ) => {
     event.preventDefault();
 
