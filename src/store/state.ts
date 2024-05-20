@@ -9,6 +9,9 @@ export default interface AppState {
   command: {
     open: boolean;
   };
+  navMenu: {
+    open: boolean;
+  };
 }
 
 export const initialState: AppState = {
@@ -22,6 +25,9 @@ export const initialState: AppState = {
     email: "",
   },
   command: {
+    open: false,
+  },
+  navMenu: {
     open: false,
   },
 };

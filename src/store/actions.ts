@@ -14,6 +14,7 @@ export enum ACTIONS {
   REMOVE_USER_SOUND = "@app/REMOVE_USER_SOUND",
   FILTER_SOUNDS = "@app/FILTER_SOUNDS",
   OPEN_COMMAND = "@app/OPEN_COMMAND",
+  OPEN_NAV_MENU = "@app/OPEN_NAV_MENU",
 }
 
 export interface LoadSoundsAction {
@@ -65,6 +66,13 @@ export interface OpenCommandAction {
   };
 }
 
+export interface OpenNavMenuAction {
+  type: ACTIONS.OPEN_NAV_MENU;
+  payload: {
+    open: boolean;
+  };
+}
+
 export type AppAction =
   | LoadSoundsAction
   | LoadTagsAction
@@ -72,7 +80,8 @@ export type AppAction =
   | LoadUserAction
   | UserSoundAction
   | FilterSoundsAction
-  | OpenCommandAction;
+  | OpenCommandAction
+  | OpenNavMenuAction;
 
 export function createLoadSoundsAction(
   sounds: SoundsCollection,
@@ -280,6 +289,15 @@ export function removeUserSound(
 export function createOpenCommandAction(open: boolean): AppAction {
   return {
     type: ACTIONS.OPEN_COMMAND,
+    payload: {
+      open,
+    },
+  };
+}
+
+export function createOpenNavMenuAction(open: boolean): AppAction {
+  return {
+    type: ACTIONS.OPEN_NAV_MENU,
     payload: {
       open,
     },

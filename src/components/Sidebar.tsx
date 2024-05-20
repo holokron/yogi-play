@@ -5,18 +5,21 @@ import { useLocation, useNavigate } from "react-router";
 import { Link } from "react-router-dom";
 import { FC, MouseEventHandler } from "react";
 import { type Tag } from "@/types";
+import useNavMenu from "@/hooks/use-nav-menu";
 
 export function Sidebar() {
   const { tags } = useTags();
 
   const location = useLocation();
   const navigate = useNavigate();
+  const { setOpen } = useNavMenu();
 
   const isOnFavourites = location.pathname === "/ulubione";
 
   const handleFavouritesClick: MouseEventHandler<HTMLButtonElement> = (
     event,
   ) => {
+    setOpen(false);
     event.preventDefault();
 
     navigate("/ulubione");
@@ -59,10 +62,13 @@ const TagLink: FC<{ tag: Tag }> = ({ tag }) => {
   const { changeTag, currentTag } = useTags();
   const location = useLocation();
   const navigate = useNavigate();
+  const { setOpen } = useNavMenu();
   const isOnFavourites = location.pathname === "/ulubione";
 
   const handleClick: MouseEventHandler<HTMLButtonElement> = (event) => {
     event.preventDefault();
+
+    setOpen(false);
 
     if (isOnFavourites) {
       navigate("/");

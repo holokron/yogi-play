@@ -156,3 +156,5 @@ export const getUserSoundsIds = createSelector(getUser, (user) =>
   Object.keys(user?.sounds ?? {}),
 );
 export const getIsCommandOpen = (state: AppState) => state.command.open;
+
+export const getIsNavMenuOpen = (state: AppState) => state.navMenu.open;

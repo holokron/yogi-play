@@ -57,6 +57,14 @@ export default function appReducer(
         },
       };
     }
+    case ACTIONS.OPEN_NAV_MENU: {
+      return {
+        ...state,
+        navMenu: {
+          open: action.payload.open,
+        },
+      };
+    }
     default:
       return state;
   }

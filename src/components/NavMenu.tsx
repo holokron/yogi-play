@@ -3,12 +3,19 @@ import { List } from "lucide-react";
 import { Sidebar } from "@/components/Sidebar";
 import { Button } from "@/components/ui/button";
 import { SheetTrigger, SheetContent, Sheet } from "@/components/ui/sheet";
+import useNavMenu from "@/hooks/use-nav-menu";
 
 export const NavMenu: FC = () => {
+  const { open, setOpen } = useNavMenu();
+
+  const handleClick = () => {
+    setOpen(true);
+  };
+
   return (
-    <Sheet>
-      <SheetTrigger asChild>
-        <Button variant="outline" size="icon" className="md:hidden">
+    <Sheet open={open}>
+      <SheetTrigger asChild onClick={handleClick}>
+        <Button variant="ghost" size="icon" className="md:hidden">
           <List size={24} />
         </Button>
       </SheetTrigger>
