@@ -12,6 +12,10 @@ export const NavMenu: FC = () => {
     setOpen(true);
   };
 
+  const handleCloseClick = () => {
+    setOpen(false);
+  };
+
   return (
     <Sheet open={open}>
       <SheetTrigger asChild onClick={handleClick}>
@@ -19,7 +23,10 @@ export const NavMenu: FC = () => {
           <List size={24} />
         </Button>
       </SheetTrigger>
-      <SheetContent className="bg-slate-900 text-background dark:text-foreground p-0">
+      <SheetContent
+        className="bg-slate-900 text-background dark:text-foreground p-0"
+        onClickClose={handleCloseClick}
+      >
         <Sidebar />
       </SheetContent>
     </Sheet>
