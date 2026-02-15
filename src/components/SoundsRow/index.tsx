@@ -1,3 +1,4 @@
+import { ReactElement } from "react";
 import PlayButton from "@/components/PlayButton";
 import { type Sound } from "@/types";
 import { Button } from "../ui/button";
@@ -8,7 +9,7 @@ export interface Props {
   sounds: Sound[];
 }
 
-export default function SoundsRow({ sounds }: Props): JSX.Element {
+export default function SoundsRow({ sounds }: Props): ReactElement {
   const { open, setOpen } = useCommand();
 
   const toggleSearch = () => {

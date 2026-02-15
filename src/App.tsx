@@ -27,7 +27,7 @@ function App(): ReactElement {
   );
 }
 
-export default function AppWithProviders(): JSX.Element {
+export default function AppWithProviders(): ReactElement {
   return (
     <ContextProviders>
       <App />
