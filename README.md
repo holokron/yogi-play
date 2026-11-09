@@ -6,7 +6,7 @@
 
 # <p align="center">Yogi PLAY</p>
 
-[![Build Status](https://travis-ci.org/holokron/yogi-play.svg?branch=master)](https://travis-ci.org/holokron/yogi-play) [![codecov](https://codecov.io/gh/holokron/yogi-play/branch/master/graph/badge.svg)](https://codecov.io/gh/holokron/yogi-play) [![Greenkeeper badge](https://badges.greenkeeper.io/holokron/yogi-play.svg)](https://greenkeeper.io/)
+[![CI](https://github.com/holokron/yogi-play/actions/workflows/ci.yml/badge.svg?branch=master)](https://github.com/holokron/yogi-play/actions/workflows/ci.yml)
 
 Simple React JS app that plays funny sounds :)
 
