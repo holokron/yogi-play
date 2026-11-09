@@ -21,6 +21,9 @@ import { useLocation, useNavigate } from "react-router";
 import { type Sound, type Tag } from "@/types";
 import useCommand from "@/hooks/use-command";
 
+const handleFilter = (value: string, search: string) =>
+  createSearchRegex(search).test(value) ? 1 : 0;
+
 export default function CommandMenu() {
   const { open, setOpen } = useCommand();
 
@@ -41,7 +44,7 @@ export default function CommandMenu() {
     };
     document.addEventListener("keydown", down);
     return () => document.removeEventListener("keydown", down);
-  }, []);
+  }, [open, setOpen]);
 
   const handleSelect = () => {
     if (isOnFavorites) {
@@ -49,10 +52,6 @@ export default function CommandMenu() {
     }
 
     setOpen(false);
-  };
-
-  const handleFilter = (value: string, search: string) => {
-    return createSearchRegex(search).test(value) ? 1 : 0;
   };
 
   return (

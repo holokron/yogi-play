@@ -10,5 +10,5 @@ export default function useInitialize() {
     dispatch(loadTags());
     dispatch(loadSounds());
     dispatch(authenticate());
-  }, []);
+  }, [dispatch]);
 }

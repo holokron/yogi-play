@@ -3,8 +3,6 @@ import AppState, { initialState } from "./state";
 import appReducer from "./reducer";
 import { AppAction, ACTIONS } from "./actions";
 
-export {};
-
 describe("store/reducer", () => {
   it.each<[AppAction, AppState]>([
     [
