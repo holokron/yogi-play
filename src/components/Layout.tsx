@@ -2,7 +2,7 @@ import { FC, PropsWithChildren } from "react";
 import { ModeToggle } from "@/components/ModeToggle";
 import { Sidebar } from "@/components/Sidebar";
 import { NavMenu } from "@/components/NavMenu";
-import { Link } from "react-router-dom";
+import { Link } from "react-router";
 import { SoundSearchInput } from "@/components/SoundSearchInput";
 
 export const Layout: FC<PropsWithChildren> = ({ children }) => {
