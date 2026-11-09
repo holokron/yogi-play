@@ -121,7 +121,11 @@ New dev dependencies are:
    New tags are added by editing `tags.json` in the same PR.
 4. Compute the sha256 and upload to Storage at `sounds/<sha256>.mp3` with
    `contentType: audio/mpeg`. If the object already exists, the upload is
-   skipped. The path is the Firebase download URL, as for existing sounds.
+   skipped. The path uses the same URL form as existing sounds. If existing
+   URLs carry `&token=…`, the upload sets a `firebaseStorageDownloadTokens`
+   metadata UUID and includes it in the URL, so the file is readable no matter
+   what the Storage rules say. Otherwise the URL is the plain `?alt=media` form.
+   `import` detects which form the existing paths use.
 5. Generate the ID. If it collides with an existing ID, fail. If the same path
    is already in the catalogue, fail with "duplicate of <id>".
 6. Append the entry to `sounds.json`, so new sounds go last, and write the file
