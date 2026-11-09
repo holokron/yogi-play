@@ -54,7 +54,7 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
       onMouseEnter={onMouseEnter}
     >
       <Button
-        className="w-full rounded-l-2xl rounded-r-none overflow-hidden"
+        className="w-full min-w-0 shrink rounded-l-2xl rounded-r-none overflow-hidden"
         variant="outline"
         name={sound.name}
         onClick={handleClickPlay}
