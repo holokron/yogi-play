@@ -14,13 +14,13 @@ export const SoundSearchInput: FC = () => {
   };
 
   return (
-    <div className="flex gap-2 items-center">
-      <Search size={24} />
+    <div className="flex flex-1 min-w-0 max-w-72 gap-2 items-center">
+      <Search size={24} className="shrink-0" />
       <Input
         size={12}
         type="search"
         placeholder="Szukaj dźwięku... ⌘ + K"
-        className="w-24 md:w-64 h-8 text-foreground"
+        className="w-full h-8 text-foreground"
         value={soundsFilter ?? ""}
         onChange={handleChange}
       />
