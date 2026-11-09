@@ -25,11 +25,16 @@ export type RawDatabase = {
 
 type Ordered = { key: string; order: number; name: string };
 
-const byOrderThenName = (a: Ordered, b: Ordered): number =>
-  a.order - b.order || a.name.localeCompare(b.name);
+// Mirrors the app's sort (src/store/selectors.ts): `order || 0`, then a
+// code-unit comparison of names, so the first sync keeps the visible order.
+const byOrderThenName = (a: Ordered, b: Ordered): number => {
+  if (a.order !== b.order) return a.order < b.order ? -1 : 1;
+  if (a.name === b.name) return 0;
+  return a.name < b.name ? -1 : 1;
+};
 
 const orderOf = (value: unknown): number =>
-  typeof value === "number" ? value : Number.MAX_SAFE_INTEGER;
+  (typeof value === "number" ? value : 0) || 0;
 
 /**
  * Converts the live Realtime DB data into a catalog. Links that exist on only

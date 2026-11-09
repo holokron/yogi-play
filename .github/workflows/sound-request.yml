@@ -9,6 +9,12 @@ permissions:
   pull-requests: write
   issues: write
 
+# `shell: bash` runs steps as `bash --noprofile --norc -eo pipefail {0}`,
+# so `cmd | tee` fails when cmd fails.
+defaults:
+  run:
+    shell: bash
+
 concurrency:
   group: sound-request-${{ github.event.issue.number }}
   cancel-in-progress: false
@@ -17,15 +23,13 @@ jobs:
   add-sound:
     if: github.event.label.name == 'sound:approved'
     runs-on: ubuntu-latest
+    timeout-minutes: 10
     environment: production
     env:
       # Untrusted issue content is only ever passed through env, never inlined into scripts.
+      # Secrets and the write token are scoped to the steps that need them.
       ISSUE_BODY: ${{ github.event.issue.body }}
       ISSUE_NUMBER: ${{ github.event.issue.number }}
-      GH_TOKEN: ${{ github.token }}
-      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
-      VITE_APP_FIREBASE_STORAGE_BUCKET: ${{ vars.VITE_APP_FIREBASE_STORAGE_BUCKET }}
-      VITE_APP_FIREBASE_DATABASE_URL: ${{ vars.VITE_APP_FIREBASE_DATABASE_URL }}
     steps:
       - uses: actions/checkout@v4
 
@@ -49,6 +53,9 @@ jobs:
           NAME: ${{ steps.parse.outputs.name }}
           TAGS: ${{ steps.parse.outputs.tags }}
           NEW_FLAG: ${{ steps.parse.outputs.new == 'true' && '--new' || '' }}
+          FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+          VITE_APP_FIREBASE_STORAGE_BUCKET: ${{ vars.VITE_APP_FIREBASE_STORAGE_BUCKET }}
+          VITE_APP_FIREBASE_DATABASE_URL: ${{ vars.VITE_APP_FIREBASE_DATABASE_URL }}
         run: pnpm -s sound:add "$URL" --name "$NAME" --tags "$TAGS" $NEW_FLAG 2>&1 | tee -a "$RUNNER_TEMP/log.txt"
 
       - name: Validate catalog
@@ -56,6 +63,7 @@ jobs:
 
       - name: Open or update pull request
         env:
+          GH_TOKEN: ${{ github.token }}
           NAME: ${{ steps.parse.outputs.name }}
           SOUND_ID: ${{ steps.add.outputs.id }}
           SOUND_URL: ${{ steps.add.outputs.url }}
@@ -88,6 +96,8 @@ jobs:
 
       - name: Report failure on the issue
         if: failure()
+        env:
+          GH_TOKEN: ${{ github.token }}
         run: |
           {
             echo "Adding this sound failed. Fix the issue and apply \`sound:approved\` again."

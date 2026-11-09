@@ -24,6 +24,23 @@ describe("fromDatabaseShape", () => {
     expect(catalog.tags.map((t) => t.id)).toEqual(["t2", "t3", "t1"]);
   });
 
+  it("orders like the app: missing order counts as 0, ties by code-unit name", () => {
+    const { catalog } = fromDatabaseShape({
+      sounds: {
+        a: { id: "a", name: "apple", path: "https://x/a.mp3", order: 0 },
+        b: { id: "b", name: "Banana", path: "https://x/b.mp3", order: 0 },
+        c: { id: "c", name: "Cherry", path: "https://x/c.mp3", order: 1 },
+        d: { id: "d", name: "Date", path: "https://x/d.mp3" },
+      },
+      tags: {
+        x: { id: "x", name: "zeta", slug: "zeta" },
+        y: { id: "y", name: "Alpha", slug: "alpha", order: 0 },
+      },
+    });
+    expect(catalog.sounds.map((s) => s.id)).toEqual(["b", "d", "a", "c"]);
+    expect(catalog.tags.map((t) => t.id)).toEqual(["y", "x"]);
+  });
+
   it("converts tag maps to slugs and keeps id/name/path/isNew", () => {
     const { catalog } = fromDatabaseShape(snapshot);
     expect(catalog.sounds.find((s) => s.id === "s1")).toEqual({

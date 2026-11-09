@@ -2,7 +2,7 @@
 import { createHash } from "node:crypto";
 import { appendFile, readFile } from "node:fs/promises";
 import { parseArgs } from "node:util";
-import { initAdmin, uploadSound } from "./firebase.ts";
+import { closeAdmin, initAdmin, uploadSound } from "./firebase.ts";
 import { loadCatalog, writeCatalog } from "./io.ts";
 import { validateCatalog } from "./model.ts";
 import {
@@ -61,7 +61,11 @@ async function main(): Promise<void> {
   addSoundEntry(catalog, { ...entry, path: "https://placeholder.invalid/" });
 
   initAdmin();
-  entry.path = await uploadSound(bytes, sha256, usesDownloadTokens(catalog));
+  try {
+    entry.path = await uploadSound(bytes, sha256, usesDownloadTokens(catalog));
+  } finally {
+    await closeAdmin();
+  }
 
   const updated = addSoundEntry(catalog, entry);
   const errors = validateCatalog(updated);

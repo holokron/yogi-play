@@ -2,6 +2,7 @@ import { randomUUID } from "node:crypto";
 import {
   applicationDefault,
   cert,
+  deleteApp,
   getApps,
   initializeApp,
 } from "firebase-admin/app";
@@ -14,6 +15,15 @@ function requireEnv(name: string): string {
   const value = process.env[name];
   if (!value) throw new Error(`${name} is not set`);
   return value;
+}
+
+// The raw value is a secret: never let a parser error echo part of it.
+function parseServiceAccount(raw: string): object {
+  try {
+    return JSON.parse(raw);
+  } catch {
+    throw new Error("FIREBASE_SERVICE_ACCOUNT is not valid JSON");
+  }
 }
 
 /**
@@ -30,7 +40,7 @@ export function initAdmin(): void {
   }
   initializeApp({
     credential: serviceAccount
-      ? cert(JSON.parse(serviceAccount))
+      ? cert(parseServiceAccount(serviceAccount))
       : applicationDefault(),
     storageBucket: requireEnv("VITE_APP_FIREBASE_STORAGE_BUCKET"),
     databaseURL: requireEnv("VITE_APP_FIREBASE_DATABASE_URL"),
@@ -82,4 +92,9 @@ export async function writeDatabase(db: DbShape): Promise<void> {
   const database = getDatabase();
   await database.ref("/sounds").set(db.sounds);
   await database.ref("/tags").set(db.tags);
+}
+
+/** Closes every firebase-admin app so open sockets don't keep the process alive. */
+export async function closeAdmin(): Promise<void> {
+  await Promise.all(getApps().map((app) => deleteApp(app)));
 }
