@@ -1,9 +1,6 @@
-import { useDispatch, useSelector } from "react-redux";
 import { useCallback } from "react";
-import * as actions from "@/store/actions";
-import AppState from "@/store/state";
+import { useAppStore } from "@/store";
 import { hasUserSound } from "@/store/selectors";
-import { AppThunkDispatch } from "@/store";
 
 type UseUserSoundManager = {
   addUserSound: { (): void };
@@ -14,19 +11,17 @@ type UseUserSoundManager = {
 export default function useUserSoundManager(
   soundId: string,
 ): UseUserSoundManager {
-  const dispatch = useDispatch<AppThunkDispatch>();
+  const add = useAppStore((state) => state.addUserSound);
+  const remove = useAppStore((state) => state.removeUserSound);
 
-  const addUserSound = useCallback((): void => {
-    dispatch(actions.addUserSound(soundId));
-  }, [dispatch, soundId]);
+  const addUserSound = useCallback((): void => add(soundId), [add, soundId]);
 
-  const removeUserSound = useCallback((): void => {
-    dispatch(actions.removeUserSound(soundId));
-  }, [dispatch, soundId]);
-
-  const isInUserSounds = useSelector<AppState, boolean>(
-    (state: AppState): boolean => hasUserSound(state, soundId),
+  const removeUserSound = useCallback(
+    (): void => remove(soundId),
+    [remove, soundId],
   );
+
+  const isInUserSounds = useAppStore((state) => hasUserSound(state, soundId));
 
   return {
     addUserSound,

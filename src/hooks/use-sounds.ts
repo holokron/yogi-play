@@ -1,6 +1,6 @@
-import { useSelector } from "react-redux";
+import { useAppStore } from "@/store";
 import { getSounds } from "@/store/selectors";
 
 export default function useSounds() {
-  return useSelector(getSounds);
+  return useAppStore(getSounds);
 }

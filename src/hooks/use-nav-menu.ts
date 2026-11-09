@@ -1,13 +1,9 @@
-import { useDispatch, useSelector } from "react-redux";
-import { AppDispatch } from "@/store";
-import { createOpenNavMenuAction } from "@/store/actions";
+import { useAppStore } from "@/store";
 import { getIsNavMenuOpen } from "@/store/selectors";
 
 export default function useNavMenu() {
-  const dispatch = useDispatch<AppDispatch>();
-  const open = useSelector(getIsNavMenuOpen);
-
-  const setOpen = (value: boolean) => dispatch(createOpenNavMenuAction(value));
+  const open = useAppStore(getIsNavMenuOpen);
+  const setOpen = useAppStore((state) => state.setNavMenuOpen);
 
   return {
     open,
