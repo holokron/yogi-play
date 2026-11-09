@@ -55,7 +55,13 @@ export default function CommandMenu() {
   };
 
   return (
-    <CommandDialog open={open} onOpenChange={setOpen} filter={handleFilter}>
+    <CommandDialog
+      open={open}
+      onOpenChange={setOpen}
+      filter={handleFilter}
+      title="Wyszukiwarka"
+      description="Szukaj dźwięku lub kategorii"
+    >
       <CommandInput placeholder="Szukaj dźwięku..." />
       <CommandList>
         <CommandEmpty>Nie znaleziono :(</CommandEmpty>
