@@ -1,0 +1,37 @@
+name: New sound (maintainers)
+description: Add a ready, trimmed MP3 to the catalog. A maintainer applies the `sound:approved` label to publish it.
+title: "New sound: "
+labels: []
+body:
+  - type: markdown
+    attributes:
+      value: |
+        Attach a trimmed MP3 (max 1 MB, max 30 s). When a maintainer applies the
+        `sound:approved` label, CI uploads the file and opens a pull request.
+  - type: input
+    id: name
+    attributes:
+      label: Name
+      description: Display name of the sound
+    validations:
+      required: true
+  - type: input
+    id: tags
+    attributes:
+      label: Tags
+      description: Comma-separated tag slugs, e.g. movies, memes (see catalog/tags.json)
+    validations:
+      required: true
+  - type: checkboxes
+    id: new
+    attributes:
+      label: Mark as new
+      options:
+        - label: Show the "new" badge
+  - type: textarea
+    id: audio
+    attributes:
+      label: Audio file
+      description: Drag and drop the .mp3 here
+    validations:
+      required: true

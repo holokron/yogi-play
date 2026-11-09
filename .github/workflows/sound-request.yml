@@ -1,0 +1,102 @@
+name: Sound request
+
+on:
+  issues:
+    types: [labeled]
+
+permissions:
+  contents: write
+  pull-requests: write
+  issues: write
+
+concurrency:
+  group: sound-request-${{ github.event.issue.number }}
+  cancel-in-progress: false
+
+jobs:
+  add-sound:
+    if: github.event.label.name == 'sound:approved'
+    runs-on: ubuntu-latest
+    environment: production
+    env:
+      # Untrusted issue content is only ever passed through env, never inlined into scripts.
+      ISSUE_BODY: ${{ github.event.issue.body }}
+      ISSUE_NUMBER: ${{ github.event.issue.number }}
+      GH_TOKEN: ${{ github.token }}
+      FIREBASE_SERVICE_ACCOUNT: ${{ secrets.FIREBASE_SERVICE_ACCOUNT }}
+      VITE_APP_FIREBASE_STORAGE_BUCKET: ${{ vars.VITE_APP_FIREBASE_STORAGE_BUCKET }}
+      VITE_APP_FIREBASE_DATABASE_URL: ${{ vars.VITE_APP_FIREBASE_DATABASE_URL }}
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: pnpm/action-setup@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version-file: .nvmrc
+          cache: pnpm
+
+      - run: pnpm install --frozen-lockfile
+
+      - name: Parse issue form
+        id: parse
+        run: node scripts/catalog/parse-issue.ts 2>&1 | tee -a "$RUNNER_TEMP/log.txt"
+
+      - name: Upload sound and update catalog
+        id: add
+        env:
+          URL: ${{ steps.parse.outputs.url }}
+          NAME: ${{ steps.parse.outputs.name }}
+          TAGS: ${{ steps.parse.outputs.tags }}
+          NEW_FLAG: ${{ steps.parse.outputs.new == 'true' && '--new' || '' }}
+        run: pnpm -s sound:add "$URL" --name "$NAME" --tags "$TAGS" $NEW_FLAG 2>&1 | tee -a "$RUNNER_TEMP/log.txt"
+
+      - name: Validate catalog
+        run: pnpm -s catalog:validate 2>&1 | tee -a "$RUNNER_TEMP/log.txt"
+
+      - name: Open or update pull request
+        env:
+          NAME: ${{ steps.parse.outputs.name }}
+          SOUND_ID: ${{ steps.add.outputs.id }}
+          SOUND_URL: ${{ steps.add.outputs.url }}
+        run: |
+          BRANCH="sound/issue-$ISSUE_NUMBER"
+          BODY="$RUNNER_TEMP/pr-body.md"
+          {
+            echo "Closes #$ISSUE_NUMBER"
+            echo
+            echo "Listen: $SOUND_URL"
+            echo
+            echo '```json'
+            jq --arg id "$SOUND_ID" '.[] | select(.id == $id)' catalog/sounds.json
+            echo '```'
+          } > "$BODY"
+
+          git config user.name "github-actions[bot]"
+          git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
+          git checkout -B "$BRANCH"
+          git add catalog/sounds.json
+          git commit -m "feat(sounds): add \"$NAME\"" -m "Closes #$ISSUE_NUMBER"
+          git push --force origin "$BRANCH"
+
+          PR=$(gh pr list --head "$BRANCH" --state open --json number -q '.[0].number')
+          if [ -z "$PR" ]; then
+            gh pr create --head "$BRANCH" --title "feat(sounds): add \"$NAME\"" --body-file "$BODY"
+          else
+            gh pr edit "$PR" --body-file "$BODY"
+          fi
+
+      - name: Report failure on the issue
+        if: failure()
+        run: |
+          {
+            echo "Adding this sound failed. Fix the issue and apply \`sound:approved\` again."
+            echo
+            echo '```'
+            tail -n 30 "$RUNNER_TEMP/log.txt" 2>/dev/null || true
+            echo '```'
+            echo
+            echo "Run: $GITHUB_SERVER_URL/$GITHUB_REPOSITORY/actions/runs/$GITHUB_RUN_ID"
+          } > "$RUNNER_TEMP/comment.md"
+          gh issue comment "$ISSUE_NUMBER" --body-file "$RUNNER_TEMP/comment.md"
+          gh issue edit "$ISSUE_NUMBER" --remove-label sound:approved
