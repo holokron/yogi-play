@@ -14,7 +14,7 @@ import { CirclePause, CirclePlay, ListMusic } from "lucide-react";
 import useTags from "@/hooks/use-tags";
 import useSounds from "@/hooks/use-sounds";
 import useUserSounds from "@/hooks/use-user-sounds";
-import { useSelector } from "react-redux";
+import { useAppStore } from "@/store";
 import { getUserSoundsIds } from "@/store/selectors";
 import { createSearchRegex } from "@/lib/search";
 import { useLocation, useNavigate } from "react-router";
@@ -30,7 +30,7 @@ export default function CommandMenu() {
   const userSounds = useUserSounds();
   const { tags } = useTags();
   const sounds = useSounds();
-  const userSoundsIds = useSelector(getUserSoundsIds);
+  const userSoundsIds = useAppStore(getUserSoundsIds);
   const location = useLocation();
   const navigate = useNavigate();
   const isOnFavorites = location.pathname === "/ulubione";

@@ -1,13 +1,13 @@
 import { ChangeEventHandler, FC } from "react";
 import { Input } from "@/components/ui/input";
 import useSoundSearch from "@/hooks/use-sound-search";
-import { useSelector } from "react-redux";
+import { useAppStore } from "@/store";
 import { getSoundsFilter } from "@/store/selectors";
 import { Search } from "lucide-react";
 
 export const SoundSearchInput: FC = () => {
   const { onChange } = useSoundSearch();
-  const soundsFilter = useSelector(getSoundsFilter);
+  const soundsFilter = useAppStore(getSoundsFilter);
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     onChange(event.target.value);

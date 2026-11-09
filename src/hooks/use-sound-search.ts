@@ -1,25 +1,21 @@
-import { useDispatch, useSelector } from "react-redux";
-import {
-  createFilterSoundsAction,
-  createChooseTagAction,
-} from "@/store/actions";
+import { useAppStore } from "@/store";
 import { getChosenTag } from "@/store/selectors";
-import { AppThunkDispatch } from "@/store";
 
 interface SoundSearchHook {
   onChange: { (query: string | null): void };
 }
 
 export default function useSoundSearch(): SoundSearchHook {
-  const dispatch = useDispatch<AppThunkDispatch>();
-  const chosenTag = useSelector(getChosenTag);
+  const chosenTag = useAppStore(getChosenTag);
+  const chooseTag = useAppStore((state) => state.chooseTag);
+  const filterSounds = useAppStore((state) => state.filterSounds);
 
   const onChange = (query: string | null): void => {
     if (query && chosenTag && chosenTag.slug !== "all") {
-      dispatch(createChooseTagAction("all"));
+      chooseTag("all");
     }
 
-    dispatch(createFilterSoundsAction(query));
+    filterSounds(query);
   };
 
   return {

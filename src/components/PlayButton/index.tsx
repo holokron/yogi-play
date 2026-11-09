@@ -1,11 +1,10 @@
 import { ReactElement } from "react";
-import { useSelector } from "react-redux";
+import { useAppStore } from "@/store";
 import { Star } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import useSoundPlayer from "@/hooks/use-sound-player";
 import useUserSoundManager from "@/hooks/use-user-sound-manager";
 import { getSound } from "@/store/selectors";
-import AppState from "@/store/state";
 import { cn } from "@/lib/utils";
 
 export interface Props {
@@ -41,7 +40,7 @@ function PlayButton({ soundId }: Props): ReactElement<Props> | null {
     loadSound();
   };
 
-  const sound = useSelector((state: AppState) => getSound(state, soundId));
+  const sound = useAppStore((state) => getSound(state, soundId));
 
   if (!sound) {
     return null;

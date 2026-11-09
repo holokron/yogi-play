@@ -1,6 +1,5 @@
-import { useSelector } from "react-redux";
+import { useAppStore } from "@/store";
 import { useState } from "react";
-import AppState from "@/store/state";
 import { getSound } from "@/store/selectors";
 
 type UseSoundPlayer = {
@@ -21,7 +20,7 @@ function getAudio(id: string): HTMLAudioElement | undefined {
 }
 
 export default function useSoundPlayer(soundId: string): UseSoundPlayer {
-  const sound = useSelector((state: AppState) => getSound(state, soundId));
+  const sound = useAppStore((state) => getSound(state, soundId));
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
   const [isPlaying, setIsPlaying] = useState<boolean>(() => {
