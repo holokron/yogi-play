@@ -2,5 +2,9 @@ ignoredBuiltDependencies:
   - esbuild
 
 onlyBuiltDependencies:
-  - '@firebase/util'
+  - "@firebase/util"
   - core-js
+
+overrides:
+  # firebase/firestore pins ~1.9.0, which is affected by GHSA-f596-whhp-79r4 and related advisories
+  "@grpc/grpc-js": ^1.14.7

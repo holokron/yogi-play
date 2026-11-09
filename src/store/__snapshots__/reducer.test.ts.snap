@@ -1,9 +1,12 @@
 // Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
 
-exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', payload: { query: 'foo' } } 1`] = `
+exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', …(1) } 1`] = `
 {
   "chosenTagSlug": "recent",
   "command": {
+    "open": false,
+  },
+  "navMenu": {
     "open": false,
   },
   "sounds": {},
@@ -17,10 +20,13 @@ exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', payload: { query
 }
 `;
 
-exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', payload: { query: null } } 1`] = `
+exports[`store/reducer > action = { type: '@app/FILTER_SOUNDS', …(1) } 2`] = `
 {
   "chosenTagSlug": "recent",
   "command": {
+    "open": false,
+  },
+  "navMenu": {
     "open": false,
   },
   "sounds": {},
