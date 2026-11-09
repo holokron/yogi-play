@@ -1,6 +1,7 @@
 import { ChangeEventHandler, FC } from "react";
 import { Input } from "@/components/ui/input";
 import useSoundSearch from "@/hooks/use-sound-search";
+import useMediaQuery from "@/hooks/use-media-query";
 import { useAppStore } from "@/store";
 import { getSoundsFilter } from "@/store/selectors";
 import { Search } from "lucide-react";
@@ -8,6 +9,7 @@ import { Search } from "lucide-react";
 export const SoundSearchInput: FC = () => {
   const { onChange } = useSoundSearch();
   const soundsFilter = useAppStore(getSoundsFilter);
+  const isDesktop = useMediaQuery("(min-width: 768px)");
 
   const handleChange: ChangeEventHandler<HTMLInputElement> = (event) => {
     onChange(event.target.value);
@@ -19,7 +21,7 @@ export const SoundSearchInput: FC = () => {
       <Input
         size={12}
         type="search"
-        placeholder="Szukaj dźwięku... ⌘ + K"
+        placeholder={isDesktop ? "Szukaj dźwięku... ⌘ + K" : "Szukaj..."}
         className="w-full h-8 text-foreground"
         value={soundsFilter ?? ""}
         onChange={handleChange}
