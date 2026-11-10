@@ -81,6 +81,13 @@ describe("fromDatabaseShape", () => {
 });
 
 describe("io", () => {
+  it("explains how to create a missing catalog", async () => {
+    const dir = await mkdtemp(join(tmpdir(), "catalog-"));
+    await expect(loadCatalog(dir)).rejects.toThrow(
+      "sounds.json not found. Run `pnpm catalog:import` to create the catalog",
+    );
+  });
+
   it("round trips through writeCatalog and loadCatalog", async () => {
     const dir = await mkdtemp(join(tmpdir(), "catalog-"));
     const { catalog } = fromDatabaseShape(snapshot);
