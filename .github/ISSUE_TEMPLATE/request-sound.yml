@@ -1,0 +1,15 @@
+name: Request a sound
+description: Suggest a sound from a video or recording
+title: "Sound request: "
+body:
+  - type: input
+    id: link
+    attributes:
+      label: Link to sound (with time stamp)
+    validations:
+      required: true
+  - type: textarea
+    id: timestamps
+    attributes:
+      label: Time stamps
+      description: e.g. 0:15-0:25, 0:40-0:53

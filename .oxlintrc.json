@@ -28,5 +28,13 @@
       }
     ]
   },
-  "ignorePatterns": ["build", "dist", "coverage", "public"]
+  "ignorePatterns": ["build", "dist", "coverage", "public"],
+  "overrides": [
+    {
+      "files": ["scripts/**"],
+      "env": {
+        "node": true
+      }
+    }
+  ]
 }

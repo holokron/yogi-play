@@ -30,6 +30,9 @@ jobs:
       - name: Lint
         run: pnpm lint
 
+      - name: Validate catalog
+        run: pnpm catalog:validate
+
       - name: Test
         run: pnpm vitest run
 

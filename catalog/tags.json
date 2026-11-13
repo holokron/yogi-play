@@ -1,0 +1,92 @@
+[
+  {
+    "id": "-L8E9ObJaGq-iJBfem1r",
+    "slug": "all",
+    "name": "Wszystkie"
+  },
+  {
+    "id": "-L8SmI47cjKJDK8Enh2E",
+    "slug": "recent",
+    "name": "Ostatnio dodane"
+  },
+  {
+    "id": "-L8E9ObINfgdpxRamECR",
+    "slug": "youtube",
+    "name": "Youtube"
+  },
+  {
+    "id": "-L8E9ObINfgdpxRamECS",
+    "slug": "polskie-filmy",
+    "name": "Polskie filmy"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1p",
+    "slug": "dzwieki",
+    "name": "Dźwięki"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1k",
+    "slug": "chlopaki-nie-placza",
+    "name": "Chłopaki nie płaczą"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1q",
+    "slug": "gry",
+    "name": "Gry"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1o",
+    "slug": "kabarety",
+    "name": "Kabarety"
+  },
+  {
+    "id": "-L8E9ObINfgdpxRamECT",
+    "slug": "kiler",
+    "name": "Kiler"
+  },
+  {
+    "id": "-LOEwI9qd5ibbin49BXp",
+    "slug": "muzyka",
+    "name": "Muzyka"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1j",
+    "slug": "nic-smiesznego",
+    "name": "Nic śmiesznego"
+  },
+  {
+    "id": "-Lf5MFUK6zSahZRY2Y1Z",
+    "slug": "politics",
+    "name": "Polityka"
+  },
+  {
+    "id": "-LQAtiIvL4G1UCkRBHQH",
+    "slug": "south-park",
+    "name": "South Park"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1n",
+    "slug": "star-wars",
+    "name": "Star Wars"
+  },
+  {
+    "id": "-LQAFIw7qsOkFc2SbtF8",
+    "slug": "teleturnieje",
+    "name": "Teleturnieje"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1m",
+    "slug": "thug-life",
+    "name": "Thug life"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1l",
+    "slug": "zagraniczne-filmy",
+    "name": "Zagraniczne filmy"
+  },
+  {
+    "id": "-L8E9ObJaGq-iJBfem1s",
+    "slug": "misc",
+    "name": "Różne"
+  }
+]

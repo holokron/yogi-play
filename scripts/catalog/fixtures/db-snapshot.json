@@ -1,0 +1,50 @@
+{
+  "tags": {
+    "t1": {
+      "id": "t1",
+      "name": "Movies",
+      "slug": "movies",
+      "order": 2,
+      "sounds": { "s1": true, "s2": true }
+    },
+    "t2": {
+      "id": "t2",
+      "name": "Memes",
+      "slug": "memes",
+      "order": 0,
+      "sounds": { "s1": true }
+    },
+    "t3": { "id": "t3", "name": "Empty", "slug": "empty", "order": 1 }
+  },
+  "sounds": {
+    "s1": {
+      "id": "s1",
+      "name": "First",
+      "path": "https://x/1.mp3",
+      "order": 1,
+      "tags": { "t1": true, "t2": true },
+      "isNew": true
+    },
+    "s2": {
+      "id": "s2",
+      "name": "Zebra",
+      "path": "https://x/2.mp3",
+      "order": 5,
+      "tags": { "t1": true }
+    },
+    "s3": {
+      "id": "s3",
+      "name": "Alpha",
+      "path": "https://x/3.mp3",
+      "order": 5,
+      "tags": { "t1": true }
+    },
+    "s4": {
+      "id": "s4",
+      "name": "Untagged",
+      "path": "https://x/4.mp3",
+      "order": 0,
+      "isNew": false
+    }
+  }
+}
